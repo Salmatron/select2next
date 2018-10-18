@@ -15,12 +15,12 @@ Utils.Extend(AjaxAdapter, ArrayAdapter);
 
 AjaxAdapter.prototype._applyDefaults = function (options) {
     const defaults = {
-        data (params) {
+        data(params) {
             return $.extend({}, params, {
                 q: params.term
             });
         },
-        transport (params, success, failure) {
+        transport(params, success, failure) {
             const $request = $.ajax(params);
 
             $request.then(success);

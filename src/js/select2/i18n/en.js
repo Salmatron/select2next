@@ -1,9 +1,9 @@
 // English
 export const Translated = {
-    errorLoading () {
+    errorLoading() {
         return 'The results could not be loaded.';
     },
-    inputTooLong (args) {
+    inputTooLong(args) {
         const overChars = args.input.length - args.maximum;
 
         let message = `Please delete ${overChars} character`;
@@ -14,17 +14,17 @@ export const Translated = {
 
         return message;
     },
-    inputTooShort (args) {
+    inputTooShort(args) {
         const remainingChars = args.minimum - args.input.length;
 
         const message = `Please enter ${remainingChars} or more characters`;
 
         return message;
     },
-    loadingMore () {
+    loadingMore() {
         return 'Loading more results…';
     },
-    maximumSelected (args) {
+    maximumSelected(args) {
         let message = `You can only select ${args.maximum} item`;
 
         if (args.maximum != 1) {
@@ -33,13 +33,13 @@ export const Translated = {
 
         return message;
     },
-    noResults () {
+    noResults() {
         return 'No results found';
     },
-    searching () {
+    searching() {
         return 'Searching…';
     },
-    removeAllItems () {
+    removeAllItems() {
         return 'Remove all items';
     }
 };

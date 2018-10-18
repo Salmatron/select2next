@@ -344,13 +344,13 @@ Defaults.prototype.reset = function () {
         minimumResultsForSearch: 0,
         selectOnClose: false,
         scrollAfterSelect: false,
-        sorter (data) {
+        sorter(data) {
             return data;
         },
-        templateResult (result) {
+        templateResult(result) {
             return result.text;
         },
-        templateSelection (selection) {
+        templateSelection(selection) {
             return selection.text;
         },
         theme: 'default',
