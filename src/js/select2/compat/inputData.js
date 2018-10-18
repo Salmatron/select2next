@@ -1,4 +1,3 @@
-import * as $ from '../../../../vendor/jquery-2.1.0.js';
 import {Utils} from '../utils.js';
 
 export function InputData(decorated, $element, options) {

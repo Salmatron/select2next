@@ -1,6 +1,5 @@
 import {BaseAdapter} from './base.js';
 import {Utils} from '../utils.js';
-import * as $ from '../../../../vendor/jquery-2.1.0.js';
 
 export function SelectAdapter($element, options) {
     this.$element = $element;

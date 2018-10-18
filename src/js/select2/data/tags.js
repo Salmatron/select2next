@@ -1,4 +1,3 @@
-import * as $ from '../../../../vendor/jquery-2.1.0.js';
 
 export function Tags(decorated, $element, options) {
     var tags = options.get('tags');

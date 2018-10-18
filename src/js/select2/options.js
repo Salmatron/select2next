@@ -1,4 +1,3 @@
-import * as $ from '../../../vendor/jquery-2.1.0.js';
 import {InputData as InputCompat} from './compat/inputData.js';
 import {defaults as Defaults} from './defaults.js';
 import {Utils} from './utils.js';

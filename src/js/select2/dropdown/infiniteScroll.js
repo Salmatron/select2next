@@ -1,5 +1,4 @@
 
-import * as $ from '../../../../vendor/jquery-2.1.0.js';
 
 export function InfiniteScroll(decorated, $element, options, dataAdapter) {
     this.lastParams = {};

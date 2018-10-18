@@ -1,6 +1,5 @@
 import {SelectAdapter} from './select.js';
 import {Utils} from '../utils.js';
-import * as $ from '../../../../vendor/jquery-2.1.0.js';
 
 export function ArrayAdapter($element, options) {
     var data = options.get('data') || [];

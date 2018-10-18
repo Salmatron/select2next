@@ -1,6 +1,5 @@
 import {ArrayAdapter} from './array.js';
 import {Utils} from "../utils.js";
-import * as $ from '../../../../vendor/jquery-2.1.0.js';
 
 export function AjaxAdapter($element, options) {
   this.ajaxOptions = this._applyDefaults(options.get('ajax'));

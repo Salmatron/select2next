@@ -1,4 +1,3 @@
-import * as $ from '../../../../vendor/jquery-2.1.0.js';
 
 function syncCssClasses($dest, $src, adapter) {
   var classes, replacements = [], adapted;

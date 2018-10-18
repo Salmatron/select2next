@@ -1,4 +1,3 @@
-import * as $ from '../../../../vendor/jquery-2.1.0.js';
 
 export function InitSelection(decorated, $element, options) {
     if (options.get('debug') && window.console && console.warn) {

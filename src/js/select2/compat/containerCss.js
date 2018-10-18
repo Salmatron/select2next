@@ -1,4 +1,3 @@
-import * as $ from '../../../../vendor/jquery-2.1.0.js';
 import {CompatUtils} from './utils.js';
 
 // No-op CSS adapter that discards all classes by default

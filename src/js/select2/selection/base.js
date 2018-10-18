@@ -1,4 +1,3 @@
-import * as $ from '../../../../vendor/jquery-2.1.0.js';
 import {Utils} from '../utils.js';
 import {KEYS} from "../keys.js";
 

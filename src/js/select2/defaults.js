@@ -1,5 +1,3 @@
-import * as $ from '../../../vendor/jquery-2.1.0.js';
-
 import {Results as ResultsList} from './results.js';
 import {SingleSelection} from "./selection/single.js";
 import {MultipleSelection} from "./selection/multiple.js";
