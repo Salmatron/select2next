@@ -11,7 +11,7 @@ export function Results($element, options, dataAdapter) {
 Utils.Extend(Results, Utils.Observable);
 
 Results.prototype.render = function () {
-    var $results = $(
+    const $results = $(
         '<ul class="select2-results__options" role="tree"></ul>'
     );
 
@@ -29,17 +29,17 @@ Results.prototype.clear = function () {
 };
 
 Results.prototype.displayMessage = function (params) {
-    var escapeMarkup = this.options.get('escapeMarkup');
+    const escapeMarkup = this.options.get('escapeMarkup');
 
     this.clear();
     this.hideLoading();
 
-    var $message = $(
+    const $message = $(
         '<li role="treeitem" aria-live="assertive"' +
         ' class="select2-results__option"></li>'
     );
 
-    var message = this.options.get('translations').get(params.message);
+    const message = this.options.get('translations').get(params.message);
 
     $message.append(
         escapeMarkup(
@@ -59,7 +59,7 @@ Results.prototype.hideMessages = function () {
 Results.prototype.append = function (data) {
     this.hideLoading();
 
-    var $options = [];
+    const $options = [];
 
     if (data.results == null || data.results.length === 0) {
         if (this.$results.children().length === 0) {
@@ -73,10 +73,10 @@ Results.prototype.append = function (data) {
 
     data.results = this.sort(data.results);
 
-    for (var d = 0; d < data.results.length; d++) {
-        var item = data.results[d];
+    for (let d = 0; d < data.results.length; d++) {
+        const item = data.results[d];
 
-        var $option = this.option(item);
+        const $option = this.option(item);
 
         $options.push($option);
     }
@@ -85,21 +85,21 @@ Results.prototype.append = function (data) {
 };
 
 Results.prototype.position = function ($results, $dropdown) {
-    var $resultsContainer = $dropdown.find('.select2-results');
+    const $resultsContainer = $dropdown.find('.select2-results');
     $resultsContainer.append($results);
 };
 
 Results.prototype.sort = function (data) {
-    var sorter = this.options.get('sorter');
+    const sorter = this.options.get('sorter');
 
     return sorter(data);
 };
 
 Results.prototype.highlightFirstItem = function () {
-    var $options = this.$results
+    const $options = this.$results
         .find('.select2-results__option[aria-selected]');
 
-    var $selected = $options.filter('[aria-selected=true]');
+    const $selected = $options.filter('[aria-selected=true]');
 
     // Check if there are any selected options
     if ($selected.length > 0) {
@@ -115,23 +115,21 @@ Results.prototype.highlightFirstItem = function () {
 };
 
 Results.prototype.setClasses = function () {
-    var self = this;
+    const self = this;
 
     this.data.current(function (selected) {
-        var selectedIds = $.map(selected, function (s) {
-            return s.id.toString();
-        });
+        const selectedIds = $.map(selected, s => s.id.toString());
 
-        var $options = self.$results
+        const $options = self.$results
             .find('.select2-results__option[aria-selected]');
 
         $options.each(function () {
-            var $option = $(this);
+            const $option = $(this);
 
-            var item = Utils.GetData(this, 'data');
+            const item = Utils.GetData(this, 'data');
 
             // id needs to be converted to a string when comparing
-            var id = String(item.id);
+            const id = String(item.id);
 
             if ((item.element != null && item.element.selected) ||
                 (item.element == null && $.inArray(id, selectedIds) > -1)) {
@@ -147,14 +145,14 @@ Results.prototype.setClasses = function () {
 Results.prototype.showLoading = function (params) {
     this.hideLoading();
 
-    var loadingMore = this.options.get('translations').get('searching');
+    const loadingMore = this.options.get('translations').get('searching');
 
-    var loading = {
+    const loading = {
         disabled: true,
         loading: true,
         text: loadingMore(params)
     };
-    var $loading = this.option(loading);
+    const $loading = this.option(loading);
     $loading.className += ' loading-results';
 
     this.$results.prepend($loading);
@@ -165,10 +163,10 @@ Results.prototype.hideLoading = function () {
 };
 
 Results.prototype.option = function (data) {
-    var option = document.createElement('li');
+    const option = document.createElement('li');
     option.className = 'select2-results__option';
 
-    var attrs = {
+    const attrs = {
         'role': 'treeitem',
         'aria-selected': 'false'
     };
@@ -196,32 +194,32 @@ Results.prototype.option = function (data) {
         delete attrs['aria-selected'];
     }
 
-    for (var attr in attrs) {
-        var val = attrs[attr];
+    for (let attr in attrs) {
+        const val = attrs[attr];
 
         option.setAttribute(attr, val);
     }
 
     if (data.children) {
-        var $option = $(option);
+        const $option = $(option);
 
-        var label = document.createElement('strong');
+        const label = document.createElement('strong');
         label.className = 'select2-results__group';
 
-        var $label = $(label);
+        const $label = $(label);
         this.template(data, label);
 
-        var $children = [];
+        const $children = [];
 
-        for (var c = 0; c < data.children.length; c++) {
-            var child = data.children[c];
+        for (let c = 0; c < data.children.length; c++) {
+            const child = data.children[c];
 
-            var $child = this.option(child);
+            const $child = this.option(child);
 
             $children.push($child);
         }
 
-        var $childrenContainer = $('<ul></ul>', {
+        const $childrenContainer = $('<ul></ul>', {
             'class': 'select2-results__options select2-results__options--nested'
         });
 
@@ -239,9 +237,9 @@ Results.prototype.option = function (data) {
 };
 
 Results.prototype.bind = function (container, $container) {
-    var self = this;
+    const self = this;
 
-    var id = container.id + '-results';
+    const id = container.id + '-results';
 
     this.$results.attr('id', id);
 
@@ -309,7 +307,7 @@ Results.prototype.bind = function (container, $container) {
     });
 
     container.on('results:toggle', function () {
-        var $highlighted = self.getHighlightedResults();
+        const $highlighted = self.getHighlightedResults();
 
         if ($highlighted.length === 0) {
             return;
@@ -319,29 +317,29 @@ Results.prototype.bind = function (container, $container) {
     });
 
     container.on('results:select', function () {
-        var $highlighted = self.getHighlightedResults();
+        const $highlighted = self.getHighlightedResults();
 
         if ($highlighted.length === 0) {
             return;
         }
 
-        var data = Utils.GetData($highlighted[0], 'data');
+        const data = Utils.GetData($highlighted[0], 'data');
 
         if ($highlighted.attr('aria-selected') == 'true') {
             self.trigger('close', {});
         } else {
             self.trigger('select', {
-                data: data
+                data
             });
         }
     });
 
     container.on('results:previous', function () {
-        var $highlighted = self.getHighlightedResults();
+        const $highlighted = self.getHighlightedResults();
 
-        var $options = self.$results.find('[aria-selected]');
+        const $options = self.$results.find('[aria-selected]');
 
-        var currentIndex = $options.index($highlighted);
+        const currentIndex = $options.index($highlighted);
 
         // If we are already at the top, don't move further
         // If no options, currentIndex will be -1
@@ -349,20 +347,20 @@ Results.prototype.bind = function (container, $container) {
             return;
         }
 
-        var nextIndex = currentIndex - 1;
+        let nextIndex = currentIndex - 1;
 
         // If none are highlighted, highlight the first
         if ($highlighted.length === 0) {
             nextIndex = 0;
         }
 
-        var $next = $options.eq(nextIndex);
+        const $next = $options.eq(nextIndex);
 
         $next.trigger('mouseenter');
 
-        var currentOffset = self.$results.offset().top;
-        var nextTop = $next.offset().top;
-        var nextOffset = self.$results.scrollTop() + (nextTop - currentOffset);
+        const currentOffset = self.$results.offset().top;
+        const nextTop = $next.offset().top;
+        const nextOffset = self.$results.scrollTop() + (nextTop - currentOffset);
 
         if (nextIndex === 0) {
             self.$results.scrollTop(0);
@@ -372,27 +370,27 @@ Results.prototype.bind = function (container, $container) {
     });
 
     container.on('results:next', function () {
-        var $highlighted = self.getHighlightedResults();
+        const $highlighted = self.getHighlightedResults();
 
-        var $options = self.$results.find('[aria-selected]');
+        const $options = self.$results.find('[aria-selected]');
 
-        var currentIndex = $options.index($highlighted);
+        const currentIndex = $options.index($highlighted);
 
-        var nextIndex = currentIndex + 1;
+        const nextIndex = currentIndex + 1;
 
         // If we are at the last option, stay there
         if (nextIndex >= $options.length) {
             return;
         }
 
-        var $next = $options.eq(nextIndex);
+        const $next = $options.eq(nextIndex);
 
         $next.trigger('mouseenter');
 
-        var currentOffset = self.$results.offset().top +
+        const currentOffset = self.$results.offset().top +
             self.$results.outerHeight(false);
-        var nextBottom = $next.offset().top + $next.outerHeight(false);
-        var nextOffset = self.$results.scrollTop() + nextBottom - currentOffset;
+        const nextBottom = $next.offset().top + $next.outerHeight(false);
+        const nextOffset = self.$results.scrollTop() + nextBottom - currentOffset;
 
         if (nextIndex === 0) {
             self.$results.scrollTop(0);
@@ -411,12 +409,12 @@ Results.prototype.bind = function (container, $container) {
 
     if ($.fn.mousewheel) {
         this.$results.on('mousewheel', function (e) {
-            var top = self.$results.scrollTop();
+            const top = self.$results.scrollTop();
 
-            var bottom = self.$results.get(0).scrollHeight - top + e.deltaY;
+            const bottom = self.$results.get(0).scrollHeight - top + e.deltaY;
 
-            var isAtTop = e.deltaY > 0 && top - e.deltaY <= 0;
-            var isAtBottom = e.deltaY < 0 && bottom <= self.$results.height();
+            const isAtTop = e.deltaY > 0 && top - e.deltaY <= 0;
+            const isAtBottom = e.deltaY < 0 && bottom <= self.$results.height();
 
             if (isAtTop) {
                 self.$results.scrollTop(0);
@@ -436,15 +434,15 @@ Results.prototype.bind = function (container, $container) {
 
     this.$results.on('mouseup', '.select2-results__option[aria-selected]',
         function (evt) {
-            var $this = $(this);
+            const $this = $(this);
 
-            var data = Utils.GetData(this, 'data');
+            const data = Utils.GetData(this, 'data');
 
             if ($this.attr('aria-selected') === 'true') {
                 if (self.options.get('multiple')) {
                     self.trigger('unselect', {
                         originalEvent: evt,
-                        data: data
+                        data
                     });
                 } else {
                     self.trigger('close', {});
@@ -455,26 +453,26 @@ Results.prototype.bind = function (container, $container) {
 
             self.trigger('select', {
                 originalEvent: evt,
-                data: data
+                data
             });
         });
 
     this.$results.on('mouseenter', '.select2-results__option[aria-selected]',
         function (evt) {
-            var data = Utils.GetData(this, 'data');
+            const data = Utils.GetData(this, 'data');
 
             self.getHighlightedResults()
                 .removeClass('select2-results__option--highlighted');
 
             self.trigger('results:focus', {
-                data: data,
+                data,
                 element: $(this)
             });
         });
 };
 
 Results.prototype.getHighlightedResults = function () {
-    var $highlighted = this.$results
+    const $highlighted = this.$results
         .find('.select2-results__option--highlighted');
 
     return $highlighted;
@@ -485,21 +483,21 @@ Results.prototype.destroy = function () {
 };
 
 Results.prototype.ensureHighlightVisible = function () {
-    var $highlighted = this.getHighlightedResults();
+    const $highlighted = this.getHighlightedResults();
 
     if ($highlighted.length === 0) {
         return;
     }
 
-    var $options = this.$results.find('[aria-selected]');
+    const $options = this.$results.find('[aria-selected]');
 
-    var currentIndex = $options.index($highlighted);
+    const currentIndex = $options.index($highlighted);
 
-    var currentOffset = this.$results.offset().top;
-    var nextTop = $highlighted.offset().top;
-    var nextOffset = this.$results.scrollTop() + (nextTop - currentOffset);
+    const currentOffset = this.$results.offset().top;
+    const nextTop = $highlighted.offset().top;
+    let nextOffset = this.$results.scrollTop() + (nextTop - currentOffset);
 
-    var offsetDelta = nextTop - currentOffset;
+    const offsetDelta = nextTop - currentOffset;
     nextOffset -= $highlighted.outerHeight(false) * 2;
 
     if (currentIndex <= 2) {
@@ -510,10 +508,10 @@ Results.prototype.ensureHighlightVisible = function () {
 };
 
 Results.prototype.template = function (result, container) {
-    var template = this.options.get('templateResult');
-    var escapeMarkup = this.options.get('escapeMarkup');
+    const template = this.options.get('templateResult');
+    const escapeMarkup = this.options.get('escapeMarkup');
 
-    var content = template(result, container);
+    const content = template(result, container);
 
     if (content == null) {
         container.style.display = 'none';

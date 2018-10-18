@@ -7,10 +7,10 @@ export function MaximumSelectionLength(decorated, $e, options) {
 
 MaximumSelectionLength.prototype.query =
     function (decorated, params, callback) {
-        var self = this;
+        const self = this;
 
         this.current(function (currentData) {
-            var count = currentData != null ? currentData.length : 0;
+            const count = currentData != null ? currentData.length : 0;
             if (self.maximumSelectionLength > 0 &&
                 count >= self.maximumSelectionLength) {
                 self.trigger('results:message', {

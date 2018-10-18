@@ -20,7 +20,7 @@ export function Options(options, $element) {
 }
 
 Options.prototype.fromElement = function ($e) {
-    var excludedData = ['select2'];
+    const excludedData = ['select2'];
 
     if (this.options.multiple == null) {
         this.options.multiple = $e.prop('multiple');
@@ -78,7 +78,7 @@ Options.prototype.fromElement = function ($e) {
 
     }
 
-    var dataset = {};
+    let dataset = {};
 
     // Prefer the element's `dataset` attribute if it exists
     // jQuery 1.x does not correctly handle data attributes with multiple dashes
@@ -88,11 +88,11 @@ Options.prototype.fromElement = function ($e) {
         dataset = Utils.GetData($e[0]);
     }
 
-    var data = $.extend(true, {}, dataset);
+    let data = $.extend(true, {}, dataset);
 
     data = Utils._convertData(data);
 
-    for (var key in data) {
+    for (let key in data) {
         if ($.inArray(key, excludedData) > -1) {
             continue;
         }

@@ -16,13 +16,13 @@ export const Utils = {
 };
 
 function Extend(ChildClass, SuperClass) {
-    var __hasProp = {}.hasOwnProperty;
+    const __hasProp = {}.hasOwnProperty;
 
     function BaseConstructor() {
         this.constructor = ChildClass;
     }
 
-    for (var key in SuperClass) {
+    for (let key in SuperClass) {
         if (__hasProp.call(SuperClass, key)) {
             ChildClass[key] = SuperClass[key];
         }
@@ -36,12 +36,12 @@ function Extend(ChildClass, SuperClass) {
 }
 
 function getMethods(theClass) {
-    var proto = theClass.prototype;
+    const proto = theClass.prototype;
 
-    var methods = [];
+    const methods = [];
 
-    for (var methodName in proto) {
-        var m = proto[methodName];
+    for (let methodName in proto) {
+        const m = proto[methodName];
 
         if (typeof m !== 'function') {
             continue;
@@ -58,15 +58,15 @@ function getMethods(theClass) {
 }
 
 function Decorate(SuperClass, DecoratorClass) {
-    var decoratedMethods = getMethods(DecoratorClass);
-    var superMethods = getMethods(SuperClass);
+    const decoratedMethods = getMethods(DecoratorClass);
+    const superMethods = getMethods(SuperClass);
 
     function DecoratedClass() {
-        var unshift = Array.prototype.unshift;
+        const { unshift } = Array.prototype;
 
-        var argCount = DecoratorClass.prototype.constructor.length;
+        const argCount = DecoratorClass.prototype.constructor.length;
 
-        var calledConstructor = SuperClass.prototype.constructor;
+        let calledConstructor = SuperClass.prototype.constructor;
 
         if (argCount > 0) {
             unshift.call(arguments, SuperClass.prototype.constructor);
@@ -85,25 +85,25 @@ function Decorate(SuperClass, DecoratorClass) {
 
     DecoratedClass.prototype = new ctr();
 
-    for (var m = 0; m < superMethods.length; m++) {
-        var superMethod = superMethods[m];
+    for (let m = 0; m < superMethods.length; m++) {
+        const superMethod = superMethods[m];
 
         DecoratedClass.prototype[superMethod] =
       SuperClass.prototype[superMethod];
     }
 
-    var calledMethod = function (methodName) {
+    const calledMethod = function (methodName) {
     // Stub out the original method if it's not decorating an actual method
-        var originalMethod = function () {};
+        let originalMethod = function () {};
 
         if (methodName in DecoratedClass.prototype) {
             originalMethod = DecoratedClass.prototype[methodName];
         }
 
-        var decoratedMethod = DecoratorClass.prototype[methodName];
+        const decoratedMethod = DecoratorClass.prototype[methodName];
 
         return function () {
-            var unshift = Array.prototype.unshift;
+            const { unshift } = Array.prototype;
 
             unshift.call(arguments, originalMethod);
 
@@ -111,8 +111,8 @@ function Decorate(SuperClass, DecoratorClass) {
         };
     };
 
-    for (var d = 0; d < decoratedMethods.length; d++) {
-        var decoratedMethod = decoratedMethods[d];
+    for (let d = 0; d < decoratedMethods.length; d++) {
+        const decoratedMethod = decoratedMethods[d];
 
         DecoratedClass.prototype[decoratedMethod] = calledMethod(decoratedMethod);
     }
@@ -135,8 +135,8 @@ Observable.prototype.on = function (event, callback) {
 };
 
 Observable.prototype.trigger = function (event) {
-    var slice = Array.prototype.slice;
-    var params = slice.call(arguments, 1);
+    const { slice } = Array.prototype;
+    let params = slice.call(arguments, 1);
 
     this.listeners = this.listeners || {};
 
@@ -163,16 +163,16 @@ Observable.prototype.trigger = function (event) {
 };
 
 Observable.prototype.invoke = function (listeners, params) {
-    for (var i = 0, len = listeners.length; i < len; i++) {
+    for (let i = 0, len = listeners.length; i < len; i++) {
         listeners[i].apply(this, params);
     }
 };
 
 function generateChars(length) {
-    var chars = '';
+    let chars = '';
 
-    for (var i = 0; i < length; i++) {
-        var randomChar = Math.floor(Math.random() * 36);
+    for (let i = 0; i < length; i++) {
+        const randomChar = Math.floor(Math.random() * 36);
         chars += randomChar.toString(36);
     }
 
@@ -186,17 +186,17 @@ function bind(func, context) {
 }
 
 function _convertData(data) {
-    for (var originalKey in data) {
-        var keys = originalKey.split('-');
+    for (let originalKey in data) {
+        const keys = originalKey.split('-');
 
-        var dataLevel = data;
+        let dataLevel = data;
 
         if (keys.length === 1) {
             continue;
         }
 
-        for (var k = 0; k < keys.length; k++) {
-            var key = keys[k];
+        for (let k = 0; k < keys.length; k++) {
+            let key = keys[k];
 
             // Lowercase the first letter
             // By default, dash-separated becomes camelCase
@@ -226,9 +226,9 @@ function hasScroll(index, el) {
     // http://codereview.stackexchange.com/q/13338
     // and was designed to be used with the Sizzle selector engine.
 
-    var $el = $(el);
-    var overflowX = el.style.overflowX;
-    var overflowY = el.style.overflowY;
+    const $el = $(el);
+    const { overflowX } = el.style;
+    const { overflowY } = el.style;
 
     //Check both x and y declarations
     if (overflowX === overflowY &&
@@ -245,7 +245,7 @@ function hasScroll(index, el) {
 }
 
 function escapeMarkup(markup) {
-    var replaceMap = {
+    const replaceMap = {
         '\\': '&#92;',
         '&': '&amp;',
         '<': '&lt;',
@@ -260,9 +260,7 @@ function escapeMarkup(markup) {
         return markup;
     }
 
-    return String(markup).replace(/[&<>"'\/\\]/g, function (match) {
-        return replaceMap[match];
-    });
+    return String(markup).replace(/[&<>"'\/\\]/g, match => replaceMap[match]);
 }
 
 // Append an array of jQuery nodes to a given element.
@@ -270,7 +268,7 @@ function appendMany($element, $nodes) {
     // jQuery 1.7.x does not support $.fn.append() with an array
     // Fall back to a jQuery object collection using $.fn.add()
     if ($.fn.jquery.substr(0, 3) === '1.7') {
-        var $jqNodes = $();
+        let $jqNodes = $();
 
         $.map($nodes, function (node) {
             $jqNodes = $jqNodes.add(node);
@@ -285,14 +283,14 @@ function appendMany($element, $nodes) {
 // Cache objects in Utils.__cache instead of $.data (see #4346)
 Utils.__cache = {};
 
-var id = 0;
+let id = 0;
 function GetUniqueElementId(element) {
     // Get a unique element Id. If element has no id,
     // creates a new unique number, stores it in the id
     // attribute and returns the new id.
     // If an id already exists, it simply returns it.
 
-    var select2Id = element.getAttribute('data-select2-id');
+    let select2Id = element.getAttribute('data-select2-id');
     if (select2Id == null) {
     // If element has id, use it.
         if (element.id) {
@@ -309,7 +307,7 @@ function GetUniqueElementId(element) {
 function StoreData(element, name, value) {
     // Stores an item in the cache for a specified element.
     // name is the cache key.
-    var id = Utils.GetUniqueElementId(element);
+    const id = Utils.GetUniqueElementId(element);
     if (!Utils.__cache[id]) {
         Utils.__cache[id] = {};
     }
@@ -322,7 +320,7 @@ function GetData(element, name) {
     // name is optional. If no name specified, return
     // all cache items for the specified element.
     // and for a specified element.
-    var id = Utils.GetUniqueElementId(element);
+    const id = Utils.GetUniqueElementId(element);
     if (name) {
         if (Utils.__cache[id]) {
             return Utils.__cache[id][name] != null ?
@@ -337,7 +335,7 @@ function GetData(element, name) {
 
 function RemoveData(element) {
     // Removes all cached items for a specified element.
-    var id = Utils.GetUniqueElementId(element);
+    const id = Utils.GetUniqueElementId(element);
     if (Utils.__cache[id] != null) {
         delete Utils.__cache[id];
     }

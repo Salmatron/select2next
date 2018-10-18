@@ -9,24 +9,24 @@ export function DropdownCSS() {
 }
 
 DropdownCSS.prototype.render = function (decorated) {
-    var $dropdown = decorated.call(this);
+    const $dropdown = decorated.call(this);
 
-    var dropdownCssClass = this.options.get('dropdownCssClass') || '';
+    let dropdownCssClass = this.options.get('dropdownCssClass') || '';
 
     if ($.isFunction(dropdownCssClass)) {
         dropdownCssClass = dropdownCssClass(this.$element);
     }
 
-    var dropdownCssAdapter = this.options.get('adaptDropdownCssClass');
+    let dropdownCssAdapter = this.options.get('adaptDropdownCssClass');
     dropdownCssAdapter = dropdownCssAdapter || _dropdownAdapter;
 
     if (dropdownCssClass.indexOf(':all:') !== -1) {
         dropdownCssClass = dropdownCssClass.replace(':all:', '');
 
-        var _cssAdapter = dropdownCssAdapter;
+        const _cssAdapter = dropdownCssAdapter;
 
         dropdownCssAdapter = function (clazz) {
-            var adapted = _cssAdapter(clazz);
+            const adapted = _cssAdapter(clazz);
 
             if (adapted != null) {
                 // Append the old one along with the adapted one
@@ -37,7 +37,7 @@ DropdownCSS.prototype.render = function (decorated) {
         };
     }
 
-    var dropdownCss = this.options.get('dropdownCss') || {};
+    let dropdownCss = this.options.get('dropdownCss') || {};
 
     if ($.isFunction(dropdownCss)) {
         dropdownCss = dropdownCss(this.$element);

@@ -6,7 +6,7 @@ export function Search(decorated, $element, options) {
 }
 
 Search.prototype.render = function (decorated) {
-    var $search = $(
+    const $search = $(
         '<li class="select2-search select2-search--inline">' +
         '<input class="select2-search__field" type="search" tabindex="-1"' +
         ' autocomplete="off" autocorrect="off" autocapitalize="none"' +
@@ -17,7 +17,7 @@ Search.prototype.render = function (decorated) {
     this.$searchContainer = $search;
     this.$search = $search.find('input');
 
-    var $rendered = decorated.call(this);
+    const $rendered = decorated.call(this);
 
     this._transferTabIndex();
 
@@ -25,7 +25,7 @@ Search.prototype.render = function (decorated) {
 };
 
 Search.prototype.bind = function (decorated, container, $container) {
-    var self = this;
+    const self = this;
 
     decorated.call(this, container, $container);
 
@@ -72,14 +72,14 @@ Search.prototype.bind = function (decorated, container, $container) {
 
         self._keyUpPrevented = evt.isDefaultPrevented();
 
-        var key = evt.which;
+        const key = evt.which;
 
         if (key === KEYS.BACKSPACE && self.$search.val() === '') {
-            var $previousChoice = self.$searchContainer
+            const $previousChoice = self.$searchContainer
                 .prev('.select2-selection__choice');
 
             if ($previousChoice.length > 0) {
-                var item = Utils.GetData($previousChoice[0], 'data');
+                const item = Utils.GetData($previousChoice[0], 'data');
 
                 self.searchRemoveChoice(item);
 
@@ -93,8 +93,8 @@ Search.prototype.bind = function (decorated, container, $container) {
     // slightly cleaner than doing a user agent check.
     // This property is not available in Edge, but Edge also doesn't have
     // this bug.
-    var msie = document.documentMode;
-    var disableInputEvents = msie && msie <= 11;
+    const msie = document.documentMode;
+    const disableInputEvents = msie && msie <= 11;
 
     // Workaround for browsers which do not support the `input` event
     // This will prevent double-triggering of events for browsers which support
@@ -128,7 +128,7 @@ Search.prototype.bind = function (decorated, container, $container) {
                 return;
             }
 
-            var key = evt.which;
+            const key = evt.which;
 
             // We can freely ignore events from modifier keys
             if (key == KEYS.SHIFT || key == KEYS.CTRL || key == KEYS.ALT) {
@@ -162,7 +162,7 @@ Search.prototype.createPlaceholder = function (decorated, placeholder) {
 };
 
 Search.prototype.update = function (decorated, data) {
-    var searchHadFocus = this.$search[0] == document.activeElement;
+    const searchHadFocus = this.$search[0] == document.activeElement;
 
     this.$search.attr('placeholder', '');
 
@@ -173,7 +173,7 @@ Search.prototype.update = function (decorated, data) {
 
     this.resizeSearch();
     if (searchHadFocus) {
-        var isTagInput = this.$element.find('[data-select2-tag]').length;
+        const isTagInput = this.$element.find('[data-select2-tag]').length;
         if (isTagInput) {
             // fix IE11 bug where tag input lost focus
             this.$element.focus();
@@ -187,7 +187,7 @@ Search.prototype.handleSearch = function () {
     this.resizeSearch();
 
     if (!this._keyUpPrevented) {
-        var input = this.$search.val();
+        const input = this.$search.val();
 
         this.trigger('query', {
             term: input
@@ -209,12 +209,12 @@ Search.prototype.searchRemoveChoice = function (decorated, item) {
 Search.prototype.resizeSearch = function () {
     this.$search.css('width', '25px');
 
-    var width = '';
+    let width = '';
 
     if (this.$search.attr('placeholder') !== '') {
         width = this.$selection.find('.select2-selection__rendered').innerWidth();
     } else {
-        var minimumWidth = this.$search.val().length + 1;
+        const minimumWidth = this.$search.val().length + 1;
 
         width = (minimumWidth * 0.75) + 'em';
     }

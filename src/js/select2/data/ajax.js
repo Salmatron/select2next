@@ -14,14 +14,14 @@ export function AjaxAdapter($element, options) {
 Utils.Extend(AjaxAdapter, ArrayAdapter);
 
 AjaxAdapter.prototype._applyDefaults = function (options) {
-    var defaults = {
-        data: function (params) {
+    const defaults = {
+        data (params) {
             return $.extend({}, params, {
                 q: params.term
             });
         },
-        transport: function (params, success, failure) {
-            var $request = $.ajax(params);
+        transport (params, success, failure) {
+            const $request = $.ajax(params);
 
             $request.then(success);
             $request.fail(failure);
@@ -33,13 +33,11 @@ AjaxAdapter.prototype._applyDefaults = function (options) {
     return $.extend({}, defaults, options, true);
 };
 
-AjaxAdapter.prototype.processResults = function (results) {
-    return results;
-};
+AjaxAdapter.prototype.processResults = results => results;
 
 AjaxAdapter.prototype.query = function (params, callback) {
-    var matches = [];
-    var self = this;
+    const matches = [];
+    const self = this;
 
     if (this._request != null) {
     // JSONP requests cannot always be aborted
@@ -50,7 +48,7 @@ AjaxAdapter.prototype.query = function (params, callback) {
         this._request = null;
     }
 
-    var options = $.extend({
+    const options = $.extend({
         type: 'GET'
     }, this.ajaxOptions);
 
@@ -64,7 +62,7 @@ AjaxAdapter.prototype.query = function (params, callback) {
 
     function request() {
         var $request = options.transport(options, function (data) {
-            var results = self.processResults(data, params);
+            const results = self.processResults(data, params);
 
             if (self.options.get('debug') && window.console && console.error) {
                 // Check to make sure that the response included a `results` key.

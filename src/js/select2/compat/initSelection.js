@@ -17,7 +17,7 @@ export function InitSelection(decorated, $element, options) {
 }
 
 InitSelection.prototype.current = function (decorated, callback) {
-    var self = this;
+    const self = this;
 
     if (this._isInitialized) {
         decorated.call(this, callback);

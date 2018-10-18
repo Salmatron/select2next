@@ -19,32 +19,32 @@ export function Select2($element, options) {
 
     // Set up the tabindex
 
-    var tabindex = $element.attr('tabindex') || 0;
+    const tabindex = $element.attr('tabindex') || 0;
     Utils.StoreData($element[0], 'old-tabindex', tabindex);
     $element.attr('tabindex', '-1');
 
     // Set up containers and adapters
 
-    var DataAdapter = this.options.get('dataAdapter');
+    const DataAdapter = this.options.get('dataAdapter');
     this.dataAdapter = new DataAdapter($element, this.options);
 
-    var $container = this.render();
+    const $container = this.render();
 
     this._placeContainer($container);
 
-    var SelectionAdapter = this.options.get('selectionAdapter');
+    const SelectionAdapter = this.options.get('selectionAdapter');
     this.selection = new SelectionAdapter($element, this.options);
     this.$selection = this.selection.render();
 
     this.selection.position(this.$selection, $container);
 
-    var DropdownAdapter = this.options.get('dropdownAdapter');
+    const DropdownAdapter = this.options.get('dropdownAdapter');
     this.dropdown = new DropdownAdapter($element, this.options);
     this.$dropdown = this.dropdown.render();
 
     this.dropdown.position(this.$dropdown, $container);
 
-    var ResultsAdapter = this.options.get('resultsAdapter');
+    const ResultsAdapter = this.options.get('resultsAdapter');
     this.results = new ResultsAdapter($element, this.options, this.dataAdapter);
     this.$results = this.results.render();
 
@@ -52,7 +52,7 @@ export function Select2($element, options) {
 
     // Bind events
 
-    var self = this;
+    const self = this;
 
     // Bind the container to all of the adapters
     this._bindAdapters();
@@ -90,7 +90,7 @@ export function Select2($element, options) {
 Utils.Extend(Select2, Utils.Observable);
 
 Select2.prototype._generateId = function ($element) {
-    var id = '';
+    let id = '';
 
     if ($element.attr('id') != null) {
         id = $element.attr('id');
@@ -101,7 +101,7 @@ Select2.prototype._generateId = function ($element) {
     }
 
     id = id.replace(/(:|\.|\[|\]|,)/g, '');
-    id = 'select2-' + id;
+    id = `select2-${id}`;
 
     return id;
 };
@@ -109,7 +109,7 @@ Select2.prototype._generateId = function ($element) {
 Select2.prototype._placeContainer = function ($container) {
     $container.insertAfter(this.$element);
 
-    var width = this._resolveWidth(this.$element, this.options.get('width'));
+    const width = this._resolveWidth(this.$element, this.options.get('width'));
 
     if (width != null) {
         $container.css('width', width);
@@ -117,10 +117,10 @@ Select2.prototype._placeContainer = function ($container) {
 };
 
 Select2.prototype._resolveWidth = function ($element, method) {
-    var WIDTH = /^width:(([-+]?([0-9]*\.)?[0-9]+)(px|em|ex|%|in|cm|mm|pt|pc))/i;
+    const WIDTH = /^width:(([-+]?([0-9]*\.)?[0-9]+)(px|em|ex|%|in|cm|mm|pt|pc))/i;
 
     if (method == 'resolve') {
-        var styleWidth = this._resolveWidth($element, 'style');
+        const styleWidth = this._resolveWidth($element, 'style');
 
         if (styleWidth != null) {
             return styleWidth;
@@ -130,7 +130,7 @@ Select2.prototype._resolveWidth = function ($element, method) {
     }
 
     if (method == 'element') {
-        var elementWidth = $element.outerWidth(false);
+        const elementWidth = $element.outerWidth(false);
 
         if (elementWidth <= 0) {
             return 'auto';
@@ -140,17 +140,17 @@ Select2.prototype._resolveWidth = function ($element, method) {
     }
 
     if (method == 'style') {
-        var style = $element.attr('style');
+        const style = $element.attr('style');
 
         if (typeof(style) !== 'string') {
             return null;
         }
 
-        var attrs = style.split(';');
+        const attrs = style.split(';');
 
-        for (var i = 0, l = attrs.length; i < l; i = i + 1) {
-            var attr = attrs[i].replace(/\s/g, '');
-            var matches = attr.match(WIDTH);
+        for (let i = 0, l = attrs.length; i < l; i = i + 1) {
+            const attr = attrs[i].replace(/\s/g, '');
+            const matches = attr.match(WIDTH);
 
             if (matches !== null && matches.length >= 1) {
                 return matches[1];
@@ -172,12 +172,12 @@ Select2.prototype._bindAdapters = function () {
 };
 
 Select2.prototype._registerDomEvents = function () {
-    var self = this;
+    const self = this;
 
     this.$element.on('change.select2', function () {
         self.dataAdapter.current(function (data) {
             self.trigger('selection:update', {
-                data: data
+                data
             });
         });
     });
@@ -193,7 +193,7 @@ Select2.prototype._registerDomEvents = function () {
         this.$element[0].attachEvent('onpropertychange', this._syncA);
     }
 
-    var observer = window.MutationObserver ||
+    const observer = window.MutationObserver ||
     window.WebKitMutationObserver ||
     window.MozMutationObserver
   ;
@@ -228,7 +228,7 @@ Select2.prototype._registerDomEvents = function () {
 };
 
 Select2.prototype._registerDataEvents = function () {
-    var self = this;
+    const self = this;
 
     this.dataAdapter.on('*', function (name, params) {
         self.trigger(name, params);
@@ -236,8 +236,8 @@ Select2.prototype._registerDataEvents = function () {
 };
 
 Select2.prototype._registerSelectionEvents = function () {
-    var self = this;
-    var nonRelayEvents = ['toggle', 'focus'];
+    const self = this;
+    const nonRelayEvents = ['toggle', 'focus'];
 
     this.selection.on('toggle', function () {
         self.toggleDropdown();
@@ -257,7 +257,7 @@ Select2.prototype._registerSelectionEvents = function () {
 };
 
 Select2.prototype._registerDropdownEvents = function () {
-    var self = this;
+    const self = this;
 
     this.dropdown.on('*', function (name, params) {
         self.trigger(name, params);
@@ -265,7 +265,7 @@ Select2.prototype._registerDropdownEvents = function () {
 };
 
 Select2.prototype._registerResultsEvents = function () {
-    var self = this;
+    const self = this;
 
     this.results.on('*', function (name, params) {
         self.trigger(name, params);
@@ -273,13 +273,12 @@ Select2.prototype._registerResultsEvents = function () {
 };
 
 Select2.prototype._registerEvents = function () {
-    var self = this;
+    const self = this;
 
     this.on('focus', function () {
         self.$container.addClass('select2-container--focus');
 
-        if (!self.$container.hasClass('select2-container--disabled') &&
-      !self.isOpen()) {
+        if (!self.$container.hasClass('select2-container--disabled') && !self.isOpen()) {
             if (self.options.get('multiple')) {
                 window.setTimeout(function () {
                     self.open();
@@ -319,7 +318,7 @@ Select2.prototype._registerEvents = function () {
 
         this.dataAdapter.query(params, function (data) {
             self.trigger('results:all', {
-                data: data,
+                data,
                 query: params
             });
         });
@@ -328,14 +327,14 @@ Select2.prototype._registerEvents = function () {
     this.on('query:append', function (params) {
         this.dataAdapter.query(params, function (data) {
             self.trigger('results:append', {
-                data: data,
+                data,
                 query: params
             });
         });
     });
 
     this.on('keypress', function (evt) {
-        var key = evt.which;
+        const key = evt.which;
 
         if (self.isOpen()) {
             if (key === KEYS.ESC || key === KEYS.TAB ||
@@ -386,8 +385,8 @@ Select2.prototype._syncAttributes = function () {
 };
 
 Select2.prototype._syncSubtree = function (evt, mutations) {
-    var changed = false;
-    var self = this;
+    let changed = false;
+    const self = this;
 
     // Ignore any mutation events raised for elements that aren't options or
     // optgroups. This handles the case when the select element is destroyed
@@ -404,8 +403,8 @@ Select2.prototype._syncSubtree = function (evt, mutations) {
     // change affected the selections
         changed = true;
     } else if (mutations.addedNodes && mutations.addedNodes.length > 0) {
-        for (var n = 0; n < mutations.addedNodes.length; n++) {
-            var node = mutations.addedNodes[n];
+        for (let n = 0; n < mutations.addedNodes.length; n++) {
+            const node = mutations.addedNodes[n];
 
             if (node.selected) {
                 changed = true;
@@ -430,8 +429,8 @@ Select2.prototype._syncSubtree = function (evt, mutations) {
  * there are events that can be prevented.
  */
 Select2.prototype.trigger = function (name, args) {
-    var actualTrigger = Select2.__super__.trigger;
-    var preTriggerMap = {
+    const actualTrigger = Select2.__super__.trigger;
+    const preTriggerMap = {
         'open': 'opening',
         'close': 'closing',
         'select': 'selecting',
@@ -444,11 +443,11 @@ Select2.prototype.trigger = function (name, args) {
     }
 
     if (name in preTriggerMap) {
-        var preTriggerName = preTriggerMap[name];
-        var preTriggerArgs = {
+        const preTriggerName = preTriggerMap[name];
+        const preTriggerArgs = {
             prevented: false,
-            name: name,
-            args: args
+            name,
+            args
         };
 
         actualTrigger.call(this, preTriggerName, preTriggerArgs);
@@ -522,7 +521,7 @@ Select2.prototype.enable = function (args) {
         args = [true];
     }
 
-    var disabled = !args[0];
+    const disabled = !args[0];
 
     this.$element.prop('disabled', disabled);
 };
@@ -536,7 +535,7 @@ Select2.prototype.data = function () {
         );
     }
 
-    var data = [];
+    let data = [];
 
     this.dataAdapter.current(function (currentData) {
         data = currentData;
@@ -557,12 +556,10 @@ Select2.prototype.val = function (args) {
         return this.$element.val();
     }
 
-    var newVal = args[0];
+    let newVal = args[0];
 
     if ($.isArray(newVal)) {
-        newVal = $.map(newVal, function (obj) {
-            return obj.toString();
-        });
+        newVal = $.map(newVal, obj => obj.toString());
     }
 
     this.$element.val(newVal).trigger('change');
@@ -611,7 +608,7 @@ Select2.prototype.destroy = function () {
 };
 
 Select2.prototype.render = function () {
-    var $container = $(
+    const $container = $(
         '<span class="select2 select2-container">' +
     '<span class="selection"></span>' +
     '<span class="dropdown-wrapper" aria-hidden="true"></span>' +
@@ -622,7 +619,7 @@ Select2.prototype.render = function () {
 
     this.$container = $container;
 
-    this.$container.addClass('select2-container--' + this.options.get('theme'));
+    this.$container.addClass(`select2-container--${this.options.get('theme')}`);
 
     Utils.StoreData($container[0], 'element', this.$element);
 

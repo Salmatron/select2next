@@ -8,7 +8,7 @@ export function MultipleSelection($element, options) {
 Utils.Extend(MultipleSelection, BaseSelection);
 
 MultipleSelection.prototype.render = function () {
-    var $selection = MultipleSelection.__super__.render.call(this);
+    const $selection = MultipleSelection.__super__.render.call(this);
 
     $selection.addClass('select2-selection--multiple');
 
@@ -20,7 +20,7 @@ MultipleSelection.prototype.render = function () {
 };
 
 MultipleSelection.prototype.bind = function (container, $container) {
-    var self = this;
+    const self = this;
 
     MultipleSelection.__super__.bind.apply(this, arguments);
 
@@ -39,34 +39,34 @@ MultipleSelection.prototype.bind = function (container, $container) {
                 return;
             }
 
-            var $remove = $(this);
-            var $selection = $remove.parent();
+            const $remove = $(this);
+            const $selection = $remove.parent();
 
-            var data = Utils.GetData($selection[0], 'data');
+            const data = Utils.GetData($selection[0], 'data');
 
             self.trigger('unselect', {
                 originalEvent: evt,
-                data: data
+                data
             });
         }
     );
 };
 
 MultipleSelection.prototype.clear = function () {
-    var $rendered = this.$selection.find('.select2-selection__rendered');
+    const $rendered = this.$selection.find('.select2-selection__rendered');
     $rendered.empty();
     $rendered.removeAttr('title');
 };
 
 MultipleSelection.prototype.display = function (data, container) {
-    var template = this.options.get('templateSelection');
-    var escapeMarkup = this.options.get('escapeMarkup');
+    const template = this.options.get('templateSelection');
+    const escapeMarkup = this.options.get('escapeMarkup');
 
     return escapeMarkup(template(data, container));
 };
 
 MultipleSelection.prototype.selectionContainer = function () {
-    var $container = $(
+    const $container = $(
         '<li class="select2-selection__choice">' +
         '<span class="select2-selection__choice__remove" role="presentation">' +
         '&times;' +
@@ -84,13 +84,13 @@ MultipleSelection.prototype.update = function (data) {
         return;
     }
 
-    var $selections = [];
+    const $selections = [];
 
-    for (var d = 0; d < data.length; d++) {
-        var selection = data[d];
+    for (let d = 0; d < data.length; d++) {
+        const selection = data[d];
 
-        var $selection = this.selectionContainer();
-        var formatted = this.display(selection, $selection);
+        const $selection = this.selectionContainer();
+        const formatted = this.display(selection, $selection);
 
         $selection.append(formatted);
         $selection.attr('title', selection.title || selection.text);
@@ -100,7 +100,7 @@ MultipleSelection.prototype.update = function (data) {
         $selections.push($selection);
     }
 
-    var $rendered = this.$selection.find('.select2-selection__rendered');
+    const $rendered = this.$selection.find('.select2-selection__rendered');
 
     Utils.appendMany($rendered, $selections);
 };

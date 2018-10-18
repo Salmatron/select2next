@@ -17,7 +17,7 @@ Placeholder.prototype.normalizePlaceholder = function (_, placeholder) {
 };
 
 Placeholder.prototype.createPlaceholder = function (decorated, placeholder) {
-    var $placeholder = this.selectionContainer();
+    const $placeholder = this.selectionContainer();
 
     $placeholder.html(this.display(placeholder));
     $placeholder.addClass('select2-selection__placeholder')
@@ -27,10 +27,10 @@ Placeholder.prototype.createPlaceholder = function (decorated, placeholder) {
 };
 
 Placeholder.prototype.update = function (decorated, data) {
-    var singlePlaceholder = (
+    const singlePlaceholder = (
         data.length == 1 && data[0].id != this.placeholder.id
     );
-    var multipleSelections = data.length > 1;
+    const multipleSelections = data.length > 1;
 
     if (multipleSelections || singlePlaceholder) {
         return decorated.call(this, data);
@@ -38,7 +38,7 @@ Placeholder.prototype.update = function (decorated, data) {
 
     this.clear();
 
-    var $placeholder = this.createPlaceholder(this.placeholder);
+    const $placeholder = this.createPlaceholder(this.placeholder);
 
     this.$selection.find('.select2-selection__rendered').append($placeholder);
 };

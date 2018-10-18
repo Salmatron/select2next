@@ -8,7 +8,7 @@ export function SingleSelection() {
 Utils.Extend(SingleSelection, BaseSelection);
 
 SingleSelection.prototype.render = function () {
-    var $selection = SingleSelection.__super__.render.call(this);
+    const $selection = SingleSelection.__super__.render.call(this);
 
     $selection.addClass('select2-selection--single');
 
@@ -23,11 +23,11 @@ SingleSelection.prototype.render = function () {
 };
 
 SingleSelection.prototype.bind = function (container, $container) {
-    var self = this;
+    const self = this;
 
     SingleSelection.__super__.bind.apply(this, arguments);
 
-    var id = container.id + '-container';
+    const id = container.id + '-container';
 
     this.$selection.find('.select2-selection__rendered')
         .attr('id', id)
@@ -62,21 +62,19 @@ SingleSelection.prototype.bind = function (container, $container) {
 };
 
 SingleSelection.prototype.clear = function () {
-    var $rendered = this.$selection.find('.select2-selection__rendered');
+    const $rendered = this.$selection.find('.select2-selection__rendered');
     $rendered.empty();
     $rendered.removeAttr('title'); // clear tooltip on empty
 };
 
 SingleSelection.prototype.display = function (data, container) {
-    var template = this.options.get('templateSelection');
-    var escapeMarkup = this.options.get('escapeMarkup');
+    const template = this.options.get('templateSelection');
+    const escapeMarkup = this.options.get('escapeMarkup');
 
     return escapeMarkup(template(data, container));
 };
 
-SingleSelection.prototype.selectionContainer = function () {
-    return $('<span></span>');
-};
+SingleSelection.prototype.selectionContainer = () => $('<span></span>');
 
 SingleSelection.prototype.update = function (data) {
     if (data.length === 0) {
@@ -84,10 +82,10 @@ SingleSelection.prototype.update = function (data) {
         return;
     }
 
-    var selection = data[0];
+    const selection = data[0];
 
-    var $rendered = this.$selection.find('.select2-selection__rendered');
-    var formatted = this.display(selection, $rendered);
+    const $rendered = this.$selection.find('.select2-selection__rendered');
+    const formatted = this.display(selection, $rendered);
 
     $rendered.empty().append(formatted);
     $rendered.attr('title', selection.title || selection.text);

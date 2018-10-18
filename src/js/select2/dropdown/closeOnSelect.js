@@ -3,7 +3,7 @@ export function CloseOnSelect() {
 }
 
 CloseOnSelect.prototype.bind = function (decorated, container, $container) {
-    var self = this;
+    const self = this;
 
     decorated.call(this, container, $container);
 
@@ -17,7 +17,7 @@ CloseOnSelect.prototype.bind = function (decorated, container, $container) {
 };
 
 CloseOnSelect.prototype._selectTriggered = function (_, evt) {
-    var originalEvent = evt.originalEvent;
+    const { originalEvent } = evt;
 
     // Don't close if the control key is being held
     if (originalEvent && originalEvent.ctrlKey) {
@@ -25,7 +25,7 @@ CloseOnSelect.prototype._selectTriggered = function (_, evt) {
     }
 
     this.trigger('close', {
-        originalEvent: originalEvent,
+        originalEvent,
         originalSelect2Event: evt
     });
 };

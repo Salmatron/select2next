@@ -3,7 +3,7 @@ export function ClickMask() {
 }
 
 ClickMask.prototype.bind = function (decorate, $container, container) {
-    var self = this;
+    const self = this;
 
     decorate.call(this, $container, container);
 

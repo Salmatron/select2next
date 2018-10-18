@@ -4,7 +4,7 @@ export function AttachContainer(decorated, $element, options) {
 }
 
 AttachContainer.prototype.position = function (decorated, $dropdown, $container) {
-    var $dropdownContainer = $container.find('.dropdown-wrapper');
+    const $dropdownContainer = $container.find('.dropdown-wrapper');
     $dropdownContainer.append($dropdown);
 
     $dropdown.addClass('select2-dropdown--below');

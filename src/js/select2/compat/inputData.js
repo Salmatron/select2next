@@ -19,7 +19,7 @@ export function InputData(decorated, $element, options) {
 
 InputData.prototype.current = function (_, callback) {
     function getSelected(data, selectedIds) {
-        var selected = [];
+        const selected = [];
 
         if (data.selected || $.inArray(data.id, selectedIds) !== -1) {
             data.selected = true;
@@ -35,10 +35,10 @@ InputData.prototype.current = function (_, callback) {
         return selected;
     }
 
-    var selected = [];
+    const selected = [];
 
-    for (var d = 0; d < this._currentData.length; d++) {
-        var data = this._currentData[d];
+    for (let d = 0; d < this._currentData.length; d++) {
+        const data = this._currentData[d];
 
         selected.push.apply(
             selected,
@@ -65,7 +65,7 @@ InputData.prototype.select = function (_, data) {
         this.$element.val(data.id);
         this.$element.trigger('change');
     } else {
-        var value = this.$element.val();
+        let value = this.$element.val();
         value += this._valueSeparator + data.id;
 
         this.$element.val(value);
@@ -74,15 +74,15 @@ InputData.prototype.select = function (_, data) {
 };
 
 InputData.prototype.unselect = function (_, data) {
-    var self = this;
+    const self = this;
 
     data.selected = false;
 
     this.current(function (allData) {
-        var values = [];
+        const values = [];
 
-        for (var d = 0; d < allData.length; d++) {
-            var item = allData[d];
+        for (let d = 0; d < allData.length; d++) {
+            const item = allData[d];
 
             if (data.id == item.id) {
                 continue;
@@ -97,12 +97,12 @@ InputData.prototype.unselect = function (_, data) {
 };
 
 InputData.prototype.query = function (_, params, callback) {
-    var results = [];
+    const results = [];
 
-    for (var d = 0; d < this._currentData.length; d++) {
-        var data = this._currentData[d];
+    for (let d = 0; d < this._currentData.length; d++) {
+        const data = this._currentData[d];
 
-        var matches = this.matches(params, data);
+        const matches = this.matches(params, data);
 
         if (matches !== null) {
             results.push(matches);
@@ -110,14 +110,12 @@ InputData.prototype.query = function (_, params, callback) {
     }
 
     callback({
-        results: results
+        results
     });
 };
 
 InputData.prototype.addOptions = function (_, $options) {
-    var options = $.map($options, function ($option) {
-        return Utils.GetData($option[0], 'data');
-    });
+    const options = $.map($options, $option => Utils.GetData($option[0], 'data'));
 
     this._currentData.push.apply(this._currentData, options);
 };

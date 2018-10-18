@@ -21,7 +21,7 @@ InfiniteScroll.prototype.append = function (decorated, data) {
 };
 
 InfiniteScroll.prototype.bind = function (decorated, container, $container) {
-    var self = this;
+    const self = this;
 
     decorated.call(this, container, $container);
 
@@ -36,7 +36,7 @@ InfiniteScroll.prototype.bind = function (decorated, container, $container) {
     });
 
     this.$results.on('scroll', function () {
-        var isLoadMoreVisible = $.contains(
+        const isLoadMoreVisible = $.contains(
             document.documentElement,
             self.$loadingMore[0]
         );
@@ -45,9 +45,9 @@ InfiniteScroll.prototype.bind = function (decorated, container, $container) {
             return;
         }
 
-        var currentOffset = self.$results.offset().top +
+        const currentOffset = self.$results.offset().top +
             self.$results.outerHeight(false);
-        var loadingMoreOffset = self.$loadingMore.offset().top +
+        const loadingMoreOffset = self.$loadingMore.offset().top +
             self.$loadingMore.outerHeight(false);
 
         if (currentOffset + 50 >= loadingMoreOffset) {
@@ -59,25 +59,23 @@ InfiniteScroll.prototype.bind = function (decorated, container, $container) {
 InfiniteScroll.prototype.loadMore = function () {
     this.loading = true;
 
-    var params = $.extend({}, {page: 1}, this.lastParams);
+    const params = $.extend({}, {page: 1}, this.lastParams);
 
     params.page++;
 
     this.trigger('query:append', params);
 };
 
-InfiniteScroll.prototype.showLoadingMore = function (_, data) {
-    return data.pagination && data.pagination.more;
-};
+InfiniteScroll.prototype.showLoadingMore = (_, data) => data.pagination && data.pagination.more;
 
 InfiniteScroll.prototype.createLoadingMore = function () {
-    var $option = $(
+    const $option = $(
         '<li ' +
         'class="select2-results__option select2-results__option--load-more"' +
         'role="treeitem" aria-disabled="true"></li>'
     );
 
-    var message = this.options.get('translations').get('loadingMore');
+    const message = this.options.get('translations').get('loadingMore');
 
     $option.html(message(this.lastParams));
 

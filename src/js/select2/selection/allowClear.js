@@ -5,7 +5,7 @@ export function AllowClear() {
 }
 
 AllowClear.prototype.bind = function (decorated, container, $container) {
-    var self = this;
+    const self = this;
 
     decorated.call(this, container, $container);
 
@@ -34,7 +34,7 @@ AllowClear.prototype._handleClear = function (_, evt) {
         return;
     }
 
-    var $clear = this.$selection.find('.select2-selection__clear');
+    const $clear = this.$selection.find('.select2-selection__clear');
 
     // Ignore the event if nothing has been selected
     if ($clear.length === 0) {
@@ -43,13 +43,13 @@ AllowClear.prototype._handleClear = function (_, evt) {
 
     evt.stopPropagation();
 
-    var data = Utils.GetData($clear[0], 'data');
+    const data = Utils.GetData($clear[0], 'data');
 
-    var previousVal = this.$element.val();
+    const previousVal = this.$element.val();
     this.$element.val(this.placeholder.id);
 
-    var unselectData = {
-        data: data
+    let unselectData = {
+        data
     };
     this.trigger('clear', unselectData);
     if (unselectData.prevented) {
@@ -57,7 +57,7 @@ AllowClear.prototype._handleClear = function (_, evt) {
         return;
     }
 
-    for (var d = 0; d < data.length; d++) {
+    for (let d = 0; d < data.length; d++) {
         unselectData = {
             data: data[d]
         };
@@ -96,10 +96,10 @@ AllowClear.prototype.update = function (decorated, data) {
         return;
     }
 
-    var removeAll = this.options.get('translations').get('removeAllItems');
+    const removeAll = this.options.get('translations').get('removeAllItems');
 
-    var $remove = $(
-        '<span class="select2-selection__clear" title="' + removeAll() + '">' +
+    const $remove = $(
+        `<span class="select2-selection__clear" title="${removeAll()}">` +
         '&times;' +
         '</span>'
     );

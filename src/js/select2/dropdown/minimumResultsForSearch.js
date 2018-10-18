@@ -1,8 +1,8 @@
 function countResults(data) {
-    var count = 0;
+    let count = 0;
 
-    for (var d = 0; d < data.length; d++) {
-        var item = data[d];
+    for (let d = 0; d < data.length; d++) {
+        const item = data[d];
 
         if (item.children) {
             count += countResults(item.children);

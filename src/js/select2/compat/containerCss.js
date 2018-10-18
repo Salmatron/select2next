@@ -8,24 +8,24 @@ function _containerAdapter(clazz) {
 export function ContainerCSS() {}
 
 ContainerCSS.prototype.render = function (decorated) {
-    var $container = decorated.call(this);
+    const $container = decorated.call(this);
 
-    var containerCssClass = this.options.get('containerCssClass') || '';
+    let containerCssClass = this.options.get('containerCssClass') || '';
 
     if ($.isFunction(containerCssClass)) {
         containerCssClass = containerCssClass(this.$element);
     }
 
-    var containerCssAdapter = this.options.get('adaptContainerCssClass');
+    let containerCssAdapter = this.options.get('adaptContainerCssClass');
     containerCssAdapter = containerCssAdapter || _containerAdapter;
 
     if (containerCssClass.indexOf(':all:') !== -1) {
         containerCssClass = containerCssClass.replace(':all:', '');
 
-        var _cssAdapter = containerCssAdapter;
+        const _cssAdapter = containerCssAdapter;
 
         containerCssAdapter = function (clazz) {
-            var adapted = _cssAdapter(clazz);
+            const adapted = _cssAdapter(clazz);
 
             if (adapted != null) {
                 // Append the old one along with the adapted one
@@ -36,7 +36,7 @@ ContainerCSS.prototype.render = function (decorated) {
         };
     }
 
-    var containerCss = this.options.get('containerCss') || {};
+    let containerCss = this.options.get('containerCss') || {};
 
     if ($.isFunction(containerCss)) {
         containerCss = containerCss(this.$element);

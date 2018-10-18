@@ -11,7 +11,7 @@ export function BaseSelection($element, options) {
 Utils.Extend(BaseSelection, Utils.Observable);
 
 BaseSelection.prototype.render = function () {
-    var $selection = $(
+    const $selection = $(
         '<span class="select2-selection" role="combobox" ' +
         ' aria-haspopup="true" aria-expanded="false">' +
         '</span>'
@@ -34,10 +34,10 @@ BaseSelection.prototype.render = function () {
 };
 
 BaseSelection.prototype.bind = function (container, $container) {
-    var self = this;
+    const self = this;
 
-    var id = container.id + '-container';
-    var resultsId = container.id + '-results';
+    const id = container.id + '-container';
+    const resultsId = container.id + '-results';
 
     this.container = container;
 
@@ -96,7 +96,7 @@ BaseSelection.prototype.bind = function (container, $container) {
 };
 
 BaseSelection.prototype._handleBlur = function (evt) {
-    var self = this;
+    const self = this;
 
     // This needs to be delayed as the active element is the body when the tab
     // key is pressed, possibly along with others.
@@ -114,23 +114,23 @@ BaseSelection.prototype._handleBlur = function (evt) {
 };
 
 BaseSelection.prototype._attachCloseHandler = function (container) {
-    var self = this;
+    const self = this;
 
-    $(document.body).on('mousedown.select2.' + container.id, function (e) {
-        var $target = $(e.target);
+    $(document.body).on(`mousedown.select2.${container.id}`, function (e) {
+        const $target = $(e.target);
 
-        var $select = $target.closest('.select2');
+        const $select = $target.closest('.select2');
 
-        var $all = $('.select2.select2-container--open');
+        const $all = $('.select2.select2-container--open');
 
         $all.each(function () {
-            var $this = $(this);
+            const $this = $(this);
 
             if (this == $select[0]) {
                 return;
             }
 
-            var $element = Utils.GetData(this, 'element');
+            const $element = Utils.GetData(this, 'element');
 
             $element.select2('close');
         });
@@ -138,11 +138,11 @@ BaseSelection.prototype._attachCloseHandler = function (container) {
 };
 
 BaseSelection.prototype._detachCloseHandler = function (container) {
-    $(document.body).off('mousedown.select2.' + container.id);
+    $(document.body).off(`mousedown.select2.${container.id}`);
 };
 
 BaseSelection.prototype.position = function ($selection, $container) {
-    var $selectionContainer = $container.find('.selection');
+    const $selectionContainer = $container.find('.selection');
     $selectionContainer.append($selection);
 };
 

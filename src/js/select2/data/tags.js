@@ -1,14 +1,14 @@
 
 export function Tags(decorated, $element, options) {
-    var tags = options.get('tags');
+    const tags = options.get('tags');
 
-    var createTag = options.get('createTag');
+    const createTag = options.get('createTag');
 
     if (createTag !== undefined) {
         this.createTag = createTag;
     }
 
-    var insertTag = options.get('insertTag');
+    const insertTag = options.get('insertTag');
 
     if (insertTag !== undefined) {
         this.insertTag = insertTag;
@@ -17,11 +17,11 @@ export function Tags(decorated, $element, options) {
     decorated.call(this, $element, options);
 
     if ($.isArray(tags)) {
-        for (var t = 0; t < tags.length; t++) {
-            var tag = tags[t];
-            var item = this._normalizeItem(tag);
+        for (let t = 0; t < tags.length; t++) {
+            const tag = tags[t];
+            const item = this._normalizeItem(tag);
 
-            var $option = this.option(item);
+            const $option = this.option(item);
 
             this.$element.append($option);
         }
@@ -29,7 +29,7 @@ export function Tags(decorated, $element, options) {
 }
 
 Tags.prototype.query = function (decorated, params, callback) {
-    var self = this;
+    const self = this;
 
     this._removeOldTags();
 
@@ -39,22 +39,22 @@ Tags.prototype.query = function (decorated, params, callback) {
     }
 
     function wrapper(obj, child) {
-        var data = obj.results;
+        const data = obj.results;
 
-        for (var i = 0; i < data.length; i++) {
-            var option = data[i];
+        for (let i = 0; i < data.length; i++) {
+            const option = data[i];
 
-            var checkChildren = (
+            const checkChildren = (
                 option.children != null &&
                 !wrapper({
                     results: option.children
                 }, true)
             );
 
-            var optionText = (option.text || '').toUpperCase();
-            var paramsTerm = (params.term || '').toUpperCase();
+            const optionText = (option.text || '').toUpperCase();
+            const paramsTerm = (params.term || '').toUpperCase();
 
-            var checkText = optionText === paramsTerm;
+            const checkText = optionText === paramsTerm;
 
             if (checkText || checkChildren) {
                 if (child) {
@@ -72,10 +72,10 @@ Tags.prototype.query = function (decorated, params, callback) {
             return true;
         }
 
-        var tag = self.createTag(params);
+        const tag = self.createTag(params);
 
         if (tag != null) {
-            var $option = self.option(tag);
+            const $option = self.option(tag);
             $option.attr('data-select2-tag', true);
 
             self.addOptions([$option]);
@@ -92,7 +92,7 @@ Tags.prototype.query = function (decorated, params, callback) {
 };
 
 Tags.prototype.createTag = function (decorated, params) {
-    var term = $.trim(params.term);
+    const term = $.trim(params.term);
 
     if (term === '') {
         return null;
@@ -109,9 +109,9 @@ Tags.prototype.insertTag = function (_, data, tag) {
 };
 
 Tags.prototype._removeOldTags = function (_) {
-    var tag = this._lastTag;
+    const tag = this._lastTag;
 
-    var $options = this.$element.find('option[data-select2-tag]');
+    const $options = this.$element.find('option[data-select2-tag]');
 
     $options.each(function () {
         if (this.selected) {

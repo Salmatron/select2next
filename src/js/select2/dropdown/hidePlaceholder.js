@@ -23,10 +23,10 @@ HidePlaceholder.prototype.normalizePlaceholder = function (_, placeholder) {
 };
 
 HidePlaceholder.prototype.removePlaceholder = function (_, data) {
-    var modifiedData = data.slice(0);
+    const modifiedData = data.slice(0);
 
-    for (var d = data.length - 1; d >= 0; d--) {
-        var item = data[d];
+    for (let d = data.length - 1; d >= 0; d--) {
+        const item = data[d];
 
         if (this.placeholder.id === item.id) {
             modifiedData.splice(d, 1);

@@ -1,6 +1,6 @@
 
 function syncCssClasses($dest, $src, adapter) {
-    var classes, replacements = [], adapted;
+    let classes, replacements = [], adapted;
 
     classes = $.trim($dest.attr('class'));
 
@@ -36,5 +36,5 @@ function syncCssClasses($dest, $src, adapter) {
 }
 
 export const CompatUtils = {
-    syncCssClasses: syncCssClasses
+    syncCssClasses
 };

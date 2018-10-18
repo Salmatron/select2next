@@ -14,7 +14,7 @@ MinimumInputLength.prototype.query = function (decorated, params, callback) {
             args: {
                 minimum: this.minimumInputLength,
                 input: params.term,
-                params: params
+                params
             }
         });
 

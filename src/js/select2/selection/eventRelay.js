@@ -3,8 +3,8 @@ export function EventRelay() {
 }
 
 EventRelay.prototype.bind = function (decorated, container, $container) {
-    var self = this;
-    var relayEvents = [
+    const self = this;
+    const relayEvents = [
         'open', 'opening',
         'close', 'closing',
         'select', 'selecting',
@@ -12,7 +12,7 @@ EventRelay.prototype.bind = function (decorated, container, $container) {
         'clear', 'clearing'
     ];
 
-    var preventableEvents = [
+    const preventableEvents = [
         'opening', 'closing', 'selecting', 'unselecting', 'clearing'
     ];
 
@@ -28,8 +28,8 @@ EventRelay.prototype.bind = function (decorated, container, $container) {
         params = params || {};
 
         // Generate the jQuery event for the Select2 event
-        var evt = $.Event('select2:' + name, {
-            params: params
+        const evt = $.Event(`select2:${name}`, {
+            params
         });
 
         self.$element.trigger(evt);

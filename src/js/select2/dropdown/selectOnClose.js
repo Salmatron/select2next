@@ -4,7 +4,7 @@ export function SelectOnClose() {
 }
 
 SelectOnClose.prototype.bind = function (decorated, container, $container) {
-    var self = this;
+    const self = this;
 
     decorated.call(this, container, $container);
 
@@ -15,7 +15,7 @@ SelectOnClose.prototype.bind = function (decorated, container, $container) {
 
 SelectOnClose.prototype._handleSelectOnClose = function (_, params) {
     if (params && params.originalSelect2Event != null) {
-        var event = params.originalSelect2Event;
+        const event = params.originalSelect2Event;
 
         // Don't select an item if the close event was triggered from a select or
         // unselect event
@@ -24,14 +24,14 @@ SelectOnClose.prototype._handleSelectOnClose = function (_, params) {
         }
     }
 
-    var $highlightedResults = this.getHighlightedResults();
+    const $highlightedResults = this.getHighlightedResults();
 
     // Only select highlighted results
     if ($highlightedResults.length < 1) {
         return;
     }
 
-    var data = Utils.GetData($highlightedResults[0], 'data');
+    const data = Utils.GetData($highlightedResults[0], 'data');
 
     // Don't re-select already selected resulte
     if (
@@ -42,7 +42,7 @@ SelectOnClose.prototype._handleSelectOnClose = function (_, params) {
     }
 
     this.trigger('select', {
-        data: data
+        data
     });
 };
 

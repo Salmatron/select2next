@@ -15,7 +15,7 @@ export function Query(decorated, $element, options) {
 Query.prototype.query = function (_, params, callback) {
     params.callback = callback;
 
-    var query = this.options.get('query');
+    const query = this.options.get('query');
 
     query.call(null, params);
 };

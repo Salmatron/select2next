@@ -23,14 +23,14 @@ BaseAdapter.prototype.destroy = function () {
 };
 
 BaseAdapter.prototype.generateResultId = function (container, data) {
-    var id = container.id + '-result-';
+    let id = container.id + '-result-';
 
     id += Utils.generateChars(4);
 
     if (data.id != null) {
-        id += '-' + data.id.toString();
+        id += `-${data.id.toString()}`;
     } else {
-        id += '-' + Utils.generateChars(4);
+        id += `-${Utils.generateChars(4)}`;
     }
     return id;
 };

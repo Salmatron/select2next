@@ -128,7 +128,7 @@ Defaults.prototype.apply = function (options) {
         if (options.multiple) {
             options.dropdownAdapter = Dropdown;
         } else {
-            var SearchableDropdown = Utils.Decorate(Dropdown, DropdownSearch);
+            const SearchableDropdown = Utils.Decorate(Dropdown, DropdownSearch);
 
             options.dropdownAdapter = SearchableDropdown;
         }
@@ -214,8 +214,8 @@ Defaults.prototype.apply = function (options) {
         // Check if the language is specified with a region
         if (options.language.indexOf('-') > 0) {
             // Extract the region information if it is included
-            var languageParts = options.language.split('-');
-            var baseLanguage = languageParts[0];
+            const languageParts = options.language.split('-');
+            const baseLanguage = languageParts[0];
 
             options.language = [options.language, baseLanguage];
         } else {
@@ -224,14 +224,14 @@ Defaults.prototype.apply = function (options) {
     }
 
     if ($.isArray(options.language)) {
-        var languages = new Translation();
+        const languages = new Translation();
         options.language.push('en');
 
-        var languageNames = options.language;
+        const languageNames = options.language;
 
-        for (var l = 0; l < languageNames.length; l++) {
-            var name = languageNames[l];
-            var language = {};
+        for (let l = 0; l < languageNames.length; l++) {
+            let name = languageNames[l];
+            let language = {};
 
             try {
                 // Try to load it with the original name
@@ -247,7 +247,7 @@ Defaults.prototype.apply = function (options) {
                     // because of how Select2 helps load all possible translation files.
                     if (options.debug && window.console && console.warn) {
                         console.warn(
-                            'Select2: The language file for "' + name + '" could not be ' +
+                            `Select2: The language file for "${name}" could not be ` +
                             'automatically loaded. A fallback will be used instead.'
                         );
                     }
@@ -261,10 +261,10 @@ Defaults.prototype.apply = function (options) {
 
         options.translations = languages;
     } else {
-        var baseTranslation = Translation.loadPath(
+        const baseTranslation = Translation.loadPath(
             this.defaults.amdLanguageBase + 'en'
         );
-        var customTranslation = new Translation(options.language);
+        const customTranslation = new Translation(options.language);
 
         customTranslation.extend(baseTranslation);
 
@@ -294,13 +294,13 @@ Defaults.prototype.reset = function () {
         if (data.children && data.children.length > 0) {
             // Clone the data object if there are children
             // This is required as we modify the object to remove any non-matches
-            var match = $.extend(true, {}, data);
+            const match = $.extend(true, {}, data);
 
             // Check each child of the option
-            for (var c = data.children.length - 1; c >= 0; c--) {
-                var child = data.children[c];
+            for (let c = data.children.length - 1; c >= 0; c--) {
+                const child = data.children[c];
 
-                var matches = matcher(params, child);
+                const matches = matcher(params, child);
 
                 // If there wasn't a match, remove the object in the array
                 if (matches == null) {
@@ -317,8 +317,8 @@ Defaults.prototype.reset = function () {
             return matcher(params, match);
         }
 
-        var original = stripDiacritics(data.text).toUpperCase();
-        var term = stripDiacritics(params.term).toUpperCase();
+        const original = stripDiacritics(data.text).toUpperCase();
+        const term = stripDiacritics(params.term).toUpperCase();
 
         // Check if the text contains the term
         if (original.indexOf(term) > -1) {
@@ -337,20 +337,20 @@ Defaults.prototype.reset = function () {
         dropdownAutoWidth: false,
         escapeMarkup: Utils.escapeMarkup,
         language: EnglishTranslation,
-        matcher: matcher,
+        matcher,
         minimumInputLength: 0,
         maximumInputLength: 0,
         maximumSelectionLength: 0,
         minimumResultsForSearch: 0,
         selectOnClose: false,
         scrollAfterSelect: false,
-        sorter: function (data) {
+        sorter (data) {
             return data;
         },
-        templateResult: function (result) {
+        templateResult (result) {
             return result.text;
         },
-        templateSelection: function (selection) {
+        templateSelection (selection) {
             return selection.text;
         },
         theme: 'default',
@@ -359,12 +359,12 @@ Defaults.prototype.reset = function () {
 };
 
 Defaults.prototype.set = function (key, value) {
-    var camelKey = $.camelCase(key);
+    const camelKey = $.camelCase(key);
 
-    var data = {};
+    const data = {};
     data[camelKey] = value;
 
-    var convertedData = Utils._convertData(data);
+    const convertedData = Utils._convertData(data);
 
     $.extend(true, this.defaults, convertedData);
 };

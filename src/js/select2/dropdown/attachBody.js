@@ -7,9 +7,9 @@ export function AttachBody(decorated, $element, options) {
 }
 
 AttachBody.prototype.bind = function (decorated, container, $container) {
-    var self = this;
+    const self = this;
 
-    var setupResultsEvents = false;
+    let setupResultsEvents = false;
 
     decorated.call(this, container, $container);
 
@@ -64,9 +64,9 @@ AttachBody.prototype.position = function (decorated, $dropdown, $container) {
 };
 
 AttachBody.prototype.render = function (decorated) {
-    var $container = $('<span></span>');
+    const $container = $('<span></span>');
 
-    var $dropdown = decorated.call(this);
+    const $dropdown = decorated.call(this);
     $container.append($dropdown);
 
     this.$dropdownContainer = $container;
@@ -79,13 +79,13 @@ AttachBody.prototype._hideDropdown = function (decorated) {
 };
 
 AttachBody.prototype._attachPositioningHandler = function (decorated, container) {
-    var self = this;
+    const self = this;
 
-    var scrollEvent = 'scroll.select2.' + container.id;
-    var resizeEvent = 'resize.select2.' + container.id;
-    var orientationEvent = 'orientationchange.select2.' + container.id;
+    const scrollEvent = `scroll.select2.${container.id}`;
+    const resizeEvent = `resize.select2.${container.id}`;
+    const orientationEvent = `orientationchange.select2.${container.id}`;
 
-    var $watchers = this.$container.parents().filter(Utils.hasScroll);
+    const $watchers = this.$container.parents().filter(Utils.hasScroll);
     $watchers.each(function () {
         Utils.StoreData(this, 'select2-scroll-position', {
             x: $(this).scrollLeft(),
@@ -94,7 +94,7 @@ AttachBody.prototype._attachPositioningHandler = function (decorated, container)
     });
 
     $watchers.on(scrollEvent, function (ev) {
-        var position = Utils.GetData(this, 'select2-scroll-position');
+        const position = Utils.GetData(this, 'select2-scroll-position');
         $(this).scrollTop(position.y);
     });
 
@@ -106,54 +106,54 @@ AttachBody.prototype._attachPositioningHandler = function (decorated, container)
 };
 
 AttachBody.prototype._detachPositioningHandler = function (decorated, container) {
-    var scrollEvent = 'scroll.select2.' + container.id;
-    var resizeEvent = 'resize.select2.' + container.id;
-    var orientationEvent = 'orientationchange.select2.' + container.id;
+    const scrollEvent = `scroll.select2.${container.id}`;
+    const resizeEvent = `resize.select2.${container.id}`;
+    const orientationEvent = `orientationchange.select2.${container.id}`;
 
-    var $watchers = this.$container.parents().filter(Utils.hasScroll);
+    const $watchers = this.$container.parents().filter(Utils.hasScroll);
     $watchers.off(scrollEvent);
 
     $(window).off(scrollEvent + ' ' + resizeEvent + ' ' + orientationEvent);
 };
 
 AttachBody.prototype._positionDropdown = function () {
-    var $window = $(window);
+    const $window = $(window);
 
-    var isCurrentlyAbove = this.$dropdown.hasClass('select2-dropdown--above');
-    var isCurrentlyBelow = this.$dropdown.hasClass('select2-dropdown--below');
+    const isCurrentlyAbove = this.$dropdown.hasClass('select2-dropdown--above');
+    const isCurrentlyBelow = this.$dropdown.hasClass('select2-dropdown--below');
 
-    var newDirection = null;
+    let newDirection = null;
 
-    var offset = this.$container.offset();
+    const offset = this.$container.offset();
 
     offset.bottom = offset.top + this.$container.outerHeight(false);
 
-    var container = {
+    const container = {
         height: this.$container.outerHeight(false)
     };
 
     container.top = offset.top;
     container.bottom = offset.top + container.height;
 
-    var dropdown = {
+    const dropdown = {
         height: this.$dropdown.outerHeight(false)
     };
 
-    var viewport = {
+    const viewport = {
         top: $window.scrollTop(),
         bottom: $window.scrollTop() + $window.height()
     };
 
-    var enoughRoomAbove = viewport.top < (offset.top - dropdown.height);
-    var enoughRoomBelow = viewport.bottom > (offset.bottom + dropdown.height);
+    const enoughRoomAbove = viewport.top < (offset.top - dropdown.height);
+    const enoughRoomBelow = viewport.bottom > (offset.bottom + dropdown.height);
 
-    var css = {
+    const css = {
         left: offset.left,
         top: container.bottom
     };
 
     // Determine what the parent element is to use for calculating the offset
-    var $offsetParent = this.$dropdownParent;
+    let $offsetParent = this.$dropdownParent;
 
     // For statically positioned elements, we need to get the element
     // that is determining the offset
@@ -161,7 +161,7 @@ AttachBody.prototype._positionDropdown = function () {
         $offsetParent = $offsetParent.offsetParent();
     }
 
-    var parentOffset = $offsetParent.offset();
+    const parentOffset = $offsetParent.offset();
 
     css.top -= parentOffset.top;
     css.left -= parentOffset.left;
@@ -184,17 +184,17 @@ AttachBody.prototype._positionDropdown = function () {
     if (newDirection != null) {
         this.$dropdown
             .removeClass('select2-dropdown--below select2-dropdown--above')
-            .addClass('select2-dropdown--' + newDirection);
+            .addClass(`select2-dropdown--${newDirection}`);
         this.$container
             .removeClass('select2-container--below select2-container--above')
-            .addClass('select2-container--' + newDirection);
+            .addClass(`select2-container--${newDirection}`);
     }
 
     this.$dropdownContainer.css(css);
 };
 
 AttachBody.prototype._resizeDropdown = function () {
-    var css = {
+    const css = {
         width: this.$container.outerWidth(false) + 'px'
     };
 

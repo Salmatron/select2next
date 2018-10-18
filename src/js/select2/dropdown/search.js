@@ -3,9 +3,9 @@ export function Search() {
 }
 
 Search.prototype.render = function (decorated) {
-    var $rendered = decorated.call(this);
+    const $rendered = decorated.call(this);
 
-    var $search = $(
+    const $search = $(
         '<span class="select2-search select2-search--dropdown">' +
         '<input class="select2-search__field" type="search" tabindex="-1"' +
         ' autocomplete="off" autocorrect="off" autocapitalize="none"' +
@@ -22,7 +22,7 @@ Search.prototype.render = function (decorated) {
 };
 
 Search.prototype.bind = function (decorated, container, $container) {
-    var self = this;
+    const self = this;
 
     decorated.call(this, container, $container);
 
@@ -69,7 +69,7 @@ Search.prototype.bind = function (decorated, container, $container) {
 
     container.on('results:all', function (params) {
         if (params.query.term == null || params.query.term === '') {
-            var showSearch = self.showSearch(params);
+            const showSearch = self.showSearch(params);
 
             if (showSearch) {
                 self.$searchContainer.removeClass('select2-search--hide');
@@ -82,7 +82,7 @@ Search.prototype.bind = function (decorated, container, $container) {
 
 Search.prototype.handleSearch = function (evt) {
     if (!this._keyUpPrevented) {
-        var input = this.$search.val();
+        const input = this.$search.val();
 
         this.trigger('query', {
             term: input
@@ -92,7 +92,5 @@ Search.prototype.handleSearch = function (evt) {
     this._keyUpPrevented = false;
 };
 
-Search.prototype.showSearch = function (_, params) {
-    return true;
-};
+Search.prototype.showSearch = (_, params) => true;
 

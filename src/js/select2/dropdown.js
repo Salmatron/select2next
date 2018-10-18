@@ -10,7 +10,7 @@ export function Dropdown($element, options) {
 Utils.Extend(Dropdown, Utils.Observable);
 
 Dropdown.prototype.render = function () {
-    var $dropdown = $(
+    const $dropdown = $(
         '<span class="select2-dropdown">' +
         '<span class="select2-results"></span>' +
         '</span>'

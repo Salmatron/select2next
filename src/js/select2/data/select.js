@@ -11,13 +11,13 @@ export function SelectAdapter($element, options) {
 Utils.Extend(SelectAdapter, BaseAdapter);
 
 SelectAdapter.prototype.current = function (callback) {
-    var data = [];
-    var self = this;
+    const data = [];
+    const self = this;
 
     this.$element.find(':selected').each(function () {
-        var $option = $(this);
+        const $option = $(this);
 
-        var option = self.item($option);
+        const option = self.item($option);
 
         data.push(option);
     });
@@ -26,7 +26,7 @@ SelectAdapter.prototype.current = function (callback) {
 };
 
 SelectAdapter.prototype.select = function (data) {
-    var self = this;
+    const self = this;
 
     data.selected = true;
 
@@ -41,13 +41,13 @@ SelectAdapter.prototype.select = function (data) {
 
     if (this.$element.prop('multiple')) {
         this.current(function (currentData) {
-            var val = [];
+            const val = [];
 
             data = [data];
             data.push.apply(data, currentData);
 
-            for (var d = 0; d < data.length; d++) {
-                var id = data[d].id;
+            for (let d = 0; d < data.length; d++) {
+                const { id } = data[d];
 
                 if ($.inArray(id, val) === -1) {
                     val.push(id);
@@ -58,7 +58,7 @@ SelectAdapter.prototype.select = function (data) {
             self.$element.trigger('change');
         });
     } else {
-        var val = data.id;
+        const val = data.id;
 
         this.$element.val(val);
         this.$element.trigger('change');
@@ -66,7 +66,7 @@ SelectAdapter.prototype.select = function (data) {
 };
 
 SelectAdapter.prototype.unselect = function (data) {
-    var self = this;
+    const self = this;
 
     if (!this.$element.prop('multiple')) {
         return;
@@ -83,10 +83,10 @@ SelectAdapter.prototype.unselect = function (data) {
     }
 
     this.current(function (currentData) {
-        var val = [];
+        const val = [];
 
-        for (var d = 0; d < currentData.length; d++) {
-            var id = currentData[d].id;
+        for (let d = 0; d < currentData.length; d++) {
+            const { id } = currentData[d];
 
             if (id !== data.id && $.inArray(id, val) === -1) {
                 val.push(id);
@@ -100,7 +100,7 @@ SelectAdapter.prototype.unselect = function (data) {
 };
 
 SelectAdapter.prototype.bind = function (container, $container) {
-    var self = this;
+    const self = this;
 
     this.container = container;
 
@@ -122,21 +122,21 @@ SelectAdapter.prototype.destroy = function () {
 };
 
 SelectAdapter.prototype.query = function (params, callback) {
-    var data = [];
-    var self = this;
+    const data = [];
+    const self = this;
 
-    var $options = this.$element.children();
+    const $options = this.$element.children();
 
     $options.each(function () {
-        var $option = $(this);
+        const $option = $(this);
 
         if (!$option.is('option') && !$option.is('optgroup')) {
             return;
         }
 
-        var option = self.item($option);
+        const option = self.item($option);
 
-        var matches = self.matches(params, option);
+        const matches = self.matches(params, option);
 
         if (matches !== null) {
             data.push(matches);
@@ -153,7 +153,7 @@ SelectAdapter.prototype.addOptions = function ($options) {
 };
 
 SelectAdapter.prototype.option = function (data) {
-    var option;
+    let option;
 
     if (data.children) {
         option = document.createElement('optgroup');
@@ -184,9 +184,9 @@ SelectAdapter.prototype.option = function (data) {
         option.title = data.title;
     }
 
-    var $option = $(option);
+    const $option = $(option);
 
-    var normalizedData = this._normalizeItem(data);
+    const normalizedData = this._normalizeItem(data);
     normalizedData.element = option;
 
     // Override the option's data with the combined data
@@ -196,7 +196,7 @@ SelectAdapter.prototype.option = function (data) {
 };
 
 SelectAdapter.prototype.item = function ($option) {
-    var data = {};
+    let data = {};
 
     data = Utils.GetData($option[0], 'data');
 
@@ -219,13 +219,13 @@ SelectAdapter.prototype.item = function ($option) {
             title: $option.prop('title')
         };
 
-        var $children = $option.children('option');
-        var children = [];
+        const $children = $option.children('option');
+        const children = [];
 
-        for (var c = 0; c < $children.length; c++) {
-            var $child = $($children[c]);
+        for (let c = 0; c < $children.length; c++) {
+            const $child = $($children[c]);
 
-            var child = this.item($child);
+            const child = this.item($child);
 
             children.push(child);
         }
@@ -253,7 +253,7 @@ SelectAdapter.prototype._normalizeItem = function (item) {
         text: ''
     }, item);
 
-    var defaults = {
+    const defaults = {
         selected: false,
         disabled: false
     };
@@ -274,7 +274,7 @@ SelectAdapter.prototype._normalizeItem = function (item) {
 };
 
 SelectAdapter.prototype.matches = function (params, data) {
-    var matcher = this.options.get('matcher');
+    const matcher = this.options.get('matcher');
 
     return matcher(params, data);
 };

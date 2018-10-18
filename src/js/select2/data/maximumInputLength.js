@@ -15,7 +15,7 @@ MaximumInputLength.prototype.query = function (decorated, params, callback) {
             args: {
                 maximum: this.maximumInputLength,
                 input: params.term,
-                params: params
+                params
             }
         });
 

@@ -4,7 +4,7 @@ export function StopPropagation() {
 StopPropagation.prototype.bind = function (decorated, container, $container) {
     decorated.call(this, container, $container);
 
-    var stoppedEvents = [
+    const stoppedEvents = [
         'blur',
         'change',
         'click',
