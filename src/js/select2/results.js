@@ -131,7 +131,7 @@ Results.prototype.setClasses = function () {
             var item = Utils.GetData(this, 'data');
 
             // id needs to be converted to a string when comparing
-            var id = '' + item.id;
+            var id = String(item.id);
 
             if ((item.element != null && item.element.selected) ||
                 (item.element == null && $.inArray(id, selectedIds) > -1)) {

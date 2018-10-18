@@ -1,285 +1,285 @@
 
 export const Utils = {
-  Extend,
-  Decorate,
-  Observable,
-  generateChars,
-  bind,
-  _convertData,
-  hasScroll,
-  escapeMarkup,
-  appendMany,
-  GetUniqueElementId,
-  StoreData,
-  GetData,
-  RemoveData,
+    Extend,
+    Decorate,
+    Observable,
+    generateChars,
+    bind,
+    _convertData,
+    hasScroll,
+    escapeMarkup,
+    appendMany,
+    GetUniqueElementId,
+    StoreData,
+    GetData,
+    RemoveData,
 };
 
 function Extend(ChildClass, SuperClass) {
-  var __hasProp = {}.hasOwnProperty;
+    var __hasProp = {}.hasOwnProperty;
 
-  function BaseConstructor () {
-    this.constructor = ChildClass;
-  }
-
-  for (var key in SuperClass) {
-    if (__hasProp.call(SuperClass, key)) {
-      ChildClass[key] = SuperClass[key];
+    function BaseConstructor() {
+        this.constructor = ChildClass;
     }
-  }
 
-  BaseConstructor.prototype = SuperClass.prototype;
-  ChildClass.prototype = new BaseConstructor();
-  ChildClass.__super__ = SuperClass.prototype;
+    for (var key in SuperClass) {
+        if (__hasProp.call(SuperClass, key)) {
+            ChildClass[key] = SuperClass[key];
+        }
+    }
 
-  return ChildClass;
+    BaseConstructor.prototype = SuperClass.prototype;
+    ChildClass.prototype = new BaseConstructor();
+    ChildClass.__super__ = SuperClass.prototype;
+
+    return ChildClass;
 }
 
-function getMethods (theClass) {
-  var proto = theClass.prototype;
+function getMethods(theClass) {
+    var proto = theClass.prototype;
 
-  var methods = [];
+    var methods = [];
 
-  for (var methodName in proto) {
-    var m = proto[methodName];
+    for (var methodName in proto) {
+        var m = proto[methodName];
 
-    if (typeof m !== 'function') {
-      continue;
+        if (typeof m !== 'function') {
+            continue;
+        }
+
+        if (methodName === 'constructor') {
+            continue;
+        }
+
+        methods.push(methodName);
     }
 
-    if (methodName === 'constructor') {
-      continue;
-    }
-
-    methods.push(methodName);
-  }
-
-  return methods;
+    return methods;
 }
 
 function Decorate(SuperClass, DecoratorClass) {
-  var decoratedMethods = getMethods(DecoratorClass);
-  var superMethods = getMethods(SuperClass);
+    var decoratedMethods = getMethods(DecoratorClass);
+    var superMethods = getMethods(SuperClass);
 
-  function DecoratedClass () {
-    var unshift = Array.prototype.unshift;
+    function DecoratedClass() {
+        var unshift = Array.prototype.unshift;
 
-    var argCount = DecoratorClass.prototype.constructor.length;
+        var argCount = DecoratorClass.prototype.constructor.length;
 
-    var calledConstructor = SuperClass.prototype.constructor;
+        var calledConstructor = SuperClass.prototype.constructor;
 
-    if (argCount > 0) {
-      unshift.call(arguments, SuperClass.prototype.constructor);
+        if (argCount > 0) {
+            unshift.call(arguments, SuperClass.prototype.constructor);
 
-      calledConstructor = DecoratorClass.prototype.constructor;
+            calledConstructor = DecoratorClass.prototype.constructor;
+        }
+
+        calledConstructor.apply(this, arguments);
     }
 
-    calledConstructor.apply(this, arguments);
-  }
+    DecoratorClass.displayName = SuperClass.displayName;
 
-  DecoratorClass.displayName = SuperClass.displayName;
+    function ctr() {
+        this.constructor = DecoratedClass;
+    }
 
-  function ctr () {
-    this.constructor = DecoratedClass;
-  }
+    DecoratedClass.prototype = new ctr();
 
-  DecoratedClass.prototype = new ctr();
+    for (var m = 0; m < superMethods.length; m++) {
+        var superMethod = superMethods[m];
 
-  for (var m = 0; m < superMethods.length; m++) {
-    var superMethod = superMethods[m];
-
-    DecoratedClass.prototype[superMethod] =
+        DecoratedClass.prototype[superMethod] =
       SuperClass.prototype[superMethod];
-  }
-
-  var calledMethod = function (methodName) {
-    // Stub out the original method if it's not decorating an actual method
-    var originalMethod = function () {};
-
-    if (methodName in DecoratedClass.prototype) {
-      originalMethod = DecoratedClass.prototype[methodName];
     }
 
-    var decoratedMethod = DecoratorClass.prototype[methodName];
+    var calledMethod = function (methodName) {
+    // Stub out the original method if it's not decorating an actual method
+        var originalMethod = function () {};
 
-    return function () {
-      var unshift = Array.prototype.unshift;
+        if (methodName in DecoratedClass.prototype) {
+            originalMethod = DecoratedClass.prototype[methodName];
+        }
 
-      unshift.call(arguments, originalMethod);
+        var decoratedMethod = DecoratorClass.prototype[methodName];
 
-      return decoratedMethod.apply(this, arguments);
+        return function () {
+            var unshift = Array.prototype.unshift;
+
+            unshift.call(arguments, originalMethod);
+
+            return decoratedMethod.apply(this, arguments);
+        };
     };
-  };
 
-  for (var d = 0; d < decoratedMethods.length; d++) {
-    var decoratedMethod = decoratedMethods[d];
+    for (var d = 0; d < decoratedMethods.length; d++) {
+        var decoratedMethod = decoratedMethods[d];
 
-    DecoratedClass.prototype[decoratedMethod] = calledMethod(decoratedMethod);
-  }
+        DecoratedClass.prototype[decoratedMethod] = calledMethod(decoratedMethod);
+    }
 
-  return DecoratedClass;
+    return DecoratedClass;
 }
 
 function Observable() {
-  this.listeners = {};
+    this.listeners = {};
 }
 
 Observable.prototype.on = function (event, callback) {
-  this.listeners = this.listeners || {};
+    this.listeners = this.listeners || {};
 
-  if (event in this.listeners) {
-    this.listeners[event].push(callback);
-  } else {
-    this.listeners[event] = [callback];
-  }
+    if (event in this.listeners) {
+        this.listeners[event].push(callback);
+    } else {
+        this.listeners[event] = [callback];
+    }
 };
 
 Observable.prototype.trigger = function (event) {
-  var slice = Array.prototype.slice;
-  var params = slice.call(arguments, 1);
+    var slice = Array.prototype.slice;
+    var params = slice.call(arguments, 1);
 
-  this.listeners = this.listeners || {};
+    this.listeners = this.listeners || {};
 
-  // Params should always come in as an array
-  if (params == null) {
-    params = [];
-  }
+    // Params should always come in as an array
+    if (params == null) {
+        params = [];
+    }
 
-  // If there are no arguments to the event, use a temporary object
-  if (params.length === 0) {
-    params.push({});
-  }
+    // If there are no arguments to the event, use a temporary object
+    if (params.length === 0) {
+        params.push({});
+    }
 
-  // Set the `_type` of the first object to the event
-  params[0]._type = event;
+    // Set the `_type` of the first object to the event
+    params[0]._type = event;
 
-  if (event in this.listeners) {
-    this.invoke(this.listeners[event], slice.call(arguments, 1));
-  }
+    if (event in this.listeners) {
+        this.invoke(this.listeners[event], slice.call(arguments, 1));
+    }
 
-  if ('*' in this.listeners) {
-    this.invoke(this.listeners['*'], arguments);
-  }
+    if ('*' in this.listeners) {
+        this.invoke(this.listeners['*'], arguments);
+    }
 };
 
 Observable.prototype.invoke = function (listeners, params) {
-  for (var i = 0, len = listeners.length; i < len; i++) {
-    listeners[i].apply(this, params);
-  }
+    for (var i = 0, len = listeners.length; i < len; i++) {
+        listeners[i].apply(this, params);
+    }
 };
 
 function generateChars(length) {
-  var chars = '';
+    var chars = '';
 
-  for (var i = 0; i < length; i++) {
-    var randomChar = Math.floor(Math.random() * 36);
-    chars += randomChar.toString(36);
-  }
+    for (var i = 0; i < length; i++) {
+        var randomChar = Math.floor(Math.random() * 36);
+        chars += randomChar.toString(36);
+    }
 
-  return chars;
+    return chars;
 }
 
 function bind(func, context) {
-  return function () {
-    func.apply(context, arguments);
-  };
+    return function () {
+        func.apply(context, arguments);
+    };
 }
 
 function _convertData(data) {
-  for (var originalKey in data) {
-    var keys = originalKey.split('-');
+    for (var originalKey in data) {
+        var keys = originalKey.split('-');
 
-    var dataLevel = data;
+        var dataLevel = data;
 
-    if (keys.length === 1) {
-      continue;
+        if (keys.length === 1) {
+            continue;
+        }
+
+        for (var k = 0; k < keys.length; k++) {
+            var key = keys[k];
+
+            // Lowercase the first letter
+            // By default, dash-separated becomes camelCase
+            key = key.substring(0, 1).toLowerCase() + key.substring(1);
+
+            if (!(key in dataLevel)) {
+                dataLevel[key] = {};
+            }
+
+            if (k == keys.length - 1) {
+                dataLevel[key] = data[originalKey];
+            }
+
+            dataLevel = dataLevel[key];
+        }
+
+        delete data[originalKey];
     }
 
-    for (var k = 0; k < keys.length; k++) {
-      var key = keys[k];
-
-      // Lowercase the first letter
-      // By default, dash-separated becomes camelCase
-      key = key.substring(0, 1).toLowerCase() + key.substring(1);
-
-      if (!(key in dataLevel)) {
-        dataLevel[key] = {};
-      }
-
-      if (k == keys.length - 1) {
-        dataLevel[key] = data[originalKey];
-      }
-
-      dataLevel = dataLevel[key];
-    }
-
-    delete data[originalKey];
-  }
-
-  return data;
+    return data;
 }
 
 function hasScroll(index, el) {
-  // Adapted from the function created by @ShadowScripter
-  // and adapted by @BillBarry on the Stack Exchange Code Review website.
-  // The original code can be found at
-  // http://codereview.stackexchange.com/q/13338
-  // and was designed to be used with the Sizzle selector engine.
+    // Adapted from the function created by @ShadowScripter
+    // and adapted by @BillBarry on the Stack Exchange Code Review website.
+    // The original code can be found at
+    // http://codereview.stackexchange.com/q/13338
+    // and was designed to be used with the Sizzle selector engine.
 
-  var $el = $(el);
-  var overflowX = el.style.overflowX;
-  var overflowY = el.style.overflowY;
+    var $el = $(el);
+    var overflowX = el.style.overflowX;
+    var overflowY = el.style.overflowY;
 
-  //Check both x and y declarations
-  if (overflowX === overflowY &&
+    //Check both x and y declarations
+    if (overflowX === overflowY &&
       (overflowY === 'hidden' || overflowY === 'visible')) {
-    return false;
-  }
+        return false;
+    }
 
-  if (overflowX === 'scroll' || overflowY === 'scroll') {
-    return true;
-  }
+    if (overflowX === 'scroll' || overflowY === 'scroll') {
+        return true;
+    }
 
-  return ($el.innerHeight() < el.scrollHeight ||
+    return ($el.innerHeight() < el.scrollHeight ||
     $el.innerWidth() < el.scrollWidth);
 }
 
 function escapeMarkup(markup) {
-  var replaceMap = {
-    '\\': '&#92;',
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    '\'': '&#39;',
-    '/': '&#47;'
-  };
+    var replaceMap = {
+        '\\': '&#92;',
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        '\'': '&#39;',
+        '/': '&#47;'
+    };
 
-  // Do not try to escape the markup if it's not a string
-  if (typeof markup !== 'string') {
-    return markup;
-  }
+    // Do not try to escape the markup if it's not a string
+    if (typeof markup !== 'string') {
+        return markup;
+    }
 
-  return String(markup).replace(/[&<>"'\/\\]/g, function (match) {
-    return replaceMap[match];
-  });
+    return String(markup).replace(/[&<>"'\/\\]/g, function (match) {
+        return replaceMap[match];
+    });
 }
 
 // Append an array of jQuery nodes to a given element.
 function appendMany($element, $nodes) {
-  // jQuery 1.7.x does not support $.fn.append() with an array
-  // Fall back to a jQuery object collection using $.fn.add()
-  if ($.fn.jquery.substr(0, 3) === '1.7') {
-    var $jqNodes = $();
+    // jQuery 1.7.x does not support $.fn.append() with an array
+    // Fall back to a jQuery object collection using $.fn.add()
+    if ($.fn.jquery.substr(0, 3) === '1.7') {
+        var $jqNodes = $();
 
-    $.map($nodes, function (node) {
-      $jqNodes = $jqNodes.add(node);
-    });
+        $.map($nodes, function (node) {
+            $jqNodes = $jqNodes.add(node);
+        });
 
-    $nodes = $jqNodes;
-  }
+        $nodes = $jqNodes;
+    }
 
-  $element.append($nodes);
+    $element.append($nodes);
 }
 
 // Cache objects in Utils.__cache instead of $.data (see #4346)
@@ -287,58 +287,58 @@ Utils.__cache = {};
 
 var id = 0;
 function GetUniqueElementId(element) {
-  // Get a unique element Id. If element has no id,
-  // creates a new unique number, stores it in the id
-  // attribute and returns the new id.
-  // If an id already exists, it simply returns it.
+    // Get a unique element Id. If element has no id,
+    // creates a new unique number, stores it in the id
+    // attribute and returns the new id.
+    // If an id already exists, it simply returns it.
 
-  var select2Id = element.getAttribute('data-select2-id');
-  if (select2Id == null) {
+    var select2Id = element.getAttribute('data-select2-id');
+    if (select2Id == null) {
     // If element has id, use it.
-    if (element.id) {
-      select2Id = element.id;
-      element.setAttribute('data-select2-id', select2Id);
-    } else {
-      element.setAttribute('data-select2-id', ++id);
-      select2Id = id.toString();
+        if (element.id) {
+            select2Id = element.id;
+            element.setAttribute('data-select2-id', select2Id);
+        } else {
+            element.setAttribute('data-select2-id', ++id);
+            select2Id = id.toString();
+        }
     }
-  }
-  return select2Id;
+    return select2Id;
 }
 
 function StoreData(element, name, value) {
-  // Stores an item in the cache for a specified element.
-  // name is the cache key.
-  var id = Utils.GetUniqueElementId(element);
-  if (!Utils.__cache[id]) {
-    Utils.__cache[id] = {};
-  }
+    // Stores an item in the cache for a specified element.
+    // name is the cache key.
+    var id = Utils.GetUniqueElementId(element);
+    if (!Utils.__cache[id]) {
+        Utils.__cache[id] = {};
+    }
 
-  Utils.__cache[id][name] = value;
+    Utils.__cache[id][name] = value;
 }
 
 function GetData(element, name) {
-  // Retrieves a value from the cache by its key (name)
-  // name is optional. If no name specified, return
-  // all cache items for the specified element.
-  // and for a specified element.
-  var id = Utils.GetUniqueElementId(element);
-  if (name) {
-    if (Utils.__cache[id]) {
-      return Utils.__cache[id][name] != null ?
-      Utils.__cache[id][name]:
-      $(element).data(name); // Fallback to HTML5 data attribs.
+    // Retrieves a value from the cache by its key (name)
+    // name is optional. If no name specified, return
+    // all cache items for the specified element.
+    // and for a specified element.
+    var id = Utils.GetUniqueElementId(element);
+    if (name) {
+        if (Utils.__cache[id]) {
+            return Utils.__cache[id][name] != null ?
+                Utils.__cache[id][name]:
+                $(element).data(name); // Fallback to HTML5 data attribs.
+        }
+        return $(element).data(name); // Fallback to HTML5 data attribs.
+    } else {
+        return Utils.__cache[id];
     }
-    return $(element).data(name); // Fallback to HTML5 data attribs.
-  } else {
-    return Utils.__cache[id];
-  }
 }
 
 function RemoveData(element) {
-  // Removes all cached items for a specified element.
-  var id = Utils.GetUniqueElementId(element);
-  if (Utils.__cache[id] != null) {
-    delete Utils.__cache[id];
-  }
+    // Removes all cached items for a specified element.
+    var id = Utils.GetUniqueElementId(element);
+    if (Utils.__cache[id] != null) {
+        delete Utils.__cache[id];
+    }
 }

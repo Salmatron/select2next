@@ -1,26 +1,26 @@
 
 export function MaximumInputLength(decorated, $e, options) {
-  this.maximumInputLength = options.get('maximumInputLength');
+    this.maximumInputLength = options.get('maximumInputLength');
 
-  decorated.call(this, $e, options);
+    decorated.call(this, $e, options);
 }
 
 MaximumInputLength.prototype.query = function (decorated, params, callback) {
-  params.term = params.term || '';
+    params.term = params.term || '';
 
-  if (this.maximumInputLength > 0 &&
+    if (this.maximumInputLength > 0 &&
     params.term.length > this.maximumInputLength) {
-    this.trigger('results:message', {
-      message: 'inputTooLong',
-      args: {
-        maximum: this.maximumInputLength,
-        input: params.term,
-        params: params
-      }
-    });
+        this.trigger('results:message', {
+            message: 'inputTooLong',
+            args: {
+                maximum: this.maximumInputLength,
+                input: params.term,
+                params: params
+            }
+        });
 
-    return;
-  }
+        return;
+    }
 
-  decorated.call(this, params, callback);
+    decorated.call(this, params, callback);
 };
