@@ -1,87 +1,85 @@
-define([
-  'jquery',
-  '../utils'
-], function ($, Utils) {
-  function AttachBody (decorated, $element, options) {
-    this.$dropdownParent = options.get('dropdownParent') || $(document.body);
+import * as $ from '../../../../vendor/jquery-2.1.0.js';
+import {Utils} from '../utils.js';
 
-    decorated.call(this, $element, options);
-  }
+export function AttachBody(decorated, $element, options) {
+  this.$dropdownParent = options.get('dropdownParent') || $(document.body);
 
-  AttachBody.prototype.bind = function (decorated, container, $container) {
-    var self = this;
+  decorated.call(this, $element, options);
+}
 
-    var setupResultsEvents = false;
+AttachBody.prototype.bind = function (decorated, container, $container) {
+  var self = this;
 
-    decorated.call(this, container, $container);
+  var setupResultsEvents = false;
 
-    container.on('open', function () {
-      self._showDropdown();
-      self._attachPositioningHandler(container);
+  decorated.call(this, container, $container);
 
-      if (!setupResultsEvents) {
-        setupResultsEvents = true;
+  container.on('open', function () {
+    self._showDropdown();
+    self._attachPositioningHandler(container);
 
-        container.on('results:all', function () {
-          self._positionDropdown();
-          self._resizeDropdown();
-        });
+    if (!setupResultsEvents) {
+      setupResultsEvents = true;
 
-        container.on('results:append', function () {
-          self._positionDropdown();
-          self._resizeDropdown();
-        });
-      }
-    });
+      container.on('results:all', function () {
+        self._positionDropdown();
+        self._resizeDropdown();
+      });
 
-    container.on('close', function () {
-      self._hideDropdown();
-      self._detachPositioningHandler(container);
-    });
+      container.on('results:append', function () {
+        self._positionDropdown();
+        self._resizeDropdown();
+      });
+    }
+  });
 
-    this.$dropdownContainer.on('mousedown', function (evt) {
-      evt.stopPropagation();
-    });
-  };
+  container.on('close', function () {
+    self._hideDropdown();
+    self._detachPositioningHandler(container);
+  });
 
-  AttachBody.prototype.destroy = function (decorated) {
-    decorated.call(this);
+  this.$dropdownContainer.on('mousedown', function (evt) {
+    evt.stopPropagation();
+  });
+};
 
-    this.$dropdownContainer.remove();
-  };
+AttachBody.prototype.destroy = function (decorated) {
+  decorated.call(this);
 
-  AttachBody.prototype.position = function (decorated, $dropdown, $container) {
-    // Clone all of the container classes
-    $dropdown.attr('class', $container.attr('class'));
+  this.$dropdownContainer.remove();
+};
 
-    $dropdown.removeClass('select2');
-    $dropdown.addClass('select2-container--open');
+AttachBody.prototype.position = function (decorated, $dropdown, $container) {
+  // Clone all of the container classes
+  $dropdown.attr('class', $container.attr('class'));
 
-    $dropdown.css({
-      position: 'absolute',
-      top: -999999
-    });
+  $dropdown.removeClass('select2');
+  $dropdown.addClass('select2-container--open');
 
-    this.$container = $container;
-  };
+  $dropdown.css({
+    position: 'absolute',
+    top: -999999
+  });
 
-  AttachBody.prototype.render = function (decorated) {
-    var $container = $('<span></span>');
+  this.$container = $container;
+};
 
-    var $dropdown = decorated.call(this);
-    $container.append($dropdown);
+AttachBody.prototype.render = function (decorated) {
+  var $container = $('<span></span>');
 
-    this.$dropdownContainer = $container;
+  var $dropdown = decorated.call(this);
+  $container.append($dropdown);
 
-    return $container;
-  };
+  this.$dropdownContainer = $container;
 
-  AttachBody.prototype._hideDropdown = function (decorated) {
-    this.$dropdownContainer.detach();
-  };
+  return $container;
+};
 
-  AttachBody.prototype._attachPositioningHandler =
-      function (decorated, container) {
+AttachBody.prototype._hideDropdown = function (decorated) {
+  this.$dropdownContainer.detach();
+};
+
+AttachBody.prototype._attachPositioningHandler = function (decorated, container) {
     var self = this;
 
     var scrollEvent = 'scroll.select2.' + container.id;
@@ -103,13 +101,12 @@ define([
 
     $(window).on(scrollEvent + ' ' + resizeEvent + ' ' + orientationEvent,
       function (e) {
-      self._positionDropdown();
-      self._resizeDropdown();
-    });
+        self._positionDropdown();
+        self._resizeDropdown();
+      });
   };
 
-  AttachBody.prototype._detachPositioningHandler =
-      function (decorated, container) {
+AttachBody.prototype._detachPositioningHandler = function (decorated, container) {
     var scrollEvent = 'scroll.select2.' + container.id;
     var resizeEvent = 'resize.select2.' + container.id;
     var orientationEvent = 'orientationchange.select2.' + container.id;
@@ -120,103 +117,100 @@ define([
     $(window).off(scrollEvent + ' ' + resizeEvent + ' ' + orientationEvent);
   };
 
-  AttachBody.prototype._positionDropdown = function () {
-    var $window = $(window);
+AttachBody.prototype._positionDropdown = function () {
+  var $window = $(window);
 
-    var isCurrentlyAbove = this.$dropdown.hasClass('select2-dropdown--above');
-    var isCurrentlyBelow = this.$dropdown.hasClass('select2-dropdown--below');
+  var isCurrentlyAbove = this.$dropdown.hasClass('select2-dropdown--above');
+  var isCurrentlyBelow = this.$dropdown.hasClass('select2-dropdown--below');
 
-    var newDirection = null;
+  var newDirection = null;
 
-    var offset = this.$container.offset();
+  var offset = this.$container.offset();
 
-    offset.bottom = offset.top + this.$container.outerHeight(false);
+  offset.bottom = offset.top + this.$container.outerHeight(false);
 
-    var container = {
-      height: this.$container.outerHeight(false)
-    };
-
-    container.top = offset.top;
-    container.bottom = offset.top + container.height;
-
-    var dropdown = {
-      height: this.$dropdown.outerHeight(false)
-    };
-
-    var viewport = {
-      top: $window.scrollTop(),
-      bottom: $window.scrollTop() + $window.height()
-    };
-
-    var enoughRoomAbove = viewport.top < (offset.top - dropdown.height);
-    var enoughRoomBelow = viewport.bottom > (offset.bottom + dropdown.height);
-
-    var css = {
-      left: offset.left,
-      top: container.bottom
-    };
-
-    // Determine what the parent element is to use for calculating the offset
-    var $offsetParent = this.$dropdownParent;
-
-    // For statically positioned elements, we need to get the element
-    // that is determining the offset
-    if ($offsetParent.css('position') === 'static') {
-      $offsetParent = $offsetParent.offsetParent();
-    }
-
-    var parentOffset = $offsetParent.offset();
-
-    css.top -= parentOffset.top;
-    css.left -= parentOffset.left;
-
-    if (!isCurrentlyAbove && !isCurrentlyBelow) {
-      newDirection = 'below';
-    }
-
-    if (!enoughRoomBelow && enoughRoomAbove && !isCurrentlyAbove) {
-      newDirection = 'above';
-    } else if (!enoughRoomAbove && enoughRoomBelow && isCurrentlyAbove) {
-      newDirection = 'below';
-    }
-
-    if (newDirection == 'above' ||
-      (isCurrentlyAbove && newDirection !== 'below')) {
-      css.top = container.top - parentOffset.top - dropdown.height;
-    }
-
-    if (newDirection != null) {
-      this.$dropdown
-        .removeClass('select2-dropdown--below select2-dropdown--above')
-        .addClass('select2-dropdown--' + newDirection);
-      this.$container
-        .removeClass('select2-container--below select2-container--above')
-        .addClass('select2-container--' + newDirection);
-    }
-
-    this.$dropdownContainer.css(css);
+  var container = {
+    height: this.$container.outerHeight(false)
   };
 
-  AttachBody.prototype._resizeDropdown = function () {
-    var css = {
-      width: this.$container.outerWidth(false) + 'px'
-    };
+  container.top = offset.top;
+  container.bottom = offset.top + container.height;
 
-    if (this.options.get('dropdownAutoWidth')) {
-      css.minWidth = css.width;
-      css.position = 'relative';
-      css.width = 'auto';
-    }
-
-    this.$dropdown.css(css);
+  var dropdown = {
+    height: this.$dropdown.outerHeight(false)
   };
 
-  AttachBody.prototype._showDropdown = function (decorated) {
-    this.$dropdownContainer.appendTo(this.$dropdownParent);
-
-    this._positionDropdown();
-    this._resizeDropdown();
+  var viewport = {
+    top: $window.scrollTop(),
+    bottom: $window.scrollTop() + $window.height()
   };
 
-  return AttachBody;
-});
+  var enoughRoomAbove = viewport.top < (offset.top - dropdown.height);
+  var enoughRoomBelow = viewport.bottom > (offset.bottom + dropdown.height);
+
+  var css = {
+    left: offset.left,
+    top: container.bottom
+  };
+
+  // Determine what the parent element is to use for calculating the offset
+  var $offsetParent = this.$dropdownParent;
+
+  // For statically positioned elements, we need to get the element
+  // that is determining the offset
+  if ($offsetParent.css('position') === 'static') {
+    $offsetParent = $offsetParent.offsetParent();
+  }
+
+  var parentOffset = $offsetParent.offset();
+
+  css.top -= parentOffset.top;
+  css.left -= parentOffset.left;
+
+  if (!isCurrentlyAbove && !isCurrentlyBelow) {
+    newDirection = 'below';
+  }
+
+  if (!enoughRoomBelow && enoughRoomAbove && !isCurrentlyAbove) {
+    newDirection = 'above';
+  } else if (!enoughRoomAbove && enoughRoomBelow && isCurrentlyAbove) {
+    newDirection = 'below';
+  }
+
+  if (newDirection == 'above' ||
+    (isCurrentlyAbove && newDirection !== 'below')) {
+    css.top = container.top - parentOffset.top - dropdown.height;
+  }
+
+  if (newDirection != null) {
+    this.$dropdown
+      .removeClass('select2-dropdown--below select2-dropdown--above')
+      .addClass('select2-dropdown--' + newDirection);
+    this.$container
+      .removeClass('select2-container--below select2-container--above')
+      .addClass('select2-container--' + newDirection);
+  }
+
+  this.$dropdownContainer.css(css);
+};
+
+AttachBody.prototype._resizeDropdown = function () {
+  var css = {
+    width: this.$container.outerWidth(false) + 'px'
+  };
+
+  if (this.options.get('dropdownAutoWidth')) {
+    css.minWidth = css.width;
+    css.position = 'relative';
+    css.width = 'auto';
+  }
+
+  this.$dropdown.css(css);
+};
+
+AttachBody.prototype._showDropdown = function (decorated) {
+  this.$dropdownContainer.appendTo(this.$dropdownParent);
+
+  this._positionDropdown();
+  this._resizeDropdown();
+};

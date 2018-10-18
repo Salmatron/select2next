@@ -1,36 +1,33 @@
-define([
-  'jquery',
-  'require'
-], function ($, require) {
-  function Translation (dict) {
+import * as $ from '../../../vendor/jquery-2.1.0.js';
+
+export function Translation(dict) {
     this.dict = dict || {};
-  }
+}
 
-  Translation.prototype.all = function () {
+Translation.prototype.all = function () {
     return this.dict;
-  };
+};
 
-  Translation.prototype.get = function (key) {
+Translation.prototype.get = function (key) {
     return this.dict[key];
-  };
+};
 
-  Translation.prototype.extend = function (translation) {
+Translation.prototype.extend = function (translation) {
     this.dict = $.extend({}, translation.all(), this.dict);
-  };
+};
 
-  // Static functions
+// Static functions
 
-  Translation._cache = {};
+Translation._cache = {};
 
-  Translation.loadPath = function (path) {
+Translation.loadPath = function (path) {
     if (!(path in Translation._cache)) {
-      var translations = require(path);
+        throw new Error('Not implemented yet.')
 
-      Translation._cache[path] = translations;
+        // var translations = require(path);
+        //
+        // Translation._cache[path] = translations;
     }
 
     return new Translation(Translation._cache[path]);
-  };
-
-  return Translation;
-});
+};

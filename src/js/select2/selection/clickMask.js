@@ -1,29 +1,26 @@
-define([
-  'jquery'
-], function ($) {
-  function ClickMask () { }
+import * as $ from '../../../../vendor/jquery-2.1.0.js';
 
-  ClickMask.prototype.bind = function (decorate, $container, container) {
-    var self = this;
+export function ClickMask() {
+}
 
-    decorate.call(this, $container, container);
+ClickMask.prototype.bind = function (decorate, $container, container) {
+  var self = this;
 
-    this.$mask = $(
-      '<div class="select2-close-mask"></div>'
-    );
+  decorate.call(this, $container, container);
 
-    this.$mask.on('mousedown touchstart click', function () {
-      self.trigger('close', {});
-    });
-  };
+  this.$mask = $(
+    '<div class="select2-close-mask"></div>'
+  );
 
-  ClickMask.prototype._attachCloseHandler = function (decorate, container) {
-    $(document.body).append(this.$mask);
-  };
+  this.$mask.on('mousedown touchstart click', function () {
+    self.trigger('close', {});
+  });
+};
 
-  ClickMask.prototype._detachCloseHandler = function (deocrate, container) {
-    this.$mask.detach();
-  };
+ClickMask.prototype._attachCloseHandler = function (decorate, container) {
+  $(document.body).append(this.$mask);
+};
 
-  return ClickMask;
-});
+ClickMask.prototype._detachCloseHandler = function (deocrate, container) {
+  this.$mask.detach();
+};
