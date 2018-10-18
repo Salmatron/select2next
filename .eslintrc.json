@@ -22,7 +22,6 @@
         "no-trailing-spaces": ["error", { "ignoreComments": true }],
         "block-scoped-var": ["error"],
         "eqeqeq": ["error", "always", { "null": "ignore" }],
-        "no-implicit-coercion": ["error"],
         "no-implicit-globals": ["error"],
         "no-loop-func": ["warn"],
         "no-multi-spaces": ["error"],
