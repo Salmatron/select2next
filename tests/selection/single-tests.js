@@ -1,4 +1,4 @@
-module('Selection containers - Single');
+window.module('Selection containers - Single');
 
 var SingleSelection = require('select2/selection/single');
 

@@ -1,4 +1,4 @@
-module('Selection containers - Placeholders - Allow clear');
+window.module('Selection containers - Placeholders - Allow clear');
 
 var Placeholder = require('select2/selection/placeholder');
 var AllowClear = require('select2/selection/allowClear');

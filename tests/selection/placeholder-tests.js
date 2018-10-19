@@ -1,4 +1,4 @@
-module('Selection containers - Placeholders');
+window.module('Selection containers - Placeholders');
 
 var Placeholder = require('select2/selection/placeholder');
 var SingleSelection = require('select2/selection/single');

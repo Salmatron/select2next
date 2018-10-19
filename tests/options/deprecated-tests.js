@@ -1,4 +1,4 @@
-module('Options - Deprecated - initSelection');
+window.module('Options - Deprecated - initSelection');
 
 var $ = require('jquery');
 var Options = require('select2/options');
@@ -157,7 +157,7 @@ test('only called once', function (assert) {
     );
 });
 
-module('Options - Deprecated - query');
+window.module('Options - Deprecated - query');
 
 test('converted into dataAdapter.query automatically', function (assert) {
     assert.expect(6);
@@ -217,7 +217,7 @@ test('converted into dataAdapter.query automatically', function (assert) {
     assert.ok(called, 'The query function should have been called');
 });
 
-module('Options - deprecated - data-ajax-url');
+window.module('Options - deprecated - data-ajax-url');
 
 test('converted ajax-url to ajax--url automatically', function (assert) {
     var $test = $('<select data-ajax-url="test://url"></select>');

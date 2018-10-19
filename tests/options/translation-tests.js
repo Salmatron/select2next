@@ -1,4 +1,4 @@
-module('Options - Translations');
+window.module('Options - Translations');
 
 var $ = require('jquery');
 var Options = require('select2/options');

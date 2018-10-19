@@ -1,4 +1,4 @@
-module('Data adaptor - Tokenizer');
+window.module('Data adaptor - Tokenizer');
 
 test('triggers the select event', function (assert) {
     assert.expect(2);

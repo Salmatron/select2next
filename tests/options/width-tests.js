@@ -1,4 +1,4 @@
-module('Options - Width');
+window.module('Options - Width');
 
 var $ = require('jquery');
 

@@ -1,4 +1,4 @@
-module('select2(data)');
+window.module('select2(data)');
 
 var $ = require('jquery');
 var Select2 = require('select2/core');
@@ -76,7 +76,7 @@ test('multiple default selections returned', function (assert) {
     );
 });
 
-module('select2(val)');
+window.module('select2(val)');
 
 test('single value matches jquery value', function (assert) {
     var $select = $(

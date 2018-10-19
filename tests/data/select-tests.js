@@ -1,4 +1,4 @@
-module('Data adapters - Select - current');
+window.module('Data adapters - Select - current');
 
 var SelectData = require('select2/data/select');
 import * as $ from 'jquery';
@@ -309,7 +309,7 @@ test('duplicates - multiple - different id on select triggers change',
         );
     });
 
-module('Data adapter - Select - query');
+window.module('Data adapter - Select - query');
 
 test('all options are returned with no term', function (assert) {
     var $select = $('#qunit-fixture .single');

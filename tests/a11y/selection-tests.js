@@ -1,4 +1,4 @@
-module('Accessibility - All');
+window.module('Accessibility - All');
 
 import {BaseSelection} from "../../src/js/select2/selection/base";
 import {SingleSelection} from "../../src/js/select2/selection/single";
@@ -131,7 +131,7 @@ test('a custom tabindex is copied', function (assert) {
     );
 });
 
-module('Accessibility - Single');
+window.module('Accessibility - Single');
 
 test('aria-labelledby should match the rendered container', function (assert) {
     var $select = $('#qunit-fixture .single');
@@ -151,4 +151,4 @@ test('aria-labelledby should match the rendered container', function (assert) {
     );
 });
 
-module('Accessibility - Multiple');
+window.module('Accessibility - Multiple');

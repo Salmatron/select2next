@@ -1,4 +1,4 @@
-module('Dropdown - Stoping event propagation');
+window.module('Dropdown - Stoping event propagation');
 
 var Dropdown = require('select2/dropdown');
 var StopPropagation = require('select2/dropdown/stopPropagation');

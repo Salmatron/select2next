@@ -1,4 +1,4 @@
-module('Defaults - Ajax');
+window.module('Defaults - Ajax');
 
 test('options are merged recursively with default options', function (assert) {
     var defaults = require('select2/defaults');

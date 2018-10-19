@@ -1,4 +1,4 @@
-module('select2(val)');
+window.module('select2(val)');
 
 var Utils = require('select2/utils');
 
@@ -87,8 +87,8 @@ test('$element.data returns instance and options correctly',
         assert.ok($instance);
         assert.ok($instance.options);
 
-        // Ensure $select.data('select2') is the same instance 
-        // created by .select2()   
+        // Ensure $select.data('select2') is the same instance
+        // created by .select2()
         assert.equal($instance, Utils.GetData($instance.$element[0],
             'select2'));
 

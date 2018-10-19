@@ -1,4 +1,4 @@
-module('Data adapters - <input> compatibility');
+window.module('Data adapters - <input> compatibility');
 
 import * as $ from 'jquery';
 

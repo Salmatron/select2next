@@ -1,4 +1,4 @@
-module('Data adapters - Tags');
+window.module('Data adapters - Tags');
 
 var SelectData = require('select2/data/select');
 var Tags = require('select2/data/tags');

@@ -1,4 +1,4 @@
-module('Dropdown - attachBody - positioning');
+window.module('Dropdown - attachBody - positioning');
 
 test('appends to the dropdown parent', function (assert) {
     assert.expect(4);

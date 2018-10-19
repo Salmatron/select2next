@@ -1,4 +1,4 @@
-module('Dropdown - selectOnClose');
+window.module('Dropdown - selectOnClose');
 
 var $ = require('jquery');
 

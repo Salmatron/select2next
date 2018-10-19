@@ -1,4 +1,4 @@
-module('Data adapters - Base');
+window.module('Data adapters - Base');
 
 var BaseData = require('select2/data/base');
 import * as $ from 'jquery';

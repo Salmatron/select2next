@@ -1,4 +1,4 @@
-module('Selection containers - Inline search');
+window.module('Selection containers - Inline search');
 
 var MultipleSelection = require('select2/selection/multiple');
 var InlineSearch = require('select2/selection/search');

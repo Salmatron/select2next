@@ -1,4 +1,4 @@
-module('Dropdown - dropdownCssClass compatibility');
+window.module('Dropdown - dropdownCssClass compatibility');
 
 var $ = require('jquery');
 var Utils = require('select2/utils');
@@ -86,7 +86,7 @@ test(':all: works around custom adapters', function (assert) {
     assert.ok($dropdown.hasClass('test-modified'));
 });
 
-module('Dropdown - adaptDropdownCss compatibility');
+window.module('Dropdown - adaptDropdownCss compatibility');
 
 test('only return when adapted', function (assert) {
     var $element = $('<select class="original"></select>');

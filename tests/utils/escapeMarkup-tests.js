@@ -1,4 +1,4 @@
-module('Utils - escapeMarkup');
+window.module('Utils - escapeMarkup');
 
 var Utils = require('select2/utils');
 

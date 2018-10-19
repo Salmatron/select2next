@@ -1,4 +1,4 @@
-module('Selection containers - Multiple');
+window.module('Selection containers - Multiple');
 
 var MultipleSelection = require('select2/selection/multiple');
 

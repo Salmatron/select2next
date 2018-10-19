@@ -1,4 +1,4 @@
-module('Options - Attributes');
+window.module('Options - Attributes');
 
 var $ = require('jquery');
 

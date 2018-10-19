@@ -1,4 +1,4 @@
-module('Data adapters - Maximum selection length');
+window.module('Data adapters - Maximum selection length');
 
 var MaximumSelectionLength = require('select2/data/maximumSelectionLength');
 
