@@ -1,8 +1,8 @@
 window.module('Data adapters - Base');
 
-var BaseData = require('select2/data/base');
+import {BaseAdapter as BaseData} from "../../src/js/select2/data/base.js";
 import * as $ from 'jquery';
-var Options = require('select2/options');
+import {Options} from "../../src/js/select2/options.js";
 
 var options = new Options({});
 

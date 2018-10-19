@@ -1,3 +1,6 @@
+import * as $ from 'jquery';
+import {Select2} from "../../src/js/select2/core.js";
+
 window.module('DOM integration');
 
 test('adding a new unselected option changes nothing', function (assert) {
@@ -17,10 +20,6 @@ test('adding a new unselected option changes nothing', function (assert) {
     if (expected != 2) {
         asyncDone = assert.async();
     }
-
-    var $ = require('jquery');
-    var Options = require('select2/options');
-    var Select2 = require('select2/core');
 
     var $select = $(
         '<select>' +
@@ -84,10 +83,6 @@ test('adding a new selected option changes the value', function (assert) {
         asyncDone = assert.async();
     }
 
-    var $ = require('jquery');
-    var Options = require('select2/options');
-    var Select2 = require('select2/core');
-
     var $select = $(
         '<select>' +
       '<option>One</option>' +
@@ -150,10 +145,6 @@ test('removing an unselected option changes nothing', function (assert) {
         asyncDone = assert.async();
     }
 
-    var $ = require('jquery');
-    var Options = require('select2/options');
-    var Select2 = require('select2/core');
-
     var $select = $(
         '<select>' +
       '<option>One</option>' +
@@ -213,10 +204,6 @@ test('removing a selected option changes the value', function (assert) {
     if (expected != 2) {
         asyncDone = assert.async();
     }
-
-    var $ = require('jquery');
-    var Options = require('select2/options');
-    var Select2 = require('select2/core');
 
     var $select = $(
         '<select>' +

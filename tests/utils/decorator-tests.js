@@ -1,6 +1,6 @@
-window.module('Decorators');
+import {Utils} from "../../src/js/select2/utils.js";
 
-var Utils = require('select2/utils');
+window.module('Decorators');
 
 test('overridden - method', function (assert) {
     function BaseClass() {}

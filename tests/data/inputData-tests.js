@@ -2,11 +2,11 @@ window.module('Data adapters - <input> compatibility');
 
 import * as $ from 'jquery';
 
-var Options = require('select2/options');
-var Utils = require('select2/utils');
+import {Options} from "../../src/js/select2/options.js";
+import {Utils} from "../../src/js/select2/utils";
 
-var ArrayData = require('select2/data/array');
-var InputData = require('select2/compat/inputData');
+import {ArrayAdapter as ArrayData} from "../../src/js/select2/data/array";
+import {InputData} from "../../src/js/select2/compat/inputData";
 
 var InputAdapter = Utils.Decorate(ArrayData, InputData);
 

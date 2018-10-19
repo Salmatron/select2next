@@ -1,7 +1,7 @@
 window.module('Options - Translations');
 
-var $ = require('jquery');
-var Options = require('select2/options');
+import * as $ from 'jquery';
+import {Options} from "../../src/js/select2/options.js";
 
 test('partial dictionaries can be passed', function (assert) {
     var options = new Options({

@@ -1,6 +1,6 @@
-window.module('Utils - escapeMarkup');
+import {Utils} from "../../src/js/select2/utils.js";
 
-var Utils = require('select2/utils');
+window.module('Utils - escapeMarkup');
 
 test('text passes through', function (assert) {
     var text = 'testing this';

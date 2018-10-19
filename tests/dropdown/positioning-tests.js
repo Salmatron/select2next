@@ -1,9 +1,14 @@
+import * as $ from 'jquery';
+import {Utils} from "../../src/js/select2/utils.js";
+import {Options} from "../../src/js/select2/options.js";
+import {MockContainer} from "../helpers.js";
+import {Dropdown} from "../../src/js/select2/dropdown";
+import{AttachBody} from "../../src/js/select2/dropdown/attachBody";
+
 window.module('Dropdown - attachBody - positioning');
 
 test('appends to the dropdown parent', function (assert) {
     assert.expect(4);
-
-    var $ = require('jquery');
 
     var $select = $('<select></select>');
     var $parent = $('<div></div>');
@@ -13,12 +18,6 @@ test('appends to the dropdown parent', function (assert) {
 
     $parent.appendTo($('#qunit-fixture'));
     $select.appendTo($parent);
-
-    var Utils = require('select2/utils');
-    var Options = require('select2/options');
-
-    var Dropdown = require('select2/dropdown');
-    var AttachBody = require('select2/dropdown/attachBody');
 
     var DropdownAdapter = Utils.Decorate(Dropdown, AttachBody);
 
@@ -59,7 +58,6 @@ test('appends to the dropdown parent', function (assert) {
 });
 
 test('dropdown is positioned down with static margins', function (assert) {
-    var $ = require('jquery');
     var $select = $('<select></select>');
     var $parent = $('<div></div>');
     $parent.css({
@@ -75,12 +73,6 @@ test('dropdown is positioned down with static margins', function (assert) {
 
     $parent.appendTo($('#qunit-fixture'));
     $container.appendTo($parent);
-
-    var Utils = require('select2/utils');
-    var Options = require('select2/options');
-
-    var Dropdown = require('select2/dropdown');
-    var AttachBody = require('select2/dropdown/attachBody');
 
     var DropdownAdapter = Utils.Decorate(Dropdown, AttachBody);
 
@@ -119,7 +111,6 @@ test('dropdown is positioned down with static margins', function (assert) {
 });
 
 test('dropdown is positioned down with absolute offsets', function (assert) {
-    var $ = require('jquery');
     var $select = $('<select></select>');
     var $parent = $('<div></div>');
     $parent.css({
@@ -133,12 +124,6 @@ test('dropdown is positioned down with absolute offsets', function (assert) {
 
     $parent.appendTo($('#qunit-fixture'));
     $container.appendTo($parent);
-
-    var Utils = require('select2/utils');
-    var Options = require('select2/options');
-
-    var Dropdown = require('select2/dropdown');
-    var AttachBody = require('select2/dropdown/attachBody');
 
     var DropdownAdapter = Utils.Decorate(Dropdown, AttachBody);
 

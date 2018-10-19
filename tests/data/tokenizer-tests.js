@@ -1,21 +1,18 @@
 window.module('Data adaptor - Tokenizer');
 
+import {Options} from "../../src/js/select2/options.js";
+import {Utils} from "../../src/js/select2/utils.js";
+import {SelectAdapter as SelectData} from "../../src/js/select2/data/select.js";
+import {Tokenizer} from "../../src/js/select2/data/tokenizer.js";
+import {Tags} from "../../src/js/select2/data/tags.js";
+import {MockContainer} from "../helpers";
+
+import * as $ from 'jquery';
+
 test('triggers the select event', function (assert) {
     assert.expect(2);
 
-    var SelectData = require('select2/data/select');
-    var Tokenizer = require('select2/data/tokenizer');
-    var Tags = require('select2/data/tags');
-
-    var Options = require('select2/options');
-    var Utils = require('select2/utils');
-
-    var $ = require('jquery');
-
-    var TokenizedSelect = Utils.Decorate(
-        Utils.Decorate(SelectData, Tags),
-        Tokenizer
-    );
+    var TokenizedSelect = Utils.Decorate(Utils.Decorate(SelectData, Tags), Tokenizer);
     var $select = $('#qunit-fixture .single');
 
     var options = new Options({
@@ -44,15 +41,6 @@ test('triggers the select event', function (assert) {
 
 test('createTag can return null', function (assert) {
     assert.expect(3);
-
-    var SelectData = require('select2/data/select');
-    var Tokenizer = require('select2/data/tokenizer');
-    var Tags = require('select2/data/tags');
-
-    var Options = require('select2/options');
-    var Utils = require('select2/utils');
-
-    var $ = require('jquery');
 
     var TokenizedSelect = Utils.Decorate(
         Utils.Decorate(SelectData, Tags),
@@ -93,15 +81,6 @@ test('createTag can return null', function (assert) {
 
 test('createTag returning null does not cut the term', function (assert) {
     assert.expect(4);
-
-    var SelectData = require('select2/data/select');
-    var Tokenizer = require('select2/data/tokenizer');
-    var Tags = require('select2/data/tags');
-
-    var Options = require('select2/options');
-    var Utils = require('select2/utils');
-
-    var $ = require('jquery');
 
     var TokenizedSelect = Utils.Decorate(
         Utils.Decorate(SelectData, Tags),
@@ -172,15 +151,6 @@ test('createTag returning null does not cut the term', function (assert) {
 
 test('works with multiple tokens given', function (assert) {
     assert.expect(4);
-
-    var SelectData = require('select2/data/select');
-    var Tokenizer = require('select2/data/tokenizer');
-    var Tags = require('select2/data/tags');
-
-    var Options = require('select2/options');
-    var Utils = require('select2/utils');
-
-    var $ = require('jquery');
 
     var TokenizedSelect = Utils.Decorate(
         Utils.Decorate(SelectData, Tags),

@@ -1,8 +1,8 @@
 window.module('Options - Attributes');
 
-var $ = require('jquery');
+import * as $ from 'jquery';
 
-var Options = require('select2/options');
+import {Options} from "../../src/js/select2/options.js";
 
 test('no nesting', function (assert) {
     var $test = $('<select data-test="test"></select>');
@@ -27,6 +27,7 @@ test('with nesting', function (assert) {
     var options = new Options({}, $test);
 
     assert.ok(!(options.get('first-Second')));
+
     assert.equal(options.get('first').second, 'test');
 });
 

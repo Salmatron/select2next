@@ -1,10 +1,10 @@
 window.module('Selection containers - Multiple');
 
-var MultipleSelection = require('select2/selection/multiple');
-
-var $ = require('jquery');
-var Options = require('select2/options');
-var Utils = require('select2/utils');
+import {MultipleSelection} from "../../src/js/select2/selection/multiple.js";
+import * as $ from 'jquery';
+import {Options} from "../../src/js/select2/options.js";
+import {Utils} from "../../src/js/select2/utils.js";
+import {MockContainer} from "../helpers.js";
 
 var options = new Options({});
 

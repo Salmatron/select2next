@@ -1,14 +1,12 @@
 window.module('Dropdown - containerCssClass compatibility');
 
-var $ = require('jquery');
-var Utils = require('select2/utils');
-var Options = require('select2/options');
+import * as $ from 'jquery';
+import {Utils} from "../../src/js/select2/utils.js";
+import {Options} from "../../src/js/select2/options.js";
+import {SingleSelection} from "../../src/js/select2/selection/single";
+import {ContainerCSS as CompatContainerCss} from "../../src/js/select2/compat/containerCss";
 
-var SingleSelection = require('select2/selection/single');
-var ContainerCSS = Utils.Decorate(
-    SingleSelection,
-    require('select2/compat/containerCss')
-);
+var ContainerCSS = Utils.Decorate(SingleSelection, CompatContainerCss);
 
 test('all classes will be copied if :all: is used', function (assert) {
     var $element = $('<select class="test copy works"></select>');

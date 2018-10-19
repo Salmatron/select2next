@@ -1,8 +1,9 @@
 window.module('Options - Width');
 
-var $ = require('jquery');
+import * as $ from 'jquery';
 
-var Select2 = require('select2/core');
+import {Select2} from "../../src/js/select2/core";
+
 var select = new Select2($('<select></select>'));
 
 test('string passed as width', function (assert) {

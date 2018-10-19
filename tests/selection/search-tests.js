@@ -1,18 +1,17 @@
 window.module('Selection containers - Inline search');
 
-var MultipleSelection = require('select2/selection/multiple');
-var InlineSearch = require('select2/selection/search');
-
-var $ = require('jquery');
-var Options = require('select2/options');
-var Utils = require('select2/utils');
+import {MultipleSelection} from "../../src/js/select2/selection/multiple";
+import {Search as InlineSearch} from "../../src/js/select2/selection/search";
+import * as $ from 'jquery';
+import {Options} from "../../src/js/select2/options.js";
+import {Utils} from "../../src/js/select2/utils.js";
+import {KEYS} from "../../src/js/select2/keys";
+import {MockContainer} from "../helpers.js";
 
 var options = new Options({});
 
 test('backspace will remove a choice', function (assert) {
     assert.expect(3);
-
-    var KEYS = require('select2/keys');
 
     var $container = $('#qunit-fixture .event-container');
     var container = new MockContainer();
@@ -53,8 +52,6 @@ test('backspace will remove a choice', function (assert) {
 
 test('backspace will set the search text', function (assert) {
     assert.expect(3);
-
-    var KEYS = require('select2/keys');
 
     var $container = $('#qunit-fixture .event-container');
     var container = new MockContainer();

@@ -1,14 +1,12 @@
 window.module('Dropdown - dropdownCssClass compatibility');
 
-var $ = require('jquery');
-var Utils = require('select2/utils');
-var Options = require('select2/options');
+import * as $ from 'jquery';
+import {Utils} from "../../src/js/select2/utils.js";
+import {Options} from "../../src/js/select2/options.js";
+import {Dropdown} from "../../src/js/select2/dropdown";
+import {DropdownCSS as CompatDropdownCss} from "../../src/js/select2/compat/dropdownCss";
 
-var Dropdown = require('select2/dropdown');
-var DropdownCSS = Utils.Decorate(
-    Dropdown,
-    require('select2/compat/dropdownCss')
-);
+var DropdownCSS = Utils.Decorate(Dropdown, CompatDropdownCss);
 
 test('all classes will be copied if :all: is used', function (assert) {
     var $element = $('<select class="test copy works"></select>');

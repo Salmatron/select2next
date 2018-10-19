@@ -1,9 +1,12 @@
+import * as $ from 'jquery';
+import {Options} from "../../src/js/select2/options.js";
+import {Results} from "../../src/js/select2/results.js";
+import {MockContainer} from "../helpers.js";
+
 window.module('Results - highlighting results');
 
 test('results:all with no data skips results:focus', function (assert) {
     assert.expect(0);
-
-    var $ = require('jquery');
 
     var $select = $('<select></select>');
     var $parent = $('<div></div>');
@@ -13,11 +16,6 @@ test('results:all with no data skips results:focus', function (assert) {
 
     $parent.appendTo($('#qunit-fixture'));
     $select.appendTo($parent);
-
-    var Utils = require('select2/utils');
-    var Options = require('select2/options');
-
-    var Results = require('select2/results');
 
     var results = new Results($select, new Options({}));
 
@@ -45,8 +43,6 @@ test('results:all with no data skips results:focus', function (assert) {
 test('results:all triggers results:focus on the first item', function (assert) {
     assert.expect(2);
 
-    var $ = require('jquery');
-
     var $select = $('<select></select>');
     var $parent = $('<div></div>');
 
@@ -55,11 +51,6 @@ test('results:all triggers results:focus on the first item', function (assert) {
 
     $parent.appendTo($('#qunit-fixture'));
     $select.appendTo($parent);
-
-    var Utils = require('select2/utils');
-    var Options = require('select2/options');
-
-    var Results = require('select2/results');
 
     var results = new Results($select, new Options({}));
 
@@ -93,8 +84,6 @@ test('results:all triggers results:focus on the first item', function (assert) {
 test('results:append does not trigger results:focus', function (assert) {
     assert.expect(0);
 
-    var $ = require('jquery');
-
     var $select = $('<select></select>');
     var $parent = $('<div></div>');
 
@@ -103,11 +92,6 @@ test('results:append does not trigger results:focus', function (assert) {
 
     $parent.appendTo($('#qunit-fixture'));
     $select.appendTo($parent);
-
-    var Utils = require('select2/utils');
-    var Options = require('select2/options');
-
-    var Results = require('select2/results');
 
     var results = new Results($select, new Options({}));
 
@@ -140,8 +124,6 @@ test('results:append does not trigger results:focus', function (assert) {
 test('scrollAfterSelect triggers results:focus', function (assert) {
     assert.expect(3);
 
-    var $ = require('jquery');
-
     var $select = $('<select></select>');
     var $parent = $('<div></div>');
 
@@ -150,11 +132,6 @@ test('scrollAfterSelect triggers results:focus', function (assert) {
 
     $parent.appendTo($('#qunit-fixture'));
     $select.appendTo($parent);
-
-    var Utils = require('select2/utils');
-    var Options = require('select2/options');
-
-    var Results = require('select2/results');
 
     var options = new Options({ scrollAfterSelect: true });
     var results = new Results($select, options);
@@ -192,8 +169,6 @@ test('scrollAfterSelect triggers results:focus', function (assert) {
 test('!scrollAfterSelect does not trigger results:focus', function (assert) {
     assert.expect(1);
 
-    var $ = require('jquery');
-
     var $select = $('<select></select>');
     var $parent = $('<div></div>');
 
@@ -202,11 +177,6 @@ test('!scrollAfterSelect does not trigger results:focus', function (assert) {
 
     $parent.appendTo($('#qunit-fixture'));
     $select.appendTo($parent);
-
-    var Utils = require('select2/utils');
-    var Options = require('select2/options');
-
-    var Results = require('select2/results');
 
     var options = new Options({ scrollAfterSelect: false });
     var results = new Results($select, options);

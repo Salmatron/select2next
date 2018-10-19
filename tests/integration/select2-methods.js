@@ -1,8 +1,8 @@
 window.module('select2(data)');
 
-var $ = require('jquery');
-var Select2 = require('select2/core');
-var Options = require('select2/options');
+import * as $ from 'jquery';
+import {Select2} from "../../src/js/select2/core";
+import {Options} from "../../src/js/select2/options.js";
 
 test('single default selection returned', function (assert) {
     var $select = $(

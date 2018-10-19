@@ -1,10 +1,9 @@
 window.module('Selection containers - Single');
 
-var SingleSelection = require('select2/selection/single');
-
-var $ = require('jquery');
-var Options = require('select2/options');
-var Utils = require('select2/utils');
+import {SingleSelection} from "../../src/js/select2/selection/single";
+import * as $ from 'jquery';
+import {Options} from "../../src/js/select2/options.js";
+import {Utils} from "../../src/js/select2/utils.js";
 
 var options = new Options({});
 

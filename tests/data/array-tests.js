@@ -1,9 +1,9 @@
 window.module('Data adapters - Array');
 
-var ArrayData = require('select2/data/array');
+import {ArrayAdapter as ArrayData} from "../../src/js/select2/data/array.js";
 import * as $ from 'jquery';
-var Options = require('select2/options');
-var Utils = require('select2/utils');
+import {Options} from "../../src/js/select2/options.js";
+import {Utils} from "../../src/js/select2/utils.js";
 
 var UserDefinedType = function (id, text) {
     var self = this;

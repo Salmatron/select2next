@@ -1,10 +1,10 @@
 window.module('select2(val)');
 
-var Utils = require('select2/utils');
+import * as $ from 'jquery';
+import {Utils} from "../../src/js/select2/utils.js";
+import "../../src/js/jquery.select2.js";
 
 test('multiple elements with arguments works', function (assert) {
-    var $ = require('jquery');
-    require('jquery.select2');
 
     var $first = $(
         '<select>' +
@@ -31,10 +31,7 @@ test('multiple elements with arguments works', function (assert) {
     );
 });
 
-test('initializes when jQuery $.data contains' +
-  ' cyclic reference', function (assert) {
-    var $ = require('jquery');
-    require('jquery.select2');
+test('initializes when jQuery $.data contains' + ' cyclic reference', function (assert) {
 
     var $select = $(
         '<select>' +
@@ -62,9 +59,6 @@ test('initializes when jQuery $.data contains' +
 
 test('$element.data returns instance and options correctly',
     function (assert) {
-        var $ = require('jquery');
-        require('jquery.select2');
-
         var $select = $(
             '<select>' +
     '<option value="1">One</option>' +

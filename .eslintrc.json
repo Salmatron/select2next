@@ -49,7 +49,6 @@
         "WeakMap"       : false,
         "Promise"       : false,
         "MockContainer" : false,
-        "QUnit"         : false,
-        "$"             : false
+        "QUnit"         : false
     }
 }

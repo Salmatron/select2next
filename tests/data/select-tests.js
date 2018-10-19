@@ -1,8 +1,9 @@
 window.module('Data adapters - Select - current');
 
-var SelectData = require('select2/data/select');
+import {SelectAdapter as SelectData} from "../../src/js/select2/data/select";
 import * as $ from 'jquery';
-var Options = require('select2/options');
+import {Options} from "../../src/js/select2/options.js";
+
 var selectOptions = new Options({});
 
 test('current gets default for single', function (assert) {

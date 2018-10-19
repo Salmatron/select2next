@@ -7,7 +7,7 @@
 
 import {Utils} from "../src/js/select2/utils";
 
-function MockContainer() {
+export function MockContainer() {
     MockContainer.__super__.constructor.call(this);
 }
 

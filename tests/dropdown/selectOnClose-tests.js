@@ -1,14 +1,15 @@
 window.module('Dropdown - selectOnClose');
 
-var $ = require('jquery');
+import * as $ from 'jquery';
 
-var Utils = require('select2/utils');
-var Options = require('select2/options');
+import {Utils} from "../../src/js/select2/utils.js";
+import {Options} from "../../src/js/select2/options.js";
 
-var SelectData = require('select2/data/select');
+import {SelectAdapter as SelectData} from "../../src/js/select2/data/select";
 
-var Results = require('select2/results');
-var SelectOnClose = require('select2/dropdown/selectOnClose');
+import {Results} from "../../src/js/select2/results";
+import {SelectOnClose} from "../../src/js/select2/dropdown/selectOnClose";
+import {MockContainer} from "../helpers.js";
 
 var ModifiedResults = Utils.Decorate(Results, SelectOnClose);
 

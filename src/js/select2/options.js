@@ -1,7 +1,7 @@
 import * as $ from 'jquery';
 
 import {InputData as InputCompat} from './compat/inputData.js';
-import {defaults as Defaults} from './defaults.js';
+import {defaults} from './defaults.js';
 import {Utils} from './utils.js';
 
 export function Options(options, $element) {
@@ -11,7 +11,7 @@ export function Options(options, $element) {
         this.fromElement($element);
     }
 
-    this.options = Defaults.apply(this.options);
+    this.options = defaults.apply(this.options);
 
     if ($element && $element.is('input')) {
         this.options.dataAdapter = Utils.Decorate(

@@ -1,10 +1,8 @@
 window.module('Data adapters - Maximum selection length');
 
-var MaximumSelectionLength = require('select2/data/maximumSelectionLength');
-
-import * as $ from 'jquery';
-var Options = require('select2/options');
-var Utils = require('select2/utils');
+import {MaximumSelectionLength} from "../../src/js/select2/data/maximumSelectionLength.js";
+import {Options} from "../../src/js/select2/options.js";
+import {Utils} from "../../src/js/select2/utils.js";
 
 function MaximumSelectionStub() {
     this.called = false;

@@ -1,13 +1,14 @@
 window.module('Selection containers - Placeholders - Allow clear');
 
-var Placeholder = require('select2/selection/placeholder');
-var AllowClear = require('select2/selection/allowClear');
+import {Placeholder} from "../../src/js/select2/selection/placeholder.js";
+import {AllowClear} from "../../src/js/select2/selection/allowClear.js";
 
-var SingleSelection = require('select2/selection/single');
+import {SingleSelection} from "../../src/js/select2/selection/single.js";
 
-var $ = require('jquery');
-var Options = require('select2/options');
-var Utils = require('select2/utils');
+import * as $ from 'jquery';
+import {Options} from "../../src/js/select2/options.js";
+import {Utils} from "../../src/js/select2/utils.js";
+import {MockContainer} from "../helpers.js";
 
 var AllowClearPlaceholder = Utils.Decorate(
     Utils.Decorate(SingleSelection, Placeholder),

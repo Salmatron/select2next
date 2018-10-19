@@ -1,12 +1,14 @@
 window.module('Accessibility - Search');
 
-var MultipleSelection = require('select2/selection/multiple');
-var InlineSearch = require('select2/selection/search');
+import {MultipleSelection} from "../../src/js/select2/selection/multiple";
+import {Search as InlineSearch} from "../../src/js/select2/selection/search";
 
 import * as $ from 'jquery';
 
-var Utils = require('select2/utils');
-var Options = require('select2/options');
+import {Utils} from "../../src/js/select2/utils";
+import {Options} from "../../src/js/select2/options";
+import {MockContainer} from "../helpers";
+
 var options = new Options({});
 
 test('aria-autocomplete attribute is present', function (assert) {

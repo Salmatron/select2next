@@ -1,8 +1,8 @@
 window.module('Defaults - Ajax');
 
-test('options are merged recursively with default options', function (assert) {
-    var defaults = require('select2/defaults');
+import {defaults} from "../../src/js/select2/defaults";
 
+test('options are merged recursively with default options', function (assert) {
     var ajaxDelay = 250;
     var ajaxUrl = 'http://www.test.com';
 
@@ -32,7 +32,6 @@ test('options are merged recursively with default options', function (assert) {
 });
 
 test('more than one default option can be changed via set()', function (assert) {
-    var defaults = require('select2/defaults');
     var ajaxDelay = 123;
     var dataDataType = 'xml';
     defaults.set('ajax--delay', ajaxDelay);

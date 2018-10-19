@@ -1,11 +1,12 @@
 window.module('Dropdown - Stoping event propagation');
 
-var Dropdown = require('select2/dropdown');
-var StopPropagation = require('select2/dropdown/stopPropagation');
+import {Dropdown} from "../../src/js/select2/dropdown";
+import {StopPropagation} from "../../src/js/select2/dropdown/stopPropagation";
 
-var $ = require('jquery');
-var Options = require('select2/options');
-var Utils = require('select2/utils');
+import * as $ from 'jquery';
+import {Options} from "../../src/js/select2/options.js";
+import {Utils} from "../../src/js/select2/utils.js";
+import {MockContainer} from "../helpers.js";
 
 var CustomDropdown = Utils.Decorate(Dropdown, StopPropagation);
 

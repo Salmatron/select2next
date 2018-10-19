@@ -1,11 +1,11 @@
+import {SingleSelection} from "../../src/js/select2/selection/single";
+import {StopPropagation} from "../../src/js/select2/selection/stopPropagation";
+import * as $ from 'jquery';
+import {Options} from "../../src/js/select2/options.js";
+import {Utils} from "../../src/js/select2/utils.js";
+import {MockContainer} from "../helpers.js";
+
 window.module('Selection containers - Stoping event propagation');
-
-var SingleSelection = require('select2/selection/single');
-var StopPropagation = require('select2/selection/stopPropagation');
-
-var $ = require('jquery');
-var Options = require('select2/options');
-var Utils = require('select2/utils');
 
 var CutomSelection = Utils.Decorate(SingleSelection, StopPropagation);
 

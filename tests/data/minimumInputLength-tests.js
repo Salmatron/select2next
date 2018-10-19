@@ -1,9 +1,8 @@
 window.module('Data adapters - Minimum input length');
 
-var MinimumInputLength = require('select2/data/minimumInputLength');
-import * as $ from 'jquery';
-var Options = require('select2/options');
-var Utils = require('select2/utils');
+import {MinimumInputLength} from "../../src/js/select2/data/minimumInputLength";
+import {Options} from "../../src/js/select2/options.js";
+import {Utils} from "../../src/js/select2/utils.js";
 
 function StubData() {
     this.called = false;

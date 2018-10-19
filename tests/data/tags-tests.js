@@ -1,11 +1,10 @@
 window.module('Data adapters - Tags');
 
-var SelectData = require('select2/data/select');
-var Tags = require('select2/data/tags');
-
+import {SelectAdapter as SelectData} from "../../src/js/select2/data/select";
+import {Tags} from "../../src/js/select2/data/tags";
 import * as $ from 'jquery';
-var Options = require('select2/options');
-var Utils = require('select2/utils');
+import {Options} from "../../src/js/select2/options.js";
+import {Utils} from "../../src/js/select2/utils.js";
 
 var SelectTags = Utils.Decorate(SelectData, Tags);
 var options = new Options({
