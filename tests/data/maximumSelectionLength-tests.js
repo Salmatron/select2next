@@ -2,7 +2,7 @@ module('Data adapters - Maximum selection length');
 
 var MaximumSelectionLength = require('select2/data/maximumSelectionLength');
 
-var $ = require('jquery');
+import * as $ from 'jquery';
 var Options = require('select2/options');
 var Utils = require('select2/utils');
 

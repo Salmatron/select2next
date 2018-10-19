@@ -1,7 +1,7 @@
 module('Data adapters - Array');
 
 var ArrayData = require('select2/data/array');
-var $ = require('jquery');
+import * as $ from 'jquery';
 var Options = require('select2/options');
 var Utils = require('select2/utils');
 

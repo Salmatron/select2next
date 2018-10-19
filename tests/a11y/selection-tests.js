@@ -1,12 +1,12 @@
 module('Accessibility - All');
 
-var BaseSelection = require('select2/selection/base');
-var SingleSelection = require('select2/selection/single');
-var MultipleSelection = require('select2/selection/multiple');
+import {BaseSelection} from "../../src/js/select2/selection/base";
+import {SingleSelection} from "../../src/js/select2/selection/single";
 
-var $ = require('jquery');
+import * as $ from 'jquery';
 
-var Options = require('select2/options');
+import {Options} from "../../src/js/select2/options";
+
 var options = new Options({});
 
 test('title is carried over from original element', function (assert) {

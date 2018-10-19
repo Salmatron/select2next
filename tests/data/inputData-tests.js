@@ -1,6 +1,6 @@
 module('Data adapters - <input> compatibility');
 
-var $ = require('jquery');
+import * as $ from 'jquery';
 
 var Options = require('select2/options');
 var Utils = require('select2/utils');
