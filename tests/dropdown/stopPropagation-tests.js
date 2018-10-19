@@ -12,22 +12,22 @@ var CustomDropdown = Utils.Decorate(Dropdown, StopPropagation);
 var options = new Options();
 
 test('click event does not propagate', function (assert) {
-  assert.expect(1);
+    assert.expect(1);
 
-  var $container = $('#qunit-fixture .event-container');
-  var container = new MockContainer();
+    var $container = $('#qunit-fixture .event-container');
+    var container = new MockContainer();
 
-  var dropdown = new CustomDropdown($('#qunit-fixture select'), options);
+    var dropdown = new CustomDropdown($('#qunit-fixture select'), options);
 
-  var $dropdown = dropdown.render();
-  dropdown.bind(container, $container);
+    var $dropdown = dropdown.render();
+    dropdown.bind(container, $container);
 
-  $container.append($dropdown);
-  $container.on('click', function () {
-    assert.ok(false, 'The click event should have been stopped');
-  });
+    $container.append($dropdown);
+    $container.on('click', function () {
+        assert.ok(false, 'The click event should have been stopped');
+    });
 
-  $dropdown.trigger('click');
+    $dropdown.trigger('click');
 
-  assert.ok(true, 'Something went wrong if this failed');
+    assert.ok(true, 'Something went wrong if this failed');
 });
