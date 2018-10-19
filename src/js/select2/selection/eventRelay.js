@@ -1,3 +1,4 @@
+import * as $ from 'jquery';
 
 export function EventRelay() {
 }

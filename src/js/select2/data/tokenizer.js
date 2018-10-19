@@ -1,3 +1,4 @@
+import * as $ from 'jquery';
 
 export function Tokenizer(decorated, $element, options) {
     const tokenizer = options.get('tokenizer');

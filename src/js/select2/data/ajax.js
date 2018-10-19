@@ -1,3 +1,5 @@
+import * as $ from 'jquery';
+
 import {ArrayAdapter} from './array.js';
 import {Utils} from "../utils.js";
 

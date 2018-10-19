@@ -1,3 +1,5 @@
+import * as $ from 'jquery';
+
 import {CompatUtils} from './utils.js';
 
 // No-op CSS adapter that discards all classes by default

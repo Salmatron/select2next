@@ -1,3 +1,4 @@
+import * as $ from 'jquery';
 
 export function oldMatcher(matcher) {
     function wrappedMatcher(params, data) {

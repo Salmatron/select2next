@@ -1,3 +1,5 @@
+import * as $ from 'jquery';
+
 import {Results as ResultsList} from './results.js';
 import {SingleSelection} from "./selection/single.js";
 import {MultipleSelection} from "./selection/multiple.js";

@@ -1,3 +1,5 @@
+import * as $ from 'jquery';
+
 import {BaseSelection} from './base.js';
 import {Utils} from '../utils.js';
 

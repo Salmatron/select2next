@@ -1,6 +1,10 @@
+import * as $ from 'jquery';
+
 import {Select2} from './select2/core.js';
 import {defaults} from './select2/defaults.js';
 import {Utils} from './select2/utils.js';
+
+export default Select2;
 
 if ($.fn.select2 == null) {
     // All methods that should return the element
@@ -25,10 +29,7 @@ if ($.fn.select2 == null) {
                 const instance = Utils.GetData(this, 'select2');
 
                 if (instance == null && window.console && console.error) {
-                    console.error(
-                        `The select2('${options}') method was called on an ` +
-            'element that is not using Select2.'
-                    );
+                    console.error(`The select2('${options}') method was called on an element that is not using Select2.`);
                 }
 
                 ret = instance[options].apply(instance, args);

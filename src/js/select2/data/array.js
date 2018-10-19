@@ -1,3 +1,5 @@
+import * as $ from 'jquery';
+
 import {SelectAdapter} from './select.js';
 import {Utils} from '../utils.js';
 

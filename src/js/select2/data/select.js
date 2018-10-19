@@ -1,3 +1,5 @@
+import * as $ from 'jquery';
+
 import {BaseAdapter} from './base.js';
 import {Utils} from '../utils.js';
 

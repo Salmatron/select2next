@@ -1,3 +1,5 @@
+import * as $ from 'jquery';
+
 import {InputData as InputCompat} from './compat/inputData.js';
 import {defaults as Defaults} from './defaults.js';
 import {Utils} from './utils.js';

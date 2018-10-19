@@ -1,3 +1,5 @@
+import * as $ from 'jquery';
+
 import {Translated} from "./i18n/en.js";
 
 export function Translation(dict) {

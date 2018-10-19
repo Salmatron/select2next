@@ -1,3 +1,4 @@
+import * as $ from 'jquery';
 
 export function InitSelection(decorated, $element, options) {
     if (options.get('debug') && window.console && console.warn) {
