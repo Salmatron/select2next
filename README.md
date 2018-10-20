@@ -5,7 +5,7 @@ Select2Next
 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/select2/badge)](https://www.jsdelivr.com/package/npm/select2)
 
 Select2Next is a modern rewrite of Select2, a replacement for select boxes. It supports searching,
-remote data sets, and pagination of results.
+remote data sets, and pagination of results. Unlike Select2, Select2Next doesn't need jQuery.
 
 To get started, checkout examples and documentation at
 https://select2.org/
