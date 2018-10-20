@@ -188,8 +188,8 @@ Select2.prototype._registerDomEvents = function () {
         self.trigger('focus', evt);
     });
 
-    this._syncA = Utils.bind(this._syncAttributes, this);
-    this._syncS = Utils.bind(this._syncSubtree, this);
+    this._syncA = this._syncAttributes.bind(this);
+    this._syncS = this._syncSubtree.bind(this);
 
     if (this.$element[0].attachEvent) {
         this.$element[0].attachEvent('onpropertychange', this._syncA);

@@ -5,7 +5,6 @@ export const Utils = {
     Decorate,
     Observable,
     generateChars,
-    bind,
     _convertData,
     hasScroll,
     escapeMarkup,
@@ -181,12 +180,6 @@ function generateChars(length) {
     }
 
     return chars;
-}
-
-function bind(func, context) {
-    return function () {
-        func.apply(context, arguments);
-    };
 }
 
 function _convertData(data) {
