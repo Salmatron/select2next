@@ -42,7 +42,7 @@ function Defaults() {
 }
 
 Defaults.prototype.apply = function (options) {
-    options = $.extend(true, {}, this.defaults, options);
+    options = Utils.extend(true, {}, this.defaults, options);
 
     if (options.dataAdapter == null) {
         if (options.ajax != null) {
@@ -296,7 +296,7 @@ Defaults.prototype.reset = function () {
         if (data.children && data.children.length > 0) {
             // Clone the data object if there are children
             // This is required as we modify the object to remove any non-matches
-            const match = $.extend(true, {}, data);
+            const match = Utils.extend(true, {}, data);
 
             // Check each child of the option
             for (let c = data.children.length - 1; c >= 0; c--) {
@@ -368,7 +368,7 @@ Defaults.prototype.set = function (key, value) {
 
     const convertedData = Utils._convertData(data);
 
-    $.extend(true, this.defaults, convertedData);
+    Utils.extend(true, this.defaults, convertedData);
 };
 
 export const defaults = new Defaults();

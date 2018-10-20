@@ -1,4 +1,5 @@
 import * as $ from 'jquery';
+import {Utils} from "../utils.js";
 
 export function Tokenizer(decorated, $element, options) {
     const tokenizer = options.get('tokenizer');
@@ -88,7 +89,7 @@ Tokenizer.prototype.tokenizer = function (_, params, options, callback) {
         }
 
         const part = term.substr(0, i);
-        const partParams = $.extend({}, params, {
+        const partParams = Utils.extend({}, params, {
             term: part
         });
 

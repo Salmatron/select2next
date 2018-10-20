@@ -18,7 +18,7 @@ Utils.Extend(AjaxAdapter, ArrayAdapter);
 AjaxAdapter.prototype._applyDefaults = function (options) {
     const defaults = {
         data(params) {
-            return $.extend({}, params, {
+            return Utils.extend({}, params, {
                 q: params.term
             });
         },
@@ -32,7 +32,7 @@ AjaxAdapter.prototype._applyDefaults = function (options) {
         }
     };
 
-    return $.extend({}, defaults, options, true);
+    return Utils.extend({}, defaults, options, true);
 };
 
 AjaxAdapter.prototype.processResults = results => results;
@@ -50,7 +50,7 @@ AjaxAdapter.prototype.query = function (params, callback) {
         this._request = null;
     }
 
-    const options = $.extend({
+    const options = Utils.extend({
         type: 'GET'
     }, this.ajaxOptions);
 

@@ -1,8 +1,9 @@
 import * as $ from 'jquery';
+import {Utils} from "../utils.js";
 
 export function oldMatcher(matcher) {
     function wrappedMatcher(params, data) {
-        const match = $.extend(true, {}, data);
+        const match = Utils.extend(true, {}, data);
 
         if (params.term == null || $.trim(params.term) === '') {
             return match;

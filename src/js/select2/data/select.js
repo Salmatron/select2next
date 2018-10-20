@@ -251,7 +251,7 @@ SelectAdapter.prototype._normalizeItem = function (item) {
         };
     }
 
-    item = $.extend({}, {
+    item = Utils.extend({}, {
         text: ''
     }, item);
 
@@ -272,7 +272,7 @@ SelectAdapter.prototype._normalizeItem = function (item) {
         item._resultId = this.generateResultId(this.container, item);
     }
 
-    return $.extend({}, defaults, item);
+    return Utils.extend({}, defaults, item);
 };
 
 SelectAdapter.prototype.matches = function (params, data) {

@@ -178,8 +178,7 @@ AttachBody.prototype._positionDropdown = function () {
         newDirection = 'below';
     }
 
-    if (newDirection == 'above' ||
-    (isCurrentlyAbove && newDirection !== 'below')) {
+    if (newDirection === 'above' || (isCurrentlyAbove && newDirection !== 'below')) {
         css.top = container.top - parentOffset.top - dropdown.height;
     }
 

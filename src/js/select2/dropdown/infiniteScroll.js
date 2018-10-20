@@ -1,4 +1,5 @@
 import * as $ from 'jquery';
+import {Utils} from "../utils.js";
 
 export function InfiniteScroll(decorated, $element, options, dataAdapter) {
     this.lastParams = {};
@@ -59,7 +60,7 @@ InfiniteScroll.prototype.bind = function (decorated, container, $container) {
 InfiniteScroll.prototype.loadMore = function () {
     this.loading = true;
 
-    const params = $.extend({}, {page: 1}, this.lastParams);
+    const params = Utils.extend({}, {page: 1}, this.lastParams);
 
     params.page++;
 

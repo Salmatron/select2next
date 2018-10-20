@@ -50,7 +50,7 @@ ArrayAdapter.prototype.convertToOptions = function (data) {
             const $existingOption = $existing.filter(onlyItem(item));
 
             const existingData = this.item($existingOption);
-            const newData = $.extend(true, {}, item, existingData);
+            const newData = Utils.extend(true, {}, item, existingData);
 
             const $newOption = this.option(newData);
 

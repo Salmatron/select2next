@@ -1,6 +1,5 @@
-import * as $ from 'jquery';
-
 import {Translated} from "./i18n/en.js";
+import {Utils} from "./utils.js";
 
 export function Translation(dict) {
     this.dict = dict || {};
@@ -15,7 +14,7 @@ Translation.prototype.get = function (key) {
 };
 
 Translation.prototype.extend = function (translation) {
-    this.dict = $.extend({}, translation.all(), this.dict);
+    this.dict = Utils.extend({}, translation.all(), this.dict);
 };
 
 // Static functions

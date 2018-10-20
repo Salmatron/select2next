@@ -15,7 +15,7 @@ if ($.fn.select2 == null) {
 
         if (typeof options === 'object') {
             this.each(function () {
-                const instanceOptions = $.extend(true, {}, options);
+                const instanceOptions = Utils.extend(true, {}, options);
 
                 const instance = new Select2($(this), instanceOptions);
             });
