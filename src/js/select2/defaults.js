@@ -225,7 +225,7 @@ Defaults.prototype.apply = function (options) {
         }
     }
 
-    if ($.isArray(options.language)) {
+    if (Array.isArray(options.language)) {
         const languages = new Translation();
         options.language.push('en');
 
@@ -288,7 +288,7 @@ Defaults.prototype.reset = function () {
 
     function matcher(params, data) {
         // Always return the object if there is nothing to compare
-        if ($.trim(params.term) === '') {
+        if (String(params.term).trim() === '') {
             return data;
         }
 
@@ -361,7 +361,7 @@ Defaults.prototype.reset = function () {
 };
 
 Defaults.prototype.set = function (key, value) {
-    const camelKey = $.camelCase(key);
+    const camelKey = Utils.camelCase(key);
 
     const data = {};
     data[camelKey] = value;

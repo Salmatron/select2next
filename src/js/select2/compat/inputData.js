@@ -23,7 +23,7 @@ InputData.prototype.current = function (_, callback) {
     function getSelected(data, selectedIds) {
         const selected = [];
 
-        if (data.selected || $.inArray(data.id, selectedIds) !== -1) {
+        if (data.selected || selectedIds.indexOf(data.id) !== -1) {
             data.selected = true;
             selected.push(data);
         } else {

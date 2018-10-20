@@ -15,7 +15,7 @@ DropdownCSS.prototype.render = function (decorated) {
 
     let dropdownCssClass = this.options.get('dropdownCssClass') || '';
 
-    if ($.isFunction(dropdownCssClass)) {
+    if (typeof dropdownCssClass === 'function') {
         dropdownCssClass = dropdownCssClass(this.$element);
     }
 
@@ -41,7 +41,7 @@ DropdownCSS.prototype.render = function (decorated) {
 
     let dropdownCss = this.options.get('dropdownCss') || {};
 
-    if ($.isFunction(dropdownCss)) {
+    if (typeof dropdownCss === 'function') {
         dropdownCss = dropdownCss(this.$element);
     }
 

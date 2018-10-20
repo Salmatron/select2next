@@ -80,26 +80,17 @@ Options.prototype.fromElement = function ($e) {
 
     }
 
-    let dataset = {};
-
-    // Prefer the element's `dataset` attribute if it exists
-    // jQuery 1.x does not correctly handle data attributes with multiple dashes
-    if ($.fn.jquery && $.fn.jquery.substr(0, 2) == '1.' && $e[0].dataset) {
-        dataset = Utils.extend(true, {}, $e[0].dataset, Utils.GetData($e[0]));
-    } else {
-        dataset = Utils.GetData($e[0]);
-    }
-
+    let dataset = Utils.GetData($e[0]);
     let data = Utils.extend(true, {}, dataset);
 
     data = Utils._convertData(data);
 
     for (let key in data) {
-        if ($.inArray(key, excludedData) > -1) {
+        if (excludedData.indexOf(key) > -1) {
             continue;
         }
 
-        if ($.isPlainObject(this.options[key])) {
+        if (Utils.isPlainObject(this.options[key])) {
             Utils.extend(this.options[key], data[key]);
         } else {
             this.options[key] = data[key];

@@ -134,7 +134,7 @@ Results.prototype.setClasses = function () {
             const id = String(item.id);
 
             if ((item.element != null && item.element.selected) ||
-                (item.element == null && $.inArray(id, selectedIds) > -1)) {
+                (item.element == null && selectedIds.indexOf(id) > -1)) {
                 $option.attr('aria-selected', 'true');
             } else {
                 $option.attr('aria-selected', 'false');

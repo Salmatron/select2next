@@ -250,7 +250,7 @@ Select2.prototype._registerSelectionEvents = function () {
     });
 
     this.selection.on('*', function (name, params) {
-        if ($.inArray(name, nonRelayEvents) !== -1) {
+        if (nonRelayEvents.indexOf(name) !== -1) {
             return;
         }
 
@@ -560,7 +560,7 @@ Select2.prototype.val = function (args) {
 
     let newVal = args[0];
 
-    if ($.isArray(newVal)) {
+    if (Array.isArray(newVal)) {
         newVal = $.map(newVal, obj => obj.toString());
     }
 

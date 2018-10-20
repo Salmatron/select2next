@@ -43,7 +43,7 @@ AjaxAdapter.prototype.query = function (params, callback) {
 
     if (this._request != null) {
     // JSONP requests cannot always be aborted
-        if ($.isFunction(this._request.abort)) {
+        if (typeof this._request.abort === 'function') {
             this._request.abort();
         }
 
@@ -68,7 +68,7 @@ AjaxAdapter.prototype.query = function (params, callback) {
 
             if (self.options.get('debug') && window.console && console.error) {
                 // Check to make sure that the response included a `results` key.
-                if (!results || !results.results || !$.isArray(results.results)) {
+                if (!results || !results.results || !Array.isArray(results.results)) {
                     console.error(
                         'Select2: The AJAX results did not return an array in the ' +
             '`results` key of the response.'

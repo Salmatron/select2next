@@ -17,7 +17,7 @@ export function Tags(decorated, $element, options) {
 
     decorated.call(this, $element, options);
 
-    if ($.isArray(tags)) {
+    if (Array.isArray(tags)) {
         for (let t = 0; t < tags.length; t++) {
             const tag = tags[t];
             const item = this._normalizeItem(tag);
@@ -93,7 +93,7 @@ Tags.prototype.query = function (decorated, params, callback) {
 };
 
 Tags.prototype.createTag = function (decorated, params) {
-    const term = $.trim(params.term);
+    const term = String(params.term).trim();
 
     if (term === '') {
         return null;

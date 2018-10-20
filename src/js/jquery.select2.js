@@ -36,7 +36,7 @@ if ($.fn.select2 == null) {
             });
 
             // Check if we should be returning `this`
-            if ($.inArray(options, thisMethods) > -1) {
+            if (thisMethods.indexOf(options) > -1) {
                 return this;
             }
 

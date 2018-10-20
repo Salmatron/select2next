@@ -46,7 +46,7 @@ ArrayAdapter.prototype.convertToOptions = function (data) {
         const item = this._normalizeItem(data[d]);
 
         // Skip items which were pre-loaded, only merge the data
-        if ($.inArray(item.id, existingIds) >= 0) {
+        if (existingIds.indexOf(item.id) >= 0) {
             const $existingOption = $existing.filter(onlyItem(item));
 
             const existingData = this.item($existingOption);

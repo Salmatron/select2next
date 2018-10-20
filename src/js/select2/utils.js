@@ -15,6 +15,8 @@ export const Utils = {
     GetData,
     RemoveData,
     extend,
+    isPlainObject,
+    camelCase,
 };
 
 function Extend(ChildClass, SuperClass) {
@@ -418,4 +420,13 @@ function isPlainObject(obj) {
 
 function internalName(val) {
     return Object.prototype.toString.call(val).slice(8, -1); // slice off the surrounding '[object ' and ']'
+}
+
+let rdashAlpha = /-([\da-z])/gi,
+    fcamelCase = function (all, letter) {
+        return letter.toUpperCase();
+    };
+
+function camelCase(string) {
+    return string.replace( rdashAlpha, fcamelCase );
 }

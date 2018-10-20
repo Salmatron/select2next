@@ -5,7 +5,7 @@ export function oldMatcher(matcher) {
     function wrappedMatcher(params, data) {
         const match = Utils.extend(true, {}, data);
 
-        if (params.term == null || $.trim(params.term) === '') {
+        if (params.term == null || String(params.term).trim() === '') {
             return match;
         }
 

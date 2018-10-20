@@ -29,7 +29,7 @@ InitSelection.prototype.current = function (decorated, callback) {
     this.initSelection.call(null, this.$element, function (data) {
         self._isInitialized = true;
 
-        if (!$.isArray(data)) {
+        if (!Array.isArray(data)) {
             data = [data];
         }
 

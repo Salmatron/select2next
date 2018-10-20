@@ -14,7 +14,7 @@ ContainerCSS.prototype.render = function (decorated) {
 
     let containerCssClass = this.options.get('containerCssClass') || '';
 
-    if ($.isFunction(containerCssClass)) {
+    if (typeof containerCssClass === 'function') {
         containerCssClass = containerCssClass(this.$element);
     }
 
@@ -40,7 +40,7 @@ ContainerCSS.prototype.render = function (decorated) {
 
     let containerCss = this.options.get('containerCss') || {};
 
-    if ($.isFunction(containerCss)) {
+    if (typeof containerCss === 'function') {
         containerCss = containerCss(this.$element);
     }
 

@@ -82,7 +82,7 @@ Tokenizer.prototype.tokenizer = function (_, params, options, callback) {
     while (i < term.length) {
         const termChar = term[i];
 
-        if ($.inArray(termChar, separators) === -1) {
+        if (separators.indexOf(termChar) === -1) {
             i++;
 
             continue;

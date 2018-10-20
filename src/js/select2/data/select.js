@@ -51,7 +51,7 @@ SelectAdapter.prototype.select = function (data) {
             for (let d = 0; d < data.length; d++) {
                 const { id } = data[d];
 
-                if ($.inArray(id, val) === -1) {
+                if (val.indexOf(id) === -1) {
                     val.push(id);
                 }
             }
@@ -90,7 +90,7 @@ SelectAdapter.prototype.unselect = function (data) {
         for (let d = 0; d < currentData.length; d++) {
             const { id } = currentData[d];
 
-            if (id !== data.id && $.inArray(id, val) === -1) {
+            if (id !== data.id && val.indexOf(id) === -1) {
                 val.push(id);
             }
         }

@@ -3,11 +3,9 @@ import * as $ from 'jquery';
 function syncCssClasses($dest, $src, adapter) {
     let classes, replacements = [], adapted;
 
-    classes = $.trim($dest.attr('class'));
+    classes = String($dest.attr('class')).trim();
 
     if (classes) {
-        classes = String(classes); // for IE which returns object
-
         $(classes.split(/\s+/)).each(function () {
             // Save all Select2 classes
             if (this.indexOf('select2-') === 0) {
@@ -16,11 +14,9 @@ function syncCssClasses($dest, $src, adapter) {
         });
     }
 
-    classes = $.trim($src.attr('class'));
+    classes = String($src.attr('class')).trim();
 
     if (classes) {
-        classes = String(classes); // for IE which returns object
-
         $(classes.split(/\s+/)).each(function () {
             // Only adapt non-Select2 classes
             if (this.indexOf('select2-') !== 0) {
