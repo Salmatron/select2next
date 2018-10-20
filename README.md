@@ -1,10 +1,10 @@
-Select2
+Select2Next
 =======
 [![Build Status][travis-ci-image]][travis-ci-status]
 [![cdnjs](https://img.shields.io/cdnjs/v/select2.svg)](https://cdnjs.com/libraries/select2)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/select2/badge)](https://www.jsdelivr.com/package/npm/select2)
 
-Select2 is a jQuery-based replacement for select boxes. It supports searching,
+Select2Next is a modern rewrite of Select2, a replacement for select boxes. It supports searching,
 remote data sets, and pagination of results.
 
 To get started, checkout examples and documentation at
@@ -27,15 +27,12 @@ Use cases
 
 Browser compatibility
 ---------------------
-* IE 8+
+* IE 11+
 * Chrome 8+
 * Firefox 10+
 * Safari 3+
 * Opera 10.6+
 
-Select2 is automatically tested on the following browsers.
-
-[![Sauce Labs Test Status][saucelabs-matrix]][saucelabs-status]
 
 Usage
 -----
