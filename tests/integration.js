@@ -1,3 +1,5 @@
+import "../src/js/jquery.select2.js";
+
 import "./helpers.js";
 
 import "./integration/dom-changes.js";
