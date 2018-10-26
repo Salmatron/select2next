@@ -1,6 +1,5 @@
 window.module('select2(data)');
 
-import * as $ from 'jquery';
 import {Select2} from "../../src/js/select2/core.js";
 import {Options} from "../../src/js/select2/options.js";
 

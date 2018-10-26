@@ -1,7 +1,6 @@
 window.module('Data adapters - Array');
 
 import {ArrayAdapter as ArrayData} from "../../src/js/select2/data/array.js";
-import * as $ from 'jquery';
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
 

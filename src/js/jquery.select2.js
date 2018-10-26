@@ -1,5 +1,3 @@
-import * as $ from 'jquery';
-
 import {Select2} from './select2/core.js';
 import {defaults} from './select2/defaults.js';
 import {Utils} from './select2/utils.js';

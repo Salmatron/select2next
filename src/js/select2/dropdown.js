@@ -1,5 +1,3 @@
-import * as $ from 'jquery';
-
 import {Utils} from './utils.js';
 
 export function Dropdown($element, options) {

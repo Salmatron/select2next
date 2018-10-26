@@ -1,6 +1,5 @@
 window.module('Dropdown - containerCssClass compatibility');
 
-import * as $ from 'jquery';
 import {Utils} from "../../src/js/select2/utils.js";
 import {Options} from "../../src/js/select2/options.js";
 import {SingleSelection} from "../../src/js/select2/selection/single.js";

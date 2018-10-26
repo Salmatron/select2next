@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 
 export const Utils = {
     Extend,
@@ -69,14 +68,12 @@ function Decorate(SuperClass, DecoratorClass) {
     const superMethods = getMethods(SuperClass);
 
     function DecoratedClass() {
-        const { unshift } = Array.prototype;
-
         const argCount = DecoratorClass.prototype.constructor.length;
 
         let calledConstructor = SuperClass.prototype.constructor;
 
         if (argCount > 0) {
-            unshift.call(arguments, SuperClass.prototype.constructor);
+            Array.prototype.unshift.call(arguments, SuperClass.prototype.constructor);
 
             calledConstructor = DecoratorClass.prototype.constructor;
         }
@@ -86,11 +83,11 @@ function Decorate(SuperClass, DecoratorClass) {
 
     DecoratorClass.displayName = SuperClass.displayName;
 
-    function ctr() {
+    function Ctr() {
         this.constructor = DecoratedClass;
     }
 
-    DecoratedClass.prototype = new ctr();
+    DecoratedClass.prototype = new Ctr();
 
     for (let m = 0; m < superMethods.length; m++) {
         const superMethod = superMethods[m];
@@ -99,7 +96,7 @@ function Decorate(SuperClass, DecoratorClass) {
     }
 
     const calledMethod = function (methodName) {
-    // Stub out the original method if it's not decorating an actual method
+        // Stub out the original method if it's not decorating an actual method
         let originalMethod = function () {};
 
         if (methodName in DecoratedClass.prototype) {
@@ -109,9 +106,7 @@ function Decorate(SuperClass, DecoratorClass) {
         const decoratedMethod = DecoratorClass.prototype[methodName];
 
         return function () {
-            const { unshift } = Array.prototype;
-
-            unshift.call(arguments, originalMethod);
+            Array.prototype.unshift.call(arguments, originalMethod);
 
             return decoratedMethod.apply(this, arguments);
         };

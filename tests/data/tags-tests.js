@@ -2,7 +2,6 @@ window.module('Data adapters - Tags');
 
 import {SelectAdapter as SelectData} from "../../src/js/select2/data/select.js";
 import {Tags} from "../../src/js/select2/data/tags.js";
-import * as $ from 'jquery';
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
 

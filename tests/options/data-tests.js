@@ -1,7 +1,5 @@
 window.module('Options - Attributes');
 
-import * as $ from 'jquery';
-
 import {Options} from "../../src/js/select2/options.js";
 
 test('no nesting', function (assert) {

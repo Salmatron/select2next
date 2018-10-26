@@ -7,7 +7,6 @@ import {Tokenizer} from "../../src/js/select2/data/tokenizer.js";
 import {Tags} from "../../src/js/select2/data/tags.js";
 import {MockContainer} from "../helpers.js";
 
-import * as $ from 'jquery';
 
 test('triggers the select event', function (assert) {
     assert.expect(2);

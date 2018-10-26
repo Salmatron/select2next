@@ -1,7 +1,5 @@
 window.module('Data adapters - <input> compatibility');
 
-import * as $ from 'jquery';
-
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
 

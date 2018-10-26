@@ -5,7 +5,6 @@ import {AllowClear} from "../../src/js/select2/selection/allowClear.js";
 
 import {SingleSelection} from "../../src/js/select2/selection/single.js";
 
-import * as $ from 'jquery';
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
 import {MockContainer} from "../helpers.js";

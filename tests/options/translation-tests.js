@@ -1,6 +1,5 @@
 window.module('Options - Translations');
 
-import * as $ from 'jquery';
 import {Options} from "../../src/js/select2/options.js";
 
 test('partial dictionaries can be passed', function (assert) {

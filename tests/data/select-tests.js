@@ -1,7 +1,6 @@
 window.module('Data adapters - Select - current');
 
 import {SelectAdapter as SelectData} from "../../src/js/select2/data/select.js";
-import * as $ from 'jquery';
 import {Options} from "../../src/js/select2/options.js";
 
 var selectOptions = new Options({});

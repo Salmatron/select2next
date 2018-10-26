@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 import {Select2} from "../../src/js/select2/core.js";
 
 window.module('DOM integration');

@@ -1,7 +1,5 @@
 window.module('Options - Width');
 
-import * as $ from 'jquery';
-
 import {Select2} from "../../src/js/select2/core.js";
 
 var select = new Select2($('<select></select>'));

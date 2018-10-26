@@ -8,8 +8,7 @@ export function MaximumInputLength(decorated, $e, options) {
 MaximumInputLength.prototype.query = function (decorated, params, callback) {
     params.term = params.term || '';
 
-    if (this.maximumInputLength > 0 &&
-    params.term.length > this.maximumInputLength) {
+    if (this.maximumInputLength > 0 && params.term.length > this.maximumInputLength) {
         this.trigger('results:message', {
             message: 'inputTooLong',
             args: {

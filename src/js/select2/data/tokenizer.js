@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 import {Utils} from "../utils.js";
 
 export function Tokenizer(decorated, $element, options) {

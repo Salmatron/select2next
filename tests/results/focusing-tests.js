@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 import {Options} from "../../src/js/select2/options.js";
 import {Results} from "../../src/js/select2/results.js";
 import {MockContainer} from "../helpers.js";

@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 
 import {CompatUtils} from './utils.js';
 

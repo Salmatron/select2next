@@ -1,6 +1,5 @@
 window.module('Options - Deprecated - initSelection');
 
-import * as $ from 'jquery';
 import {Options} from "../../src/js/select2/options.js";
 
 test('converted into dataAdapter.current', function (assert) {

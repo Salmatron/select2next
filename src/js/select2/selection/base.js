@@ -1,5 +1,3 @@
-import * as $ from 'jquery';
-
 import {Utils} from '../utils.js';
 import {KEYS} from "../keys.js";
 

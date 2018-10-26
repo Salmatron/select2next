@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 
 export function Tags(decorated, $element, options) {
     const tags = options.get('tags');

@@ -3,7 +3,6 @@ window.module('Dropdown - Stoping event propagation');
 import {Dropdown} from "../../src/js/select2/dropdown.js";
 import {StopPropagation} from "../../src/js/select2/dropdown/stopPropagation.js";
 
-import * as $ from 'jquery';
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
 import {MockContainer} from "../helpers.js";

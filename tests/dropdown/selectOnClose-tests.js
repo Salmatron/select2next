@@ -1,7 +1,5 @@
 window.module('Dropdown - selectOnClose');
 
-import * as $ from 'jquery';
-
 import {Utils} from "../../src/js/select2/utils.js";
 import {Options} from "../../src/js/select2/options.js";
 

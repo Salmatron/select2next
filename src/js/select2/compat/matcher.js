@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 import {Utils} from "../utils.js";
 
 export function oldMatcher(matcher) {
