@@ -2,7 +2,7 @@
 function syncCssClasses($dest, $src, adapter) {
     let classes, replacements = [], adapted;
 
-    classes = String($dest.attr('class')).trim();
+    classes = ($dest.attr('class') != null) ? String($dest.attr('class')).trim() : null;
 
     if (classes) {
         $(classes.split(/\s+/)).each(function () {
@@ -13,7 +13,7 @@ function syncCssClasses($dest, $src, adapter) {
         });
     }
 
-    classes = String($src.attr('class')).trim();
+    classes = ($src.attr('class') != null) ? String($src.attr('class')).trim() : null;
 
     if (classes) {
         $(classes.split(/\s+/)).each(function () {

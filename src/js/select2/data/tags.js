@@ -92,7 +92,7 @@ Tags.prototype.query = function (decorated, params, callback) {
 };
 
 Tags.prototype.createTag = function (decorated, params) {
-    const term = String(params.term).trim();
+    const term = (params.term != null) ? String(params.term).trim() : '';
 
     if (term === '') {
         return null;

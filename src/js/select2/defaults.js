@@ -286,7 +286,7 @@ Defaults.prototype.reset = function () {
 
     function matcher(params, data) {
         // Always return the object if there is nothing to compare
-        if (String(params.term).trim() === '') {
+        if ((params.term == null) || (String(params.term).trim() === '')) {
             return data;
         }
 
