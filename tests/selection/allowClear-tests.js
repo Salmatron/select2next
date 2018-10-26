@@ -157,7 +157,7 @@ test('clicking clear will trigger the unselect event', function (assert) {
         );
 
         assert.ok(
-            $.isPlainObject(ev.data),
+            Utils.isPlainObject(ev.data),
             'The data should be an object'
         );
 
@@ -239,7 +239,7 @@ test('clicking clear will trigger the clear event', function (assert) {
         );
 
         assert.ok(
-            $.isArray(ev.data),
+            Array.isArray(ev.data),
             'The data should be an array'
         );
 

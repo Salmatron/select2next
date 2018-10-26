@@ -13,8 +13,12 @@ export const Utils = {
     StoreData,
     GetData,
     RemoveData,
+
     extend,
     isPlainObject,
+    internalName,
+    constructorName,
+    typeName,
     camelCase,
 };
 
@@ -38,8 +42,8 @@ function Extend(ChildClass, SuperClass) {
     return ChildClass;
 }
 
-function getMethods(theClass) {
-    const proto = theClass.prototype;
+function getMethods(TheClass) {
+    const proto = TheClass.prototype;
 
     const methods = [];
 
@@ -91,8 +95,7 @@ function Decorate(SuperClass, DecoratorClass) {
     for (let m = 0; m < superMethods.length; m++) {
         const superMethod = superMethods[m];
 
-        DecoratedClass.prototype[superMethod] =
-      SuperClass.prototype[superMethod];
+        DecoratedClass.prototype[superMethod] = SuperClass.prototype[superMethod];
     }
 
     const calledMethod = function (methodName) {
@@ -203,7 +206,7 @@ function _convertData(data) {
                 dataLevel[key] = {};
             }
 
-            if (k == keys.length - 1) {
+            if (k === (keys.length - 1)) {
                 dataLevel[key] = data[originalKey];
             }
 
@@ -228,8 +231,7 @@ function hasScroll(index, el) {
     const { overflowY } = el.style;
 
     //Check both x and y declarations
-    if (overflowX === overflowY &&
-      (overflowY === 'hidden' || overflowY === 'visible')) {
+    if (overflowX === overflowY && (overflowY === 'hidden' || overflowY === 'visible')) {
         return false;
     }
 
@@ -237,8 +239,7 @@ function hasScroll(index, el) {
         return true;
     }
 
-    return ($el.innerHeight() < el.scrollHeight ||
-    $el.innerWidth() < el.scrollWidth);
+    return ($el.innerHeight() < el.scrollHeight || $el.innerWidth() < el.scrollWidth);
 }
 
 function escapeMarkup(markup) {
@@ -289,7 +290,7 @@ function GetUniqueElementId(element) {
 
     let select2Id = element.getAttribute('data-select2-id');
     if (select2Id == null) {
-    // If element has id, use it.
+        // If element has id, use it.
         if (element.id) {
             select2Id = element.id;
             element.setAttribute('data-select2-id', select2Id);
@@ -320,10 +321,9 @@ function GetData(element, name) {
     const id = Utils.GetUniqueElementId(element);
     if (name) {
         if (Utils.__cache[id]) {
-            return Utils.__cache[id][name] != null ?
-                Utils.__cache[id][name]:
-                $(element).data(name); // Fallback to HTML5 data attribs.
+            return Utils.__cache[id][name] != null ? Utils.__cache[id][name]: $(element).data(name); // Fallback to HTML5 data attribs.
         }
+
         return $(element).data(name); // Fallback to HTML5 data attribs.
     } else {
         return Utils.__cache[id];
@@ -411,8 +411,32 @@ function isPlainObject(obj) {
     return (obj != null) && (typeof obj === 'object') && (internalName(obj) === 'Object') && (((proto = Object.getPrototypeOf(obj)) === Object.prototype) || (proto === null));
 }
 
+/**
+ * Gets the internal type/constructor name of the provided `val`
+ * @param val
+ * @returns {string}
+ */
 function internalName(val) {
     return Object.prototype.toString.call(val).slice(8, -1); // slice off the surrounding '[object ' and ']'
+}
+
+/**
+ * @param obj
+ * @returns {*}
+ */
+function constructorName(obj) {
+    if ((obj != null) && (typeof obj.constructor === 'function') && (typeof obj.constructor.name === 'string')) {
+        return obj.constructor.name;
+    }
+}
+
+/**
+ * @param obj
+ * @returns {*}
+ */
+function typeName(obj) {
+    let name = constructorName(obj);
+    return ((name !== undefined) && (name !== '')) ? name : internalName(obj);
 }
 
 let rdashAlpha = /-([\da-z])/gi,

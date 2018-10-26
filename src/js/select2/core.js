@@ -590,8 +590,7 @@ Select2.prototype.destroy = function () {
     this._syncS = null;
 
     this.$element.off('.select2');
-    this.$element.attr('tabindex',
-        Utils.GetData(this.$element[0], 'old-tabindex'));
+    this.$element.attr('tabindex', Utils.GetData(this.$element[0], 'old-tabindex'));
 
     this.$element.removeClass('select2-hidden-accessible');
     this.$element.attr('aria-hidden', 'false');

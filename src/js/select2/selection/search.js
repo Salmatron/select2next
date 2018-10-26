@@ -118,10 +118,7 @@ Search.prototype.bind = function (decorated, container, $container) {
         }
     );
 
-    this.$selection.on(
-        'keyup.search input.search',
-        '.select2-search--inline',
-        function (evt) {
+    this.$selection.on('keyup.search input.search', '.select2-search--inline', function (evt) {
             // IE will trigger the `input` event when a placeholder is used on a
             // search box. To get around this issue, we are forced to ignore all
             // `input` events in IE and keep using `keyup`.
@@ -133,12 +130,12 @@ Search.prototype.bind = function (decorated, container, $container) {
             const key = evt.which;
 
             // We can freely ignore events from modifier keys
-            if (key == KEYS.SHIFT || key == KEYS.CTRL || key == KEYS.ALT) {
+            if (key === KEYS.SHIFT || key === KEYS.CTRL || key === KEYS.ALT) {
                 return;
             }
 
             // Tabbing will be handled during the `keydown` phase
-            if (key == KEYS.TAB) {
+            if (key === KEYS.TAB) {
                 return;
             }
 
@@ -164,7 +161,7 @@ Search.prototype.createPlaceholder = function (decorated, placeholder) {
 };
 
 Search.prototype.update = function (decorated, data) {
-    const searchHadFocus = this.$search[0] == document.activeElement;
+    const searchHadFocus = this.$search[0] === document.activeElement;
 
     this.$search.attr('placeholder', '');
 

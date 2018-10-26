@@ -72,7 +72,7 @@ test('single option converted to array automatically', function (assert) {
 
     data.current(function (data) {
         assert.ok(
-            $.isArray(data),
+            Array.isArray(data),
             'The data should have been converted to an array'
         );
     });
