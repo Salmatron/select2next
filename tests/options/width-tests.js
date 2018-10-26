@@ -1,6 +1,6 @@
-window.module('Options - Width');
-
 import {Select2} from "../../src/js/select2/core.js";
+
+window.module('Options - Width');
 
 var select = new Select2($('<select></select>'));
 

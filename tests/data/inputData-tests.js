@@ -1,10 +1,10 @@
-window.module('Data adapters - <input> compatibility');
-
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
 
 import {ArrayAdapter as ArrayData} from "../../src/js/select2/data/array.js";
 import {InputData} from "../../src/js/select2/compat/inputData.js";
+
+window.module('Data adapters - <input> compatibility');
 
 var InputAdapter = Utils.Decorate(ArrayData, InputData);
 

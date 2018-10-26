@@ -1,7 +1,7 @@
-window.module('select2(data)');
-
 import {Select2} from "../../src/js/select2/core.js";
 import {Options} from "../../src/js/select2/options.js";
+
+window.module('select2(data)');
 
 test('single default selection returned', function (assert) {
     var $select = $(

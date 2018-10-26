@@ -1,7 +1,7 @@
-window.module('select2(val)');
-
 import {Utils} from "../../src/js/select2/utils.js";
 import "../../src/js/jquery.select2.js";
+
+window.module('select2(val)');
 
 test('multiple elements with arguments works', function (assert) {
 

@@ -1,7 +1,7 @@
-window.module('Data adapters - Base');
-
 import {BaseAdapter as BaseData} from "../../src/js/select2/data/base.js";
 import {Options} from "../../src/js/select2/options.js";
+
+window.module('Data adapters - Base');
 
 var options = new Options({});
 

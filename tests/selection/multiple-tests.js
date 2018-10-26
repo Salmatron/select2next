@@ -1,9 +1,9 @@
-window.module('Selection containers - Multiple');
-
 import {MultipleSelection} from "../../src/js/select2/selection/multiple.js";
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
 import {MockContainer} from "../helpers.js";
+
+window.module('Selection containers - Multiple');
 
 var options = new Options({});
 

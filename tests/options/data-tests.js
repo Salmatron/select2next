@@ -1,6 +1,6 @@
-window.module('Options - Attributes');
-
 import {Options} from "../../src/js/select2/options.js";
+
+window.module('Options - Attributes');
 
 test('no nesting', function (assert) {
     var $test = $('<select data-test="test"></select>');

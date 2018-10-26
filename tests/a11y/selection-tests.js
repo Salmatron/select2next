@@ -1,9 +1,9 @@
-window.module('Accessibility - All');
-
 import {BaseSelection} from "../../src/js/select2/selection/base.js";
 import {SingleSelection} from "../../src/js/select2/selection/single.js";
 import {Options} from "../../src/js/select2/options.js";
 import {MockContainer} from "../helpers.js";
+
+window.module('Accessibility - All');
 
 var options = new Options({});
 

@@ -1,5 +1,3 @@
-window.module('Selection containers - Placeholders - Allow clear');
-
 import {Placeholder} from "../../src/js/select2/selection/placeholder.js";
 import {AllowClear} from "../../src/js/select2/selection/allowClear.js";
 
@@ -8,6 +6,8 @@ import {SingleSelection} from "../../src/js/select2/selection/single.js";
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
 import {MockContainer} from "../helpers.js";
+
+window.module('Selection containers - Placeholders - Allow clear');
 
 var AllowClearPlaceholder = Utils.Decorate(
     Utils.Decorate(SingleSelection, Placeholder),

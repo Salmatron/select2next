@@ -1,9 +1,9 @@
-window.module('Data adapters - Tags');
-
 import {SelectAdapter as SelectData} from "../../src/js/select2/data/select.js";
 import {Tags} from "../../src/js/select2/data/tags.js";
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
+
+window.module('Data adapters - Tags');
 
 var SelectTags = Utils.Decorate(SelectData, Tags);
 var options = new Options({

@@ -1,8 +1,8 @@
-window.module('Data adapters - Array');
-
 import {ArrayAdapter as ArrayData} from "../../src/js/select2/data/array.js";
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
+
+window.module('Data adapters - Array');
 
 var UserDefinedType = function (id, text) {
     var self = this;

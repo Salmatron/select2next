@@ -1,6 +1,6 @@
-window.module('Defaults - Ajax');
-
 import {defaults} from "../../src/js/select2/defaults.js";
+
+window.module('Defaults - Ajax');
 
 test('options are merged recursively with default options', function (assert) {
     var ajaxDelay = 250;

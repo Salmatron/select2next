@@ -1,10 +1,10 @@
-window.module('Accessibility - Search');
-
 import {MultipleSelection} from "../../src/js/select2/selection/multiple.js";
 import {Search as InlineSearch} from "../../src/js/select2/selection/search.js";
 import {Utils} from "../../src/js/select2/utils.js";
 import {Options} from "../../src/js/select2/options.js";
 import {MockContainer} from "../helpers.js";
+
+window.module('Accessibility - Search');
 
 var options = new Options({});
 

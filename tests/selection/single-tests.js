@@ -1,8 +1,8 @@
-window.module('Selection containers - Single');
-
 import {SingleSelection} from "../../src/js/select2/selection/single.js";
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
+
+window.module('Selection containers - Single');
 
 var options = new Options({});
 

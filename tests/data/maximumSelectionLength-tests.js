@@ -1,8 +1,8 @@
-window.module('Data adapters - Maximum selection length');
-
 import {MaximumSelectionLength} from "../../src/js/select2/data/maximumSelectionLength.js";
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
+
+window.module('Data adapters - Maximum selection length');
 
 function MaximumSelectionStub() {
     this.called = false;

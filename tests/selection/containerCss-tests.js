@@ -1,9 +1,9 @@
-window.module('Dropdown - containerCssClass compatibility');
-
 import {Utils} from "../../src/js/select2/utils.js";
 import {Options} from "../../src/js/select2/options.js";
 import {SingleSelection} from "../../src/js/select2/selection/single.js";
 import {ContainerCSS as CompatContainerCss} from "../../src/js/select2/compat/containerCss.js";
+
+window.module('Dropdown - containerCssClass compatibility');
 
 var ContainerCSS = Utils.Decorate(SingleSelection, CompatContainerCss);
 

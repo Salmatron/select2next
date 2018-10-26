@@ -1,6 +1,6 @@
-window.module('Options - Deprecated - initSelection');
-
 import {Options} from "../../src/js/select2/options.js";
+
+window.module('Options - Deprecated - initSelection');
 
 test('converted into dataAdapter.current', function (assert) {
     assert.expect(5);
