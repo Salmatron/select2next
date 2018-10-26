@@ -5,7 +5,7 @@ import {Utils} from "../../src/js/select2/utils.js";
 import {SelectAdapter as SelectData} from "../../src/js/select2/data/select.js";
 import {Tokenizer} from "../../src/js/select2/data/tokenizer.js";
 import {Tags} from "../../src/js/select2/data/tags.js";
-import {MockContainer} from "../helpers";
+import {MockContainer} from "../helpers.js";
 
 import * as $ from 'jquery';
 

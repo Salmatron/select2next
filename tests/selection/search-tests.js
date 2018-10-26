@@ -1,11 +1,11 @@
 window.module('Selection containers - Inline search');
 
-import {MultipleSelection} from "../../src/js/select2/selection/multiple";
-import {Search as InlineSearch} from "../../src/js/select2/selection/search";
+import {MultipleSelection} from "../../src/js/select2/selection/multiple.js";
+import {Search as InlineSearch} from "../../src/js/select2/selection/search.js";
 import * as $ from 'jquery';
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
-import {KEYS} from "../../src/js/select2/keys";
+import {KEYS} from "../../src/js/select2/keys.js";
 import {MockContainer} from "../helpers.js";
 
 var options = new Options({});

@@ -1,7 +1,7 @@
 window.module('Selection containers - Placeholders');
 
-import {Placeholder} from "../../src/js/select2/selection/placeholder";
-import {SingleSelection} from "../../src/js/select2/selection/single";
+import {Placeholder} from "../../src/js/select2/selection/placeholder.js";
+import {SingleSelection} from "../../src/js/select2/selection/single.js";
 import * as $ from 'jquery';
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";

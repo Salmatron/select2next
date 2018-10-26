@@ -1,6 +1,6 @@
 window.module('Data adapters - Minimum input length');
 
-import {MinimumInputLength} from "../../src/js/select2/data/minimumInputLength";
+import {MinimumInputLength} from "../../src/js/select2/data/minimumInputLength.js";
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
 

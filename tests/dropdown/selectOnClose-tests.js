@@ -5,10 +5,10 @@ import * as $ from 'jquery';
 import {Utils} from "../../src/js/select2/utils.js";
 import {Options} from "../../src/js/select2/options.js";
 
-import {SelectAdapter as SelectData} from "../../src/js/select2/data/select";
+import {SelectAdapter as SelectData} from "../../src/js/select2/data/select.js";
 
-import {Results} from "../../src/js/select2/results";
-import {SelectOnClose} from "../../src/js/select2/dropdown/selectOnClose";
+import {Results} from "../../src/js/select2/results.js";
+import {SelectOnClose} from "../../src/js/select2/dropdown/selectOnClose.js";
 import {MockContainer} from "../helpers.js";
 
 var ModifiedResults = Utils.Decorate(Results, SelectOnClose);

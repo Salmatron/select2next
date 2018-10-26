@@ -3,8 +3,8 @@ window.module('Dropdown - dropdownCssClass compatibility');
 import * as $ from 'jquery';
 import {Utils} from "../../src/js/select2/utils.js";
 import {Options} from "../../src/js/select2/options.js";
-import {Dropdown} from "../../src/js/select2/dropdown";
-import {DropdownCSS as CompatDropdownCss} from "../../src/js/select2/compat/dropdownCss";
+import {Dropdown} from "../../src/js/select2/dropdown.js";
+import {DropdownCSS as CompatDropdownCss} from "../../src/js/select2/compat/dropdownCss.js";
 
 var DropdownCSS = Utils.Decorate(Dropdown, CompatDropdownCss);
 

@@ -3,8 +3,8 @@ window.module('Dropdown - containerCssClass compatibility');
 import * as $ from 'jquery';
 import {Utils} from "../../src/js/select2/utils.js";
 import {Options} from "../../src/js/select2/options.js";
-import {SingleSelection} from "../../src/js/select2/selection/single";
-import {ContainerCSS as CompatContainerCss} from "../../src/js/select2/compat/containerCss";
+import {SingleSelection} from "../../src/js/select2/selection/single.js";
+import {ContainerCSS as CompatContainerCss} from "../../src/js/select2/compat/containerCss.js";
 
 var ContainerCSS = Utils.Decorate(SingleSelection, CompatContainerCss);
 

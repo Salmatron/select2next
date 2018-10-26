@@ -1,6 +1,6 @@
 window.module('Data adapters - Maximum input length');
 
-import {MaximumInputLength} from "../../src/js/select2/data/maximumInputLength";
+import {MaximumInputLength} from "../../src/js/select2/data/maximumInputLength.js";
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";
 

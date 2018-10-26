@@ -1,5 +1,5 @@
-import {SingleSelection} from "../../src/js/select2/selection/single";
-import {StopPropagation} from "../../src/js/select2/selection/stopPropagation";
+import {SingleSelection} from "../../src/js/select2/selection/single.js";
+import {StopPropagation} from "../../src/js/select2/selection/stopPropagation.js";
 import * as $ from 'jquery';
 import {Options} from "../../src/js/select2/options.js";
 import {Utils} from "../../src/js/select2/utils.js";

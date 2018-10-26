@@ -5,7 +5,7 @@
 // Disable jQuery's binding to $
 // jQuery.noConflict();
 
-import {Utils} from "../src/js/select2/utils";
+import {Utils} from "../src/js/select2/utils.js";
 
 export function MockContainer() {
     MockContainer.__super__.constructor.call(this);

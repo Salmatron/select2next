@@ -2,8 +2,8 @@ import * as $ from 'jquery';
 import {Utils} from "../../src/js/select2/utils.js";
 import {Options} from "../../src/js/select2/options.js";
 import {MockContainer} from "../helpers.js";
-import {Dropdown} from "../../src/js/select2/dropdown";
-import{AttachBody} from "../../src/js/select2/dropdown/attachBody";
+import {Dropdown} from "../../src/js/select2/dropdown.js";
+import{AttachBody} from "../../src/js/select2/dropdown/attachBody.js";
 
 window.module('Dropdown - attachBody - positioning');
 
