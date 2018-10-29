@@ -8,7 +8,6 @@ export const Utils = {
     hasScroll,
     escapeMarkup,
     appendMany,
-    GetUniqueElementId,
     StoreData,
     GetData,
     RemoveData,
@@ -273,39 +272,20 @@ function appendMany($element, $nodes) {
     $element.append($nodes);
 }
 
-// Cache objects in Utils.__cache instead of $.data (see #4346)
-Utils.__cache = {};
-
-let id = 0;
-function GetUniqueElementId(element) {
-    // Get a unique element Id. If element has no id,
-    // creates a new unique number, stores it in the id
-    // attribute and returns the new id.
-    // If an id already exists, it simply returns it.
-
-    let select2Id = element.getAttribute('data-select2-id');
-    if (select2Id == null) {
-        // If element has id, use it.
-        if (element.id) {
-            select2Id = element.id;
-            element.setAttribute('data-select2-id', select2Id);
-        } else {
-            element.setAttribute('data-select2-id', ++id);
-            select2Id = id.toString();
-        }
-    }
-    return select2Id;
-}
+// Cache objects in dataCache instead of $.data (see #4346)
+let dataCache = new WeakMap();
 
 function StoreData(element, name, value) {
     // Stores an item in the cache for a specified element.
     // name is the cache key.
-    const id = Utils.GetUniqueElementId(element);
-    if (!Utils.__cache[id]) {
-        Utils.__cache[id] = {};
+    let elData = dataCache.get(element);
+
+    if (elData == null) {
+        elData =  {};
+        dataCache.set(element, elData);
     }
 
-    Utils.__cache[id][name] = value;
+    elData[name] = value;
 }
 
 function GetData(element, name) {
@@ -313,24 +293,22 @@ function GetData(element, name) {
     // name is optional. If no name specified, return
     // all cache items for the specified element.
     // and for a specified element.
-    const id = Utils.GetUniqueElementId(element);
+    const elData = dataCache.get(element);
+
     if (name) {
-        if (Utils.__cache[id]) {
-            return Utils.__cache[id][name] != null ? Utils.__cache[id][name]: $(element).data(name); // Fallback to HTML5 data attribs.
+        if (elData) {
+            return elData[name] != null ? elData[name]: $(element).data(name); // Fallback to HTML5 data attribs.
         }
 
         return $(element).data(name); // Fallback to HTML5 data attribs.
     } else {
-        return Utils.__cache[id];
+        return elData;
     }
 }
 
 function RemoveData(element) {
     // Removes all cached items for a specified element.
-    const id = Utils.GetUniqueElementId(element);
-    if (Utils.__cache[id] != null) {
-        delete Utils.__cache[id];
-    }
+    dataCache.delete(element);
 }
 
 /**
